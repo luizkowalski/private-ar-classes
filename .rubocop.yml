@@ -1,0 +1,36 @@
+require: 
+  - rubocop-performance
+  - rubocop-rails
+#   - rubocop-minitest
+
+AllCops:
+  NewCops: enable
+  TargetRubyVersion: 2.7
+  Exclude:
+    - 'bin/**/*'
+    - 'db/schema.rb'
+
+Layout/DotPosition:
+  EnforcedStyle: trailing
+
+Layout/LineLength:
+  Enabled: false
+
+Style/Documentation:
+  Enabled: false
+
+Naming/InclusiveLanguage:
+  Enabled: true
+
+Style/ClassAndModuleChildren:
+  Enabled: false
+
+Metrics/ParameterLists:
+  Enabled: false
+
+Metrics/BlockLength:
+  Exclude:
+    - 'lib/tasks/**/*'
+
+Rails/I18nLocaleTexts:
+  Enabled: false
