@@ -1,0 +1,15 @@
+<div class="box">
+  <article class="media">
+    <div class="media-content">
+      <div class="content">
+        <p>
+          <strong>r/<%= post.community %> </strong>
+          <br>
+          <strong><%= post.title %></strong> <small> by u/<%= post.username %> </small> <small><%= time_ago_in_words(post.created_at) %> </small>
+          <br>
+          <%= post.body %>
+        </p>
+      </div>
+    </div>
+  </article>
+</div>

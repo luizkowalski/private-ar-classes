@@ -34,3 +34,7 @@ Metrics/BlockLength:
 
 Rails/I18nLocaleTexts:
   Enabled: false
+
+Lint/MissingSuper:
+  Exclude:
+    - 'app/components/**/*'

@@ -16,9 +16,9 @@ module Users
       true
     end
 
-    sig { params(username: String).returns(T::Boolean) }
+    sig { params(username: String).returns(T.nilable(UserActiveRecord)) }
     def find_by_username(username:)
-      true
+      UserActiveRecord.find_by(username: username)
     end
   end
 end

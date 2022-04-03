@@ -63,6 +63,7 @@ class Sprockets::Asset
 end
 
 module Sprockets::Autoload; end
+Sprockets::Autoload::SassC = SassC
 
 class Sprockets::BabelProcessor
   def initialize(options = T.unsafe(nil)); end
@@ -827,7 +828,8 @@ class Sprockets::SassCompressor
   def initialize(options = T.unsafe(nil)); end
 
   def cache_key; end
-  def call(input); end
+  def call(*args); end
+  def evaluate(*args); end
 
   class << self
     def cache_key; end
@@ -837,6 +839,50 @@ class Sprockets::SassCompressor
 end
 
 Sprockets::SassCompressor::VERSION = T.let(T.unsafe(nil), String)
+Sprockets::SassFunctions = Sprockets::SassProcessor::Functions
+
+class Sprockets::SassProcessor
+  def initialize(options = T.unsafe(nil), &block); end
+
+  def cache_key; end
+  def call(input); end
+
+  private
+
+  def build_cache_store(input, version); end
+  def merge_options(options); end
+
+  class << self
+    def cache_key; end
+    def call(input); end
+    def instance; end
+    def syntax; end
+  end
+end
+
+module Sprockets::SassProcessor::Functions
+  def asset_data_url(path); end
+  def asset_path(path, options = T.unsafe(nil)); end
+  def asset_url(path, options = T.unsafe(nil)); end
+  def audio_path(path); end
+  def audio_url(path); end
+  def font_path(path); end
+  def font_url(path); end
+  def image_path(path); end
+  def image_url(path); end
+  def javascript_path(path); end
+  def javascript_url(path); end
+  def stylesheet_path(path); end
+  def stylesheet_url(path); end
+  def video_path(path); end
+  def video_url(path); end
+
+  protected
+
+  def sprockets_context; end
+  def sprockets_dependencies; end
+  def sprockets_environment; end
+end
 
 class Sprockets::SasscCompressor
   def initialize(options = T.unsafe(nil)); end
@@ -890,6 +936,12 @@ module Sprockets::SasscProcessor::Functions
   def sprockets_context; end
   def sprockets_dependencies; end
   def sprockets_environment; end
+end
+
+class Sprockets::ScssProcessor < ::Sprockets::SassProcessor
+  class << self
+    def syntax; end
+  end
 end
 
 class Sprockets::ScsscProcessor < ::Sprockets::SasscProcessor

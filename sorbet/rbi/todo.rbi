@@ -4,4 +4,5 @@
 
 # typed: false
 
+module ::PreviewHelper; end
 module RDoc::Task; end
