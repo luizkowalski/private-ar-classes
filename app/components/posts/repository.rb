@@ -22,7 +22,7 @@ module Posts
       end
     end
 
-    sig { params(community_ids: T::Array[Integer]).returns(T::Array[::Post]) }
+    # sig { params(community_ids: T::Array[Integer]).returns(T::Array[::Post]) }
     def find_posts_by_communities(community_ids:)
       PostActiveRecord.where(community_id: community_ids).
         order(created_at: :desc)
