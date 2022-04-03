@@ -30,6 +30,11 @@ module Subreddits
         end
       end
 
+      sig { params(slug: String).returns(Community) }
+      def find_by_slug(slug:)
+        CommunityActiveRecord.find_by(title: slug)&.to_entity
+      end
+
       # sig { params(user_id: Integer).) }
       def communities_by_user(user_id:)
         CommunityActiveRecord.joins(:subscriptions).where(community_subscriptions: { user_id: user_id }).map(&:to_entity)
