@@ -1,20 +1,21 @@
+# typed: true
 # frozen_string_literal: true
 
-module Posts
+module Subreddits
   module Persistence
     class PostActiveRecord < ApplicationRecord
       self.table_name = 'posts'
 
-      # belongs_to :community
+      belongs_to :community, class_name: 'CommunityActiveRecord'
       # belongs_to :user
 
       def to_entity
-        Posts::Post.new(
+        Subreddits::Post.new(
           id: id,
           title: title,
           body: body,
-          username: username,
-          community: community,
+          user_id: user_id,
+          community: T.must(community).title,
           created_at: created_at
         )
       end

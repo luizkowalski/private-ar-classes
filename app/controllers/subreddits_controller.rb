@@ -2,8 +2,7 @@
 
 class SubredditsController < ApplicationController
   def show
-    community = Subreddits::Persistence::Repository.new.find_by_slug(slug: params[:id])
-    posts     = Posts::Persistence::Repository.new.find_posts_by_community(community_id: community.id)
+    posts = Subreddits::Service.new.community_timeline(slug: params[:id])
 
     render(Posts::PostComponent.with_collection(posts))
   end

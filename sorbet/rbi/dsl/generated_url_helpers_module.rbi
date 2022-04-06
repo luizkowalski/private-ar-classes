@@ -57,5 +57,8 @@ module GeneratedUrlHelpersModule
   def root_url(*args); end
 
   sig { params(args: T.untyped).returns(String) }
+  def subreddit_url(*args); end
+
+  sig { params(args: T.untyped).returns(String) }
   def update_rails_disk_service_url(*args); end
 end

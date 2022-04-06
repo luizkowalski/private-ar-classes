@@ -5,7 +5,6 @@ module Subreddits
   module Persistence
     class Repository
       extend(T::Sig)
-      attr_reader :community_id
 
       sig { params(user_id: Integer, community_id: Integer).returns(T::Boolean) }
       def subscribe_to_community(user_id:, community_id:)
@@ -38,6 +37,19 @@ module Subreddits
       # sig { params(user_id: Integer).) }
       def communities_by_user(user_id:)
         CommunityActiveRecord.joins(:subscriptions).where(community_subscriptions: { user_id: user_id }).map(&:to_entity)
+      end
+
+      sig { params(community_ids: T::Array[Integer]).returns(T::Array[Post]) }
+      def find_posts_by_communities(community_ids:)
+        PostActiveRecord.
+          includes(:community).
+          where(community_id: community_ids).
+          order(created_at: :desc).map(&:to_entity)
+      end
+
+      sig { params(community_id: Integer).returns(T::Array[Post]) }
+      def find_posts_by_community(community_id:)
+        find_posts_by_communities(community_ids: [community_id])
       end
 
       private
