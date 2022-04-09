@@ -298,7 +298,7 @@ th:not([align]) {
 }
 
 html {
-  background-color: #EFF0EB;
+  background-color: #e2dfdf;
   font-size: 16px;
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
@@ -10304,4 +10304,12 @@ a.has-text-danger-dark:hover, a.has-text-danger-dark:focus {
 .footer {
   background-color: hsl(0deg, 0%, 98%);
   padding: 3rem 1.5rem 6rem;
+}
+
+[data-link] {
+  cursor: pointer;
+}
+
+.post-body-link {
+  color: #151515;
 }

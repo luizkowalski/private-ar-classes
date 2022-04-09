@@ -15,10 +15,15 @@ module Subreddits
           body: body,
           user_id: user_id,
           community: T.must(community).title,
+          slug: slug,
           created_at: created_at
         )
       end
+
+      def slug
+        "#{id}_#{title.parameterize}"
+      end
     end
-    private_constant :PostActiveRecord
+    # private_constant :PostActiveRecord
   end
 end

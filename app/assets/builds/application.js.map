@@ -1,7 +1,7 @@
 {
   "version": 3,
-  "sources": [],
-  "sourcesContent": [],
-  "mappings": "",
+  "sources": ["../../javascript/application.js"],
+  "sourcesContent": ["// Entry point for the build script in your package.json\nwindow.addEventListener(\"load\", () => {\n  const links = document.querySelectorAll(\n    \"[data-link]\"\n  );\n  \n  links.forEach((element) => {\n    element.addEventListener(\"click\", (event) => {\n      event.preventDefault();\n\n      const url = element.getAttribute(\"data-link\");\n      window.location.href = url;\n    });\n  });\n});"],
+  "mappings": ";;AACA,SAAO,iBAAiB,QAAQ,MAAM;AACpC,UAAM,QAAQ,SAAS,iBACrB,aACF;AAEA,UAAM,QAAQ,CAAC,YAAY;AACzB,cAAQ,iBAAiB,SAAS,CAAC,UAAU;AAC3C,cAAM,eAAe;AAErB,cAAM,MAAM,QAAQ,aAAa,WAAW;AAC5C,eAAO,SAAS,OAAO;AAAA,MACzB,CAAC;AAAA,IACH,CAAC;AAAA,EACH,CAAC;",
   "names": []
 }

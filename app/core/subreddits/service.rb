@@ -5,16 +5,19 @@ module Subreddits
   class Service
     def timeline(user_id:)
       communities = community_repository.communities_by_user(user_id: user_id)
-      posts       = community_repository.find_posts_by_communities(community_ids: communities.map(&:id))
+      posts       = community_repository.find_posts_by_communities(slugs: communities.map(&:title))
 
       enrich_posts_with_username(posts)
     end
 
     def community_timeline(slug:)
-      community = community_repository.find_by_slug(slug: slug)
-      posts     = community_repository.find_posts_by_community(community_id: community.id)
+      posts = community_repository.find_posts_by_community(slug: slug)
 
       enrich_posts_with_username(posts)
+    end
+
+    def find_by_slug(slug:)
+      community_repository.find_by_slug(slug: slug)
     end
 
     private

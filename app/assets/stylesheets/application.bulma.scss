@@ -8,7 +8,7 @@
 // $pink: #FA7C91;
 // $brown: #757763;
 // $beige-light: #D0D1CD;
-$beige-lighter: #EFF0EB;
+$beige-lighter: #e2dfdf;
 
 // Update Bulma's global variables
 $family-sans-serif: "Nunito", sans-serif;
@@ -37,3 +37,4 @@ $control-border-width: 2px;
 // @import "bulma/sass/layout/section.sass";
 
 @import 'bulma/bulma';
+@import 'custom';

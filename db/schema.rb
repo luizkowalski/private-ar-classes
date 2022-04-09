@@ -22,6 +22,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_04_02_162952) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["created_by_user_id"], name: "index_communities_on_created_by_user_id"
+    t.index ["title"], name: "index_communities_on_title", unique: true
   end
 
   create_table "community_subscriptions", force: :cascade do |t|

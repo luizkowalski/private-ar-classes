@@ -39,17 +39,17 @@ module Subreddits
         CommunityActiveRecord.joins(:subscriptions).where(community_subscriptions: { user_id: user_id }).map(&:to_entity)
       end
 
-      sig { params(community_ids: T::Array[Integer]).returns(T::Array[Post]) }
-      def find_posts_by_communities(community_ids:)
+      sig { params(slugs: T::Array[String]).returns(T::Array[Post]) }
+      def find_posts_by_communities(slugs:)
         PostActiveRecord.
           includes(:community).
-          where(community_id: community_ids).
+          where(community: { title: slugs }).
           order(created_at: :desc).map(&:to_entity)
       end
 
-      sig { params(community_id: Integer).returns(T::Array[Post]) }
-      def find_posts_by_community(community_id:)
-        find_posts_by_communities(community_ids: [community_id])
+      sig { params(slug: String).returns(T::Array[Post]) }
+      def find_posts_by_community(slug:)
+        find_posts_by_communities(slugs: [slug])
       end
 
       private

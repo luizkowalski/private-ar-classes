@@ -2,8 +2,15 @@
 
 class SubredditsController < ApplicationController
   def show
-    posts = Subreddits::Service.new.community_timeline(slug: params[:id])
+    community = subreddit_service.find_by_slug(slug: params[:id])
+    posts     = subreddit_service.community_timeline(slug: community.title)
 
     render(Posts::PostComponent.with_collection(posts))
+  end
+
+  private
+
+  def subreddit_service
+    @subreddit_service ||= Subreddits::Service.new
   end
 end
