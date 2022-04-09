@@ -6,3 +6,4 @@
 
 module ::PreviewHelper; end
 module RDoc::Task; end
+module Users::Repository; end

@@ -4,11 +4,12 @@
 module Users
   class User
     extend(T::Sig)
+
     attr_reader :id, :username
 
     sig { params(id: Integer, username: String).void }
     def initialize(id:, username:)
-      @id = id
+      @id       = id
       @username = username
     end
   end

@@ -7,7 +7,6 @@ module Subreddits
       self.table_name = 'posts'
 
       belongs_to :community, class_name: 'CommunityActiveRecord'
-      # belongs_to :user
 
       def to_entity
         Subreddits::Post.new(

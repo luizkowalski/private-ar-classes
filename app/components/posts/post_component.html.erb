@@ -5,7 +5,7 @@
         <p>
           <strong><%= link_to "r/#{post.community}",  subreddit_path(post.community) %></strong>
           <br>
-          <strong><%= post.title %></strong> <small> by u/<%= post.username %> </small> <small><%= time_ago_in_words(post.created_at) %> </small>
+          <strong><%= post.title %></strong> <small> by u/<%= post.username %> </small> <small><%= time_ago_in_words(post.created_at) %> ago</small>
           <br>
           <%= post.body %>
         </p>

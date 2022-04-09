@@ -45,30 +45,6 @@ class Gem::List
 end
 
 Gem::RbConfigPriorities = T.let(T.unsafe(nil), Array)
-
-class Gem::RequestSet
-  include ::Gem::TSort
-end
-
-class Gem::Resolver
-  include ::Gem::Resolver::Molinillo::UI
-  include ::Gem::Resolver::Molinillo::SpecificationProvider
-end
-
-class Gem::Resolver::CurrentSet < ::Gem::Resolver::Set
-  def find_all(req); end
-end
-
-class Gem::Resolver::LocalSpecification < ::Gem::Resolver::SpecSpecification
-  def installable_platform?; end
-  def local?; end
-  def pretty_print(q); end
-end
-
-class Gem::Resolver::RequirementList
-  include ::Enumerable
-end
-
 Gem::RubyGemsVersion = T.let(T.unsafe(nil), String)
 
 class Gem::RuntimeRequirementNotMetError < ::Gem::InstallError
@@ -192,25 +168,6 @@ class Gem::StreamUI::VerboseProgressReporter
   def updated(message); end
 end
 
-module Gem::TSort
-  def each_strongly_connected_component(&block); end
-  def each_strongly_connected_component_from(node, id_map = T.unsafe(nil), stack = T.unsafe(nil), &block); end
-  def strongly_connected_components; end
-  def tsort; end
-  def tsort_each(&block); end
-  def tsort_each_child(node); end
-  def tsort_each_node; end
-
-  class << self
-    def each_strongly_connected_component(each_node, each_child); end
-    def each_strongly_connected_component_from(node, each_child, id_map = T.unsafe(nil), stack = T.unsafe(nil)); end
-    def strongly_connected_components(each_node, each_child); end
-    def tsort(each_node, each_child); end
-    def tsort_each(each_node, each_child); end
-  end
-end
-
-class Gem::TSort::Cyclic < ::StandardError; end
 Gem::UNTAINT = T.let(T.unsafe(nil), Proc)
 
 class Gem::UninstallError < ::Gem::Exception

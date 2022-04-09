@@ -1,0 +1,7 @@
+#!/bin/bash
+
+rm -rf sorbet/rbi
+
+bin/tapioca gem
+bin/tapioca dsl
+bin/tapioca todo
