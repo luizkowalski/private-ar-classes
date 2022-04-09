@@ -6,6 +6,9 @@
 
 class ActiveSupport::TestCase
   sig { params(fixture_names: Symbol).returns(T.untyped) }
+  def comments(*fixture_names); end
+
+  sig { params(fixture_names: Symbol).returns(T.untyped) }
   def communities(*fixture_names); end
 
   sig { params(fixture_names: Symbol).returns(T.untyped) }

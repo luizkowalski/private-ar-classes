@@ -57,6 +57,12 @@ module GeneratedUrlHelpersModule
   def root_url(*args); end
 
   sig { params(args: T.untyped).returns(String) }
+  def subreddit_post_comments_url(*args); end
+
+  sig { params(args: T.untyped).returns(String) }
+  def subreddit_post_url(*args); end
+
+  sig { params(args: T.untyped).returns(String) }
   def subreddit_url(*args); end
 
   sig { params(args: T.untyped).returns(String) }

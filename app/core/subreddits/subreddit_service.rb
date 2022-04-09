@@ -2,7 +2,7 @@
 # frozen_string_literal: true
 
 module Subreddits
-  class Service
+  class SubredditService
     def timeline(user_id:)
       communities = community_repository.communities_by_user(user_id: user_id)
       posts       = community_repository.find_posts_by_communities(slugs: communities.map(&:title))
@@ -14,10 +14,6 @@ module Subreddits
       posts = community_repository.find_posts_by_community(slug: slug)
 
       enrich_posts_with_username(posts)
-    end
-
-    def find_post_by_community_and_id(slug:, id:)
-      community_repository.find_post_by_community_and_id(slug: slug, id: id)
     end
 
     def find_by_slug(slug:)

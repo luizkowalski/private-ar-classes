@@ -43,16 +43,18 @@ module Subreddits
 
       sig { params(user_id: Integer, post_id: Integer, body: String).returns(T::Boolean) }
       def comment(user_id:, post_id:, body:)
-        CommentActiveRecord.create(
+        CommentActiveRecord.create!(
           user_id: user_id,
           post_id: post_id,
           body: body
         )
+
+        true
       end
 
       sig { params(post_id: Integer).returns(T::Array[Comment]) }
       def find_comments_by_post_id(post_id:)
-        CommentActiveRecord.where(post_id: post_id).map(&:to_entity)
+        CommentActiveRecord.where(post_id: post_id).order(created_at: :desc).map(&:to_entity)
       end
 
       # sig { params(user_id: Integer).) }

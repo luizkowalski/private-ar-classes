@@ -11,6 +11,6 @@ class SubredditsController < ApplicationController
   private
 
   def subreddit_service
-    @subreddit_service ||= Subreddits::Service.new
+    @subreddit_service ||= Subreddits::SubredditService.new
   end
 end

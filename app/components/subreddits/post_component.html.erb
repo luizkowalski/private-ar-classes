@@ -16,14 +16,16 @@
       <footer class="card-footer">
         <div class="media-content">
           <div class="control mt-4">
-            <textarea class="textarea is-info is-full-width" placeholder="Comment" rows="6"></textarea>
+            <%= form_tag(subreddit_post_comments_path(subreddit_id: post.community, post_id: post.id), method: :post) do %>
+              <%= text_area_tag(:body, '', class: 'textarea is-info is-full-width') %>
+              <%= submit_tag 'Send', class: 'button is-link mt-2' %>
+            <% end %>
           </div>
         </div>
       </footer>
     </div>
   </article>
 </div>
-
 <% comments.each do |comment|%>
   <%= render Subreddits::CommentComponent.new(comment: comment) %>
 <% end %>
