@@ -1,0 +1,29 @@
+<div class="box">
+  <article class="media">
+    <div class="media-content">
+      <div class="content">
+        <p>
+          <strong><%= link_to("r/#{post.community}",  subreddit_path(post.community)) %></strong>
+          <br>
+          <strong>
+            <%= post.title %>
+          </strong><small> by u/<%=post.username %> </small>
+          <small><%= time_ago_in_words(post.created_at) %> ago</small>
+          <br>
+          <%= post.body %>
+        </p>
+      </div>
+      <footer class="card-footer">
+        <div class="media-content">
+          <div class="control mt-4">
+            <textarea class="textarea is-info is-full-width" placeholder="Comment" rows="6"></textarea>
+          </div>
+        </div>
+      </footer>
+    </div>
+  </article>
+</div>
+
+<% comments.each do |comment|%>
+  <%= render Subreddits::CommentComponent.new(comment: comment) %>
+<% end %>

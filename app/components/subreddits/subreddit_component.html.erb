@@ -1,0 +1,38 @@
+<div class="columns">
+  <div class="column is-full-width">
+    <nav class="navbar" role="navigation" aria-label="main navigation">
+      <div class="navbar-brand">
+        <a class="navbar-item is-size-4" href="/">
+          Go back
+        </a>
+      </div>
+    </nav>
+  </div>
+</div>
+
+<div class="columns">
+  <div class="column is-9">
+    <% posts.each do |post| %>
+      <%= render Subreddits::PostPreviewComponent.new(post: post)%>
+    <% end %>
+  </div>
+  <div class="column is-3">
+    <div class="card">
+      <div class="card-content">
+        <p class="title">
+          <%= subreddit.description %>
+        </p>
+        <p class="subtitle">
+          <%= "r/#{subreddit.title}" %>
+        </p>
+      </div>
+      <footer class="card-footer">
+        <p class="card-footer-item">
+          <span>
+            <a href="#">Create a post</a>
+          </span>
+        </p>
+      </footer>
+    </div>
+  </div>
+</div>

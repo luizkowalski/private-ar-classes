@@ -10,7 +10,7 @@
           </strong><small> by u/<%= post.username %> </small>
           <small><%= time_ago_in_words(post.created_at) %> ago</small>
           <br>
-          <%= link_to(post.body, subreddit_post_path(subreddit_id: post.community, id: post.slug), class: 'post-body-link') %>
+          <%= link_to(post.body.truncate(200, separator: '...'), subreddit_post_path(subreddit_id: post.community, id: post.slug), class: 'post-body-link') %>
         </p>
       </div>
     </div>

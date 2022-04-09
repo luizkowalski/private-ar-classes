@@ -5,7 +5,7 @@ class SubredditsController < ApplicationController
     community = subreddit_service.find_by_slug(slug: params[:id])
     posts     = subreddit_service.community_timeline(slug: community.title)
 
-    render(Posts::PostComponent.with_collection(posts))
+    render(Subreddits::SubredditComponent.new(subreddit: community, posts: posts))
   end
 
   private

@@ -16,6 +16,10 @@ module Subreddits
       enrich_posts_with_username(posts)
     end
 
+    def find_post_by_community_and_id(slug:, id:)
+      community_repository.find_post_by_community_and_id(slug: slug, id: id)
+    end
+
     def find_by_slug(slug:)
       community_repository.find_by_slug(slug: slug)
     end

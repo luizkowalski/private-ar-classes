@@ -2,11 +2,11 @@
 
 require 'test_helper'
 
-class Posts::PostComponentTest < ViewComponent::TestCase
+class Subreddits::PostComponentTest < ViewComponent::TestCase
   def test_component_renders_something_useful
     # assert_equal(
     #   %(<span>Hello, components!</span>),
-    #   render_inline(Posts::PostComponent.new(message: "Hello, components!")).css("span").to_html
+    #   render_inline(Subreddits::PostComponent.new(message: "Hello, components!")).css("span").to_html
     # )
   end
 end

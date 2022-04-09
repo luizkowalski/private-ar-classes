@@ -34,6 +34,27 @@ module Subreddits
         CommunityActiveRecord.find_by(title: slug)&.to_entity
       end
 
+      def find_post_by_community_and_id(slug:, id:)
+        PostActiveRecord.
+          joins(:community).
+          where(community: { title: slug }, id: id).
+          first&.to_entity
+      end
+
+      sig { params(user_id: Integer, post_id: Integer, body: String).returns(T::Boolean) }
+      def comment(user_id:, post_id:, body:)
+        CommentActiveRecord.create(
+          user_id: user_id,
+          post_id: post_id,
+          body: body
+        )
+      end
+
+      sig { params(post_id: Integer).returns(T::Array[Comment]) }
+      def find_comments_by_post_id(post_id:)
+        CommentActiveRecord.where(post_id: post_id).map(&:to_entity)
+      end
+
       # sig { params(user_id: Integer).) }
       def communities_by_user(user_id:)
         CommunityActiveRecord.joins(:subscriptions).where(community_subscriptions: { user_id: user_id }).map(&:to_entity)

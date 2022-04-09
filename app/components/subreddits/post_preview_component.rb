@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
-class Posts::PostComponent < ApplicationComponent
+class Subreddits::PostPreviewComponent < ApplicationComponent
+  with_collection_parameter :post
+
   def initialize(post:)
     @post = post
   end

@@ -35,4 +35,7 @@ PostAR.create!(user_id: 2, title: 'Check out this mug you guys', body: 'Thats my
 # Create one post on oddly_interesting
 PostAR.create!(user_id: 1, title: 'Flytrap catching prey', body: 'really long text', community_id: 2)
 
+Comment = Subreddits.const_get('Persistence::CommentActiveRecord')
+Comment.create!(user_id: 1, post_id: 2, body: 'Long post body')
+
 # rubocop:enable Performance/StringIdentifierArgument
