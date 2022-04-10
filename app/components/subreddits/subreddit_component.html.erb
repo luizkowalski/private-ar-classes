@@ -1,16 +1,4 @@
 <div class="columns">
-  <div class="column is-full-width">
-    <nav class="navbar" role="navigation" aria-label="main navigation">
-      <div class="navbar-brand">
-        <a class="navbar-item is-size-4" href="/">
-          Go back
-        </a>
-      </div>
-    </nav>
-  </div>
-</div>
-
-<div class="columns">
   <div class="column is-9">
     <% posts.each do |post| %>
       <%= render Subreddits::PostPreviewComponent.new(post: post)%>

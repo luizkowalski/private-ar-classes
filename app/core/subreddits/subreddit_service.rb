@@ -31,7 +31,7 @@ module Subreddits
     end
 
     def enrich_posts_with_username(posts)
-      user_ids = posts.map(&:user_id).uniq
+      user_ids = posts.map(&:user_id)
       users    = find_users_by_ids(user_ids)
 
       posts.map do |p|

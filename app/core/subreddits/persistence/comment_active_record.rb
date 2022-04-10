@@ -7,6 +7,8 @@ module Subreddits
 
       belongs_to :post, class_name: 'PostActiveRecord'
 
+      validates :body, presence: true
+
       def to_entity
         Comment.new(
           id: id,

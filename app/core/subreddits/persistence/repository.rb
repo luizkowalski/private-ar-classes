@@ -36,6 +36,7 @@ module Subreddits
 
       def find_post_by_community_and_id(slug:, id:)
         PostActiveRecord.
+          includes(:votes).
           joins(:community).
           where(community: { title: slug }, id: id).
           first&.to_entity
@@ -60,6 +61,12 @@ module Subreddits
       # sig { params(user_id: Integer).) }
       def communities_by_user(user_id:)
         CommunityActiveRecord.joins(:subscriptions).where(community_subscriptions: { user_id: user_id }).map(&:to_entity)
+      end
+
+      def upvote(user_id:, post_id:)
+        post = PostActiveRecord.find(post_id)
+        vote = post.votes.find_or_initialize_by(user_id: user_id)
+        vote.update!(upvote: true)
       end
 
       sig { params(slugs: T::Array[String]).returns(T::Array[Post]) }

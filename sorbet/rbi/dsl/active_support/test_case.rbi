@@ -19,4 +19,7 @@ class ActiveSupport::TestCase
 
   sig { params(fixture_names: Symbol).returns(T.untyped) }
   def users(*fixture_names); end
+
+  sig { params(fixture_names: Symbol).returns(T.untyped) }
+  def votes(*fixture_names); end
 end

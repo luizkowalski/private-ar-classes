@@ -1,6 +1,6 @@
+# typed: true
 # frozen_string_literal: true
 
-# typed: true
 module Subreddits
   class PostService
     extend(T::Sig)
@@ -29,6 +29,10 @@ module Subreddits
       enrich_data_with_username(comments)
     end
 
+    def upvote(user_id:, post_id:)
+      community_repository.upvote(user_id: user_id, post_id: post_id)
+    end
+
     private
 
     def find_users_by_ids(user_ids)
@@ -36,7 +40,7 @@ module Subreddits
     end
 
     def enrich_data_with_username(data)
-      user_ids = data.map(&:user_id).uniq
+      user_ids = data.map(&:user_id)
       users    = find_users_by_ids(user_ids)
 
       data.map do |p|
