@@ -9,20 +9,20 @@ user_repository.create(username: 'second_user', password: 'admin', email: 'email
 user_repository.create(username: 'third_user', password: 'admin', email: 'email3@fake.com')
 
 # Create a community
-Subreddits::Persistence::Repository.new.create_community(
+Subreddits::Persistence::SubredditRepository.new.create_community(
   user_id: 1,
   title: 'nice_mugs',
   description: 'This is a community about nice mugs'
 )
 
-Subreddits::Persistence::Repository.new.create_community(
+Subreddits::Persistence::SubredditRepository.new.create_community(
   user_id: 1,
   title: 'oddly_interesting',
   description: 'Community about things that are oddly interesting'
 )
 
 # Subscribe second_user to nice_mugs
-Subreddits::Persistence::Repository.new.subscribe_to_community(
+Subreddits::Persistence::SubredditRepository.new.subscribe_to_community(
   user_id: 2,
   community_id: 1
 )

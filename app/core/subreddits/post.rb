@@ -16,5 +16,9 @@ module Subreddits
       @upvotes    = upvotes
       @downvotes  = downvotes
     end
+
+    def votes
+      upvotes.to_i - downvotes.to_i
+    end
   end
 end

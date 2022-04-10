@@ -28,6 +28,10 @@ Style/ClassAndModuleChildren:
 Metrics/ParameterLists:
   Enabled: false
 
+Metrics/MethodLength:
+  IgnoredMethods:
+    - 'to_entity'
+
 Metrics/BlockLength:
   Exclude:
     - 'lib/tasks/**/*'

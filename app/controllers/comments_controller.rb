@@ -6,9 +6,10 @@ class CommentsController < ApplicationController
     post_id = params[:post_id].to_i
     body    = params[:body]
 
-    post_service.comment(user_id: 1, post_id: post_id, body: body)
+    post = post_service.find_by_id(id: post_id)
+    post_service.comment(user_id: 1, post_id: post.id, body: body)
 
-    redirect_to subreddit_post_path(id: params[:post_id])
+    redirect_to subreddit_post_path(id: post.slug)
   end
 
   private

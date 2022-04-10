@@ -12,6 +12,9 @@
           <br>
           <%= link_to(post.body.truncate(200, separator: '...'), subreddit_post_path(subreddit_id: post.community, id: post.slug), class: 'post-body-link') %>
         </p>
+        <div class="media-content">
+          Votes: <%= post.votes %>
+        </div>
       </div>
     </div>
   </article>
