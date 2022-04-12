@@ -33,6 +33,7 @@ module Subreddits
       enrich_data_with_username(comments)
     end
 
+    sig { params(user_id: Integer, post_id: Integer).returns(T::Array[T::Boolean]) }
     def upvote(user_id:, post_id:)
       post_repository.upvote(user_id: user_id, post_id: post_id)
     end

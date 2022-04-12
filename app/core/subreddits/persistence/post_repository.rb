@@ -24,10 +24,12 @@ module Subreddits
         CommentActiveRecord.where(post_id: post_id).order(created_at: :desc).map(&:to_entity)
       end
 
+      sig { params(user_id: Integer, post_id: Integer).returns(T::Array[T::Boolean]) }
       def upvote(user_id:, post_id:)
         post = PostActiveRecord.find(post_id)
         vote = post.votes.find_or_initialize_by(user_id: user_id)
-        vote.update!(upvote: true)
+        new_record = vote.new_record?
+        [new_record, vote.update!(upvote: true)]
       end
 
       sig { params(slugs: T::Array[String]).returns(T::Array[Post]) }

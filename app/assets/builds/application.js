@@ -570,13 +570,13 @@
     }
   };
   function add(map, key, value) {
-    fetch(map, key).add(value);
+    fetch2(map, key).add(value);
   }
   function del(map, key, value) {
-    fetch(map, key).delete(value);
+    fetch2(map, key).delete(value);
     prune(map, key);
   }
-  function fetch(map, key) {
+  function fetch2(map, key) {
     let values = map.get(key);
     if (!values) {
       values = /* @__PURE__ */ new Set();
@@ -1879,13 +1879,25 @@
 
   // app/javascript/controllers/vote_controller.js
   var vote_controller_default = class extends Controller {
-    connect() {
-      console.log("Hello world!");
-    }
     upvote(event) {
+      fetch(event.params.url, {
+        method: event.params.method,
+        headers: {
+          "X-CSRF-Token": event.params.token,
+          "Content-Type": "application/json",
+          "Accept": "application/json"
+        }
+      }).then((response) => response.json()).then((data) => {
+        if (data.success) {
+          if (data.new_record) {
+            this.upvotesTarget.innerText = parseInt(this.upvotesTarget.innerText) + 1;
+          }
+        } else {
+        }
+      });
     }
   };
-  __publicField(vote_controller_default, "targets", ["postId", "upvotes"]);
+  __publicField(vote_controller_default, "targets", ["upvotes"]);
 
   // app/javascript/controllers/index.js
   application.register("vote", vote_controller_default);

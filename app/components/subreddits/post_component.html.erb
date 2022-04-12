@@ -13,13 +13,15 @@
           <%= post.body %>
         </p>
         <div class="media-content" data-controller="vote">
-          <%= form_tag(subreddit_post_votes_path(subreddit_id: post.community, post_id: post.id), method: :post) do %>
-            <input class="is-hidden" data-vote-target="postId" value=<%= post.id %> />
-            <button class="button is-link is-small" data-action="click->vote#upvote">
-              <span>👍🏻&nbsp;</span>
-              <span data-vote-target="upvotes"><%= post.votes %></span>
-            </button>
-          <% end %>
+          <button class="button is-link is-small" 
+            data-action="click->vote#upvote"
+            data-vote-post-id-param=<%=post.id%>
+            data-vote-url-param=<%= subreddit_post_votes_path(subreddit_id: post.community, post_id: post.id)%>
+            data-vote-method-param="post"
+            data-vote-token-param=<%= form_authenticity_token %>>
+            <span>👍🏻&nbsp;</span>
+            <span data-vote-target="upvotes"><%= post.votes %></span>
+          </button>
         </div>
       </div>
       <footer class="card-footer">
