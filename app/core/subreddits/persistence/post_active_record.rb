@@ -24,8 +24,9 @@ module Subreddits
         )
       end
 
+      # TODO: Too much happening here...
       def count_votes
-        @count_votes ||= votes.select(:upvote).group(:upvote).count('upvote::INTEGER').then do |result|
+        @count_votes ||= votes.select(:upvote).group(:upvote).count(:upvote).then do |result|
           result.transform_keys! { |k| k ? :upvotes : :downvotes }
         end
       end

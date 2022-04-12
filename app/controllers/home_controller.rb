@@ -2,7 +2,7 @@
 
 class HomeController < ApplicationController
   def index
-    posts = Subreddits::SubredditService.new.timeline(user_id: 1)
+    posts = Subreddits::SubredditService.new.timeline(user_id: current_user.id)
 
     render(Subreddits::PostPreviewComponent.with_collection(posts))
   end

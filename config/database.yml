@@ -1,5 +1,5 @@
 default: &default
-  adapter: postgresql
+  adapter: sqlite3
   encoding: unicode
   # For details on connection pooling, see Rails configuration guide
   # https://guides.rubyonrails.org/configuring.html#database-pooling
@@ -7,11 +7,11 @@ default: &default
 
 development:
   <<: *default
-  database: reddit_development
+  database: sqlite/reddit_development
 
 test:
   <<: *default
-  database: reddit_test
+  database: sqlite/reddit_test
 
 production:
   url: <%= ENV["DATABASE_URL"] %>

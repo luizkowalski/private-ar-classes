@@ -8,7 +8,15 @@ module Subreddits
 
       sig { params(id: Integer).returns(T.nilable(Post)) }
       def find_by_id(id:)
-        PostActiveRecord.find_by(id: id)&.to_entity
+        PostActiveRecord.find(id).to_entity
+      end
+
+      sig { params(post_id: Integer).returns(T::Hash[Symbol, Integer]) }
+      def count_post_votes(post_id:)
+        VoteActiveRecord.where(voteable_id: post_id, voteable_type: PostActiveRecord.to_s).
+          select(:upvote).group(:upvote).count(:upvote).then do |result|
+          result.transform_keys! { |k| k ? :upvotes : :downvotes }
+        end
       end
 
       sig { params(post_id: Integer).returns(T::Array[Comment]) }
@@ -25,7 +33,7 @@ module Subreddits
       sig { params(slugs: T::Array[String]).returns(T::Array[Post]) }
       def find_posts_by_communities(slugs:)
         PostActiveRecord.
-          includes(:community).
+          eager_load(:community).
           where(community: { title: slugs }).
           order(created_at: :desc).map(&:to_entity)
       end

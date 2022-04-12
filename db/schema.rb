@@ -11,12 +11,9 @@
 # It's strongly recommended that you check this file into your version control system.
 
 ActiveRecord::Schema[7.0].define(version: 2022_04_09_215332) do
-  # These are extensions that must be enabled in order to support this database
-  enable_extension "plpgsql"
-
   create_table "comments", force: :cascade do |t|
-    t.bigint "post_id", null: false
-    t.bigint "user_id", null: false
+    t.integer "post_id", null: false
+    t.integer "user_id", null: false
     t.text "body", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -28,7 +25,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_04_09_215332) do
     t.string "title"
     t.text "description"
     t.integer "total_subs", default: 0
-    t.bigint "created_by_user_id", null: false
+    t.integer "created_by_user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["created_by_user_id"], name: "index_communities_on_created_by_user_id"
@@ -36,8 +33,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_04_09_215332) do
   end
 
   create_table "community_subscriptions", force: :cascade do |t|
-    t.bigint "community_id", null: false
-    t.bigint "user_id", null: false
+    t.integer "community_id", null: false
+    t.integer "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["community_id", "user_id"], name: "index_community_subscriptions_on_community_id_and_user_id", unique: true
@@ -46,8 +43,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_04_09_215332) do
   end
 
   create_table "posts", force: :cascade do |t|
-    t.bigint "community_id", null: false
-    t.bigint "user_id", null: false
+    t.integer "community_id", null: false
+    t.integer "user_id", null: false
     t.string "title", null: false
     t.text "body"
     t.datetime "created_at", null: false
@@ -68,9 +65,9 @@ ActiveRecord::Schema[7.0].define(version: 2022_04_09_215332) do
 
   create_table "votes", force: :cascade do |t|
     t.boolean "upvote", default: true
-    t.bigint "user_id", null: false
+    t.integer "user_id", null: false
     t.string "voteable_type", null: false
-    t.bigint "voteable_id", null: false
+    t.integer "voteable_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_votes_on_user_id"

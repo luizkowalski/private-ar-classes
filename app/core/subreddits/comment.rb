@@ -2,6 +2,9 @@
 
 module Subreddits
   class Comment
+    attr_reader :id, :body, :user_id, :post_id, :created_at
+    attr_accessor :username
+
     def initialize(id:, body:, user_id:, post_id:, created_at:)
       @id = id
       @body = body
@@ -9,8 +12,5 @@ module Subreddits
       @post_id = post_id
       @created_at = created_at
     end
-
-    attr_reader :id, :body, :user_id, :post_id, :created_at
-    attr_accessor :username
   end
 end
