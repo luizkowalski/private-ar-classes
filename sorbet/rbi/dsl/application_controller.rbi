@@ -17,6 +17,9 @@ class ApplicationController
     include ::ActionController::Base::HelperMethods
     include ::ApplicationHelper
     include ::PreviewHelper
+
+    sig { returns(T.untyped) }
+    def current_user; end
   end
 
   class HelperProxy < ::ActionView::Base

@@ -202,6 +202,8 @@ GEM
       activesupport (>= 5.2)
       sprockets (>= 3.0.0)
     sqlite3 (1.4.2)
+    stimulus-rails (1.0.4)
+      railties (>= 6.0.0)
     strscan (3.0.1)
     tapioca (0.7.1)
       bundler (>= 1.17.3)
@@ -256,6 +258,7 @@ DEPENDENCIES
   sassc-rails
   sprockets-rails
   sqlite3
+  stimulus-rails
   tapioca (~> 0.7)
   tzinfo-data
   view_component (~> 2.52)

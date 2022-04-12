@@ -12,18 +12,21 @@
           <br>
           <%= post.body %>
         </p>
-        <div class="media-content">
-          Votes: <%= post.votes %>
-        </div>
-
-        <div class="media-content">
+        <div class="media-content" data-controller="vote">
+          <%= form_tag(subreddit_post_votes_path(subreddit_id: post.community, post_id: post.id), method: :post) do %>
+            <input class="is-hidden" data-vote-target="postId" value=<%= post.id %> />
+            <button class="button is-link is-small" data-action="click->vote#upvote">
+              <span>👍🏻&nbsp;</span>
+              <span data-vote-target="upvotes"><%= post.votes %></span>
+            </button>
+          <% end %>
         </div>
       </div>
       <footer class="card-footer">
         <div class="media-content">
           <div class="control mt-4">
             <%= form_tag(subreddit_post_comments_path(subreddit_id: post.community, post_id: post.id), method: :post) do %>
-              <%= text_area_tag(:body, '', class: 'textarea is-info is-full-width') %>
+              <%= text_area_tag(:body, '', class: 'textarea is-info is-full-width', required: "required" ) %>
               <%= submit_tag 'Send', class: 'button is-link mt-2' %>
             <% end %>
           </div>
