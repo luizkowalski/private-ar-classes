@@ -2475,10 +2475,9 @@
           "Accept": "application/json"
         }
       }).then((response) => response.json()).then((data) => {
-        if (data.success) {
-          if (data.new_record) {
-            this.upvotesTarget.innerText = parseInt(this.upvotesTarget.innerText) + 1;
-          }
+        if (data.success && data.new_record) {
+          console.log(data.upvotes);
+          this.upvotesTarget.innerText = data.upvotes;
         } else {
         }
       });

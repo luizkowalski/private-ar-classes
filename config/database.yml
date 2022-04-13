@@ -7,11 +7,11 @@ default: &default
 
 development:
   <<: *default
-  database: sqlite/reddit_development
+  database: sqlite/reddit_development.db
 
 test:
   <<: *default
-  database: sqlite/reddit_test
+  database: sqlite/reddit_test.db
 
 production:
   url: <%= ENV["DATABASE_URL"] %>

@@ -9,8 +9,11 @@ class VotesController
   def helpers; end
 
   module HelperMethods
-    include ::ActionText::ContentHelper
-    include ::ActionText::TagHelper
+    include ::Turbo::DriveHelper
+    include ::Turbo::FramesHelper
+    include ::Turbo::IncludesHelper
+    include ::Turbo::StreamsHelper
+    include ::Turbo::Streams::ActionHelper
     include ::ActionController::Base::HelperMethods
     include ::ApplicationHelper
     include ::PreviewHelper

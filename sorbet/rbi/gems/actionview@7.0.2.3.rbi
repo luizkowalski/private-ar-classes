@@ -768,7 +768,6 @@ class ActionView::Helpers::FormBuilder
   def phone_field(method, options = T.unsafe(nil)); end
   def radio_button(method, tag_value, options = T.unsafe(nil)); end
   def range_field(method, options = T.unsafe(nil)); end
-  def rich_text_area(method, options = T.unsafe(nil)); end
   def search_field(method, options = T.unsafe(nil)); end
   def select(method, choices = T.unsafe(nil), options = T.unsafe(nil), html_options = T.unsafe(nil), &block); end
   def submit(value = T.unsafe(nil), options = T.unsafe(nil)); end
@@ -842,7 +841,6 @@ module ActionView::Helpers::FormHelper
   def phone_field(object_name, method, options = T.unsafe(nil)); end
   def radio_button(object_name, method, tag_value, options = T.unsafe(nil)); end
   def range_field(object_name, method, options = T.unsafe(nil)); end
-  def rich_text_area(object_name, method, options = T.unsafe(nil)); end
   def search_field(object_name, method, options = T.unsafe(nil)); end
   def telephone_field(object_name, method, options = T.unsafe(nil)); end
   def text_area(object_name, method, options = T.unsafe(nil)); end

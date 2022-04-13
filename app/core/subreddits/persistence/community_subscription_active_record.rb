@@ -8,7 +8,5 @@ module Subreddits
       belongs_to :community, class_name: 'CommunityActiveRecord'
       # belongs_to :user
     end
-
-    private_constant :CommunitySubscriptionActiveRecord
   end
 end

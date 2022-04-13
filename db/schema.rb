@@ -46,6 +46,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_04_09_215332) do
     t.integer "community_id", null: false
     t.integer "user_id", null: false
     t.string "title", null: false
+    t.integer "upvotes", default: 0
+    t.integer "downvotes", default: 0
     t.text "body"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

@@ -597,6 +597,51 @@ class Subreddits::Persistence::PostActiveRecord
     def created_at_will_change!; end
 
     sig { returns(T.nilable(::Integer)) }
+    def downvotes; end
+
+    sig { params(value: T.nilable(::Integer)).returns(T.nilable(::Integer)) }
+    def downvotes=(value); end
+
+    sig { returns(T::Boolean) }
+    def downvotes?; end
+
+    sig { returns(T.nilable(::Integer)) }
+    def downvotes_before_last_save; end
+
+    sig { returns(T.untyped) }
+    def downvotes_before_type_cast; end
+
+    sig { returns(T::Boolean) }
+    def downvotes_came_from_user?; end
+
+    sig { returns(T.nilable([T.nilable(::Integer), T.nilable(::Integer)])) }
+    def downvotes_change; end
+
+    sig { returns(T.nilable([T.nilable(::Integer), T.nilable(::Integer)])) }
+    def downvotes_change_to_be_saved; end
+
+    sig { returns(T::Boolean) }
+    def downvotes_changed?; end
+
+    sig { returns(T.nilable(::Integer)) }
+    def downvotes_in_database; end
+
+    sig { returns(T.nilable([T.nilable(::Integer), T.nilable(::Integer)])) }
+    def downvotes_previous_change; end
+
+    sig { returns(T::Boolean) }
+    def downvotes_previously_changed?; end
+
+    sig { returns(T.nilable(::Integer)) }
+    def downvotes_previously_was; end
+
+    sig { returns(T.nilable(::Integer)) }
+    def downvotes_was; end
+
+    sig { void }
+    def downvotes_will_change!; end
+
+    sig { returns(T.nilable(::Integer)) }
     def id; end
 
     sig { params(value: ::Integer).returns(::Integer) }
@@ -651,6 +696,9 @@ class Subreddits::Persistence::PostActiveRecord
     def restore_created_at!; end
 
     sig { void }
+    def restore_downvotes!; end
+
+    sig { void }
     def restore_id!; end
 
     sig { void }
@@ -658,6 +706,9 @@ class Subreddits::Persistence::PostActiveRecord
 
     sig { void }
     def restore_updated_at!; end
+
+    sig { void }
+    def restore_upvotes!; end
 
     sig { void }
     def restore_user_id!; end
@@ -681,6 +732,12 @@ class Subreddits::Persistence::PostActiveRecord
     def saved_change_to_created_at?; end
 
     sig { returns(T.nilable([T.nilable(::Integer), T.nilable(::Integer)])) }
+    def saved_change_to_downvotes; end
+
+    sig { returns(T::Boolean) }
+    def saved_change_to_downvotes?; end
+
+    sig { returns(T.nilable([T.nilable(::Integer), T.nilable(::Integer)])) }
     def saved_change_to_id; end
 
     sig { returns(T::Boolean) }
@@ -697,6 +754,12 @@ class Subreddits::Persistence::PostActiveRecord
 
     sig { returns(T::Boolean) }
     def saved_change_to_updated_at?; end
+
+    sig { returns(T.nilable([T.nilable(::Integer), T.nilable(::Integer)])) }
+    def saved_change_to_upvotes; end
+
+    sig { returns(T::Boolean) }
+    def saved_change_to_upvotes?; end
 
     sig { returns(T.nilable([::Integer, ::Integer])) }
     def saved_change_to_user_id; end
@@ -794,6 +857,51 @@ class Subreddits::Persistence::PostActiveRecord
     sig { void }
     def updated_at_will_change!; end
 
+    sig { returns(T.nilable(::Integer)) }
+    def upvotes; end
+
+    sig { params(value: T.nilable(::Integer)).returns(T.nilable(::Integer)) }
+    def upvotes=(value); end
+
+    sig { returns(T::Boolean) }
+    def upvotes?; end
+
+    sig { returns(T.nilable(::Integer)) }
+    def upvotes_before_last_save; end
+
+    sig { returns(T.untyped) }
+    def upvotes_before_type_cast; end
+
+    sig { returns(T::Boolean) }
+    def upvotes_came_from_user?; end
+
+    sig { returns(T.nilable([T.nilable(::Integer), T.nilable(::Integer)])) }
+    def upvotes_change; end
+
+    sig { returns(T.nilable([T.nilable(::Integer), T.nilable(::Integer)])) }
+    def upvotes_change_to_be_saved; end
+
+    sig { returns(T::Boolean) }
+    def upvotes_changed?; end
+
+    sig { returns(T.nilable(::Integer)) }
+    def upvotes_in_database; end
+
+    sig { returns(T.nilable([T.nilable(::Integer), T.nilable(::Integer)])) }
+    def upvotes_previous_change; end
+
+    sig { returns(T::Boolean) }
+    def upvotes_previously_changed?; end
+
+    sig { returns(T.nilable(::Integer)) }
+    def upvotes_previously_was; end
+
+    sig { returns(T.nilable(::Integer)) }
+    def upvotes_was; end
+
+    sig { void }
+    def upvotes_will_change!; end
+
     sig { returns(::Integer) }
     def user_id; end
 
@@ -849,6 +957,9 @@ class Subreddits::Persistence::PostActiveRecord
     def will_save_change_to_created_at?; end
 
     sig { returns(T::Boolean) }
+    def will_save_change_to_downvotes?; end
+
+    sig { returns(T::Boolean) }
     def will_save_change_to_id?; end
 
     sig { returns(T::Boolean) }
@@ -856,6 +967,9 @@ class Subreddits::Persistence::PostActiveRecord
 
     sig { returns(T::Boolean) }
     def will_save_change_to_updated_at?; end
+
+    sig { returns(T::Boolean) }
+    def will_save_change_to_upvotes?; end
 
     sig { returns(T::Boolean) }
     def will_save_change_to_user_id?; end

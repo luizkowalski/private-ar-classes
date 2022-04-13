@@ -6,3 +6,5 @@
 
 module ::PreviewHelper; end
 module RDoc::Task; end
+module Subreddits::Persistence::SubredditRepository; end
+module Turbo::Streams::ActionHelper; end

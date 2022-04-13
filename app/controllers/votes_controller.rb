@@ -2,14 +2,15 @@
 
 class VotesController < ApplicationController
   def create
-    post_id      = params[:post_id].to_i
-    post_service = Subreddits::PostService.new
+    post_id = params[:post_id].to_i
 
-    post = post_service.find_by_id(id: post_id)
-    new_record, success = post_service.upvote(user_id: current_user.id, post_id: params[:post_id].to_i)
+    new_record, success, upvotes = Subreddits::Commands::Upvote.call(
+      post_id: post_id,
+      user_id: current_user.id
+    )
 
     respond_to do |format|
-      format.json { render json: { post: post, new_record: new_record, success: success } }
+      format.json { render json: { success: success, new_record: new_record, upvotes: upvotes } }
     end
   end
 end
