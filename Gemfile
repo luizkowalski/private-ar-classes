@@ -21,6 +21,7 @@ gem 'jsbundling-rails'
 gem 'cssbundling-rails'
 
 gem 'stimulus-rails'
+gem 'turbo-rails'
 
 # Use Kredis to get higher-level data types in Redis [https://github.com/rails/kredis]
 # gem "kredis"

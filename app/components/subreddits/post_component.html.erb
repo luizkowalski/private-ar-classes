@@ -26,24 +26,19 @@
           </div>
         </div>
         <footer class="card-footer">
-          <div class="media-content">
-            <div class="control mt-4">
-              <%= text_area_tag(:body, '', class: 'textarea is-info is-full-width', required: "required", data: { comment_target: 'body'}) %>
-              <button class="button is-link mt-4 is-small is-rounded" 
-                data-action="click->comment#comment"
-                data-comment-post-id-param=<%=post.id%>
-                data-comment-url-param=<%= subreddit_post_comments_path(subreddit_id: post.community, post_id: post.id)%>
-                data-comment-method-param="post"
-                data-comment-token-param=<%= form_authenticity_token %>>
-                <span>Send</span>
-              </button>
-            </div>
+        <div class="media-content">
+          <div class="control mt-4">
+            <%= form_tag(subreddit_post_comments_path(subreddit_id: post.community, post_id: post.id), method: :post, data: { turbo: false }) do %>
+              <%= text_area_tag(:body, '', class: 'textarea is-info is-full-width', required: "required" ) %>
+              <%= submit_tag 'Send', class: 'button is-link mt-2' %>
+            <% end %>
           </div>
-        </footer>
+        </div>
+      </footer>
       </div>
     </article>
   </div>
-  <ul data-comment-target="comments">
+  <ul>
     <% comments.each do |comment|%>
       <%= render Subreddits::CommentComponent.new(comment: comment) %>
     <% end %>
