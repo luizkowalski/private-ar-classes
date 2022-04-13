@@ -5,6 +5,7 @@ module Subreddits
     class CommentActiveRecord < ApplicationRecord
       self.table_name = 'comments'
 
+      # belongs_to :user
       belongs_to :post, class_name: 'PostActiveRecord'
 
       validates :body, presence: true
@@ -18,7 +19,7 @@ module Subreddits
           created_at: created_at
         )
       end
-      # belongs_to :user
     end
+    private_constant :CommentActiveRecord
   end
 end

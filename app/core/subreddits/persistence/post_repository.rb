@@ -40,15 +40,13 @@ module Subreddits
           order(created_at: :desc).map(&:to_entity)
       end
 
-      sig { params(user_id: Integer, post_id: Integer, body: String).returns(T::Boolean) }
+      sig { params(user_id: Integer, post_id: Integer, body: String).returns(Comment) }
       def comment(user_id:, post_id:, body:)
         CommentActiveRecord.create!(
           user_id: user_id,
           post_id: post_id,
           body: body
-        )
-
-        true
+        ).to_entity
       end
     end
   end

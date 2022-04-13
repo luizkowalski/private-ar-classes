@@ -21,7 +21,7 @@ module Subreddits
         user_id: Integer,
         post_id: Integer,
         body: String
-      ).returns(T::Boolean)
+      ).returns(Comment)
     end
     def comment(user_id:, post_id:, body:)
       post_repository.comment(user_id: user_id, post_id: post_id, body: body)

@@ -1877,6 +1877,29 @@
   application.debug = false;
   window.Stimulus = application;
 
+  // app/javascript/controllers/comment_controller.js
+  var comment_controller_default = class extends Controller {
+    comment(event) {
+      event.preventDefault();
+      fetch(event.params.url, {
+        method: event.params.method,
+        body: JSON.stringify({ body: this.bodyTarget.value }),
+        headers: {
+          "X-CSRF-Token": event.params.token,
+          "Content-Type": "application/json",
+          "Accept": "application/json"
+        }
+      }).then((response) => response.json()).then((data) => {
+        if (data.success) {
+          console.log(data);
+          this.commentsTarget.prepend(data.html);
+        } else {
+        }
+      });
+    }
+  };
+  __publicField(comment_controller_default, "targets", ["body", "comments"]);
+
   // app/javascript/controllers/vote_controller.js
   var vote_controller_default = class extends Controller {
     upvote(event) {
@@ -1900,6 +1923,7 @@
   __publicField(vote_controller_default, "targets", ["upvotes"]);
 
   // app/javascript/controllers/index.js
+  application.register("comment", comment_controller_default);
   application.register("vote", vote_controller_default);
 })();
 //# sourceMappingURL=application.js.map

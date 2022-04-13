@@ -26,9 +26,10 @@ module Subreddits
 
       # TODO: Too much happening here...
       def count_votes
-        @count_votes ||= votes.select(:upvote).group(:upvote).count(:upvote).then do |result|
-          result.transform_keys! { |k| k ? :upvotes : :downvotes }
-        end
+        { upvotes: 0, downvotes: 0 }
+        # @count_votes ||= votes.select(:upvote).group(:upvote).count(:upvote).then do |result|
+        #   result.transform_keys! { |k| k ? :upvotes : :downvotes }
+        # end
       end
 
       def slug

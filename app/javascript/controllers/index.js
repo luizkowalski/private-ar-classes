@@ -4,5 +4,8 @@
 
 import { application } from "./application"
 
+import CommentController from "./comment_controller.js"
+application.register("comment", CommentController)
+
 import VoteController from "./vote_controller.js"
 application.register("vote", VoteController)
