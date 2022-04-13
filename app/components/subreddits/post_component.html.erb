@@ -1,46 +1,46 @@
-<div data-controller="comment">
-  <div class="box">
-    <article class="media">
-      <div class="media-content">
-        <div class="content">
-          <p>
-            <strong><%= link_to("r/#{post.community}",  subreddit_path(post.community)) %></strong>
-            <br>
-            <strong>
-              <%= post.title %>
-            </strong><small> by u/<%=post.username %> </small>
-            <small><%= time_ago_in_words(post.created_at) %> ago</small>
-            <br>
-            <%= post.body %>
-          </p>
-          <div class="media-content" data-controller="vote">
-            <a href="#" class="is-link is-small" 
+<div class="box">
+  <article class="media">
+    <div class="media-content">
+      <div class="content">
+        <p>
+          <strong><%= link_to("r/#{post.community}",  subreddit_path(post.community)) %></strong>
+          <br>
+          <strong>
+            <%= post.title %>
+          </strong><small> by u/<%=post.username %> </small>
+          <small><%= time_ago_in_words(post.created_at) %> ago</small>
+          <br>
+          <%= post.body %>
+        </p>
+        <div class="media-content" data-controller="vote">
+          <a href="#" class="is-link is-small" 
             data-action="click->vote#upvote"
-              data-vote-post-id-param=<%=post.id%>
-              data-vote-url-param=<%= subreddit_post_votes_path(subreddit_id: post.community, post_id: post.id)%>
-              data-vote-method-param="post"
-              data-vote-token-param=<%= form_authenticity_token %>>
-              <span>👍🏻</span>
-              <span data-vote-target="upvotes">&nbsp;<%= post.votes %></span>
-            </a>
-          </div>
+            data-vote-post-id-param=<%=post.id%>
+            data-vote-url-param=<%= subreddit_post_votes_path(subreddit_id: post.community, post_id: post.id)%>
+            data-vote-method-param="post"
+            data-vote-token-param=<%= form_authenticity_token %>>
+            <span>👍🏻</span>
+            <span data-vote-target="upvotes">&nbsp;<%= post.votes %></span>
+          </a>
         </div>
-        <footer class="card-footer">
+      </div>
+      <footer class="card-footer">
         <div class="media-content">
           <div class="control mt-4">
-            <%= form_tag(subreddit_post_comments_path(subreddit_id: post.community, post_id: post.id), method: :post, data: { turbo: false }) do %>
-              <%= text_area_tag(:body, '', class: 'textarea is-info is-full-width', required: "required" ) %>
-              <%= submit_tag 'Send', class: 'button is-link mt-2' %>
-            <% end %>
+            <turbo-frame id='post--comments'>
+              <%= form_tag(subreddit_post_comments_path(subreddit_id: post.community, post_id: post.id), method: :post) do %>
+                <%= text_area_tag(:body, '', class: 'textarea is-info is-full-width', required: "required" ) %>
+                <%= submit_tag 'Send', class: 'button is-link mt-2' %>
+              <% end %>
+              <ul>
+                <% comments.each do |comment|%>
+                  <%= render Subreddits::CommentComponent.new(comment: comment) %>
+                <% end %>
+              </ul>
+            </turbo-frame>
           </div>
         </div>
       </footer>
-      </div>
-    </article>
-  </div>
-  <ul>
-    <% comments.each do |comment|%>
-      <%= render Subreddits::CommentComponent.new(comment: comment) %>
-    <% end %>
-  </ul>
+    </div>
+  </article>
 </div>

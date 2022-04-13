@@ -1,5 +1,22 @@
-# typed: true
 # frozen_string_literal: true
+
+# == Schema Information
+#
+# Table name: users
+#
+#  id              :bigint           not null, primary key
+#  email           :string
+#  password_digest :text
+#  username        :string
+#  created_at      :datetime         not null
+#  updated_at      :datetime         not null
+#
+# Indexes
+#
+#  index_users_on_email     (email) UNIQUE
+#  index_users_on_username  (username) UNIQUE
+#
+# typed: true
 
 module Users
   module Persistence

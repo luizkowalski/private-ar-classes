@@ -10,7 +10,7 @@ class VotesController < ApplicationController
     )
 
     respond_to do |format|
-      format.json { render json: { success: success, new_record: new_record, upvotes: upvotes } }
+      format.turbo_stream { render json: { success: success, new_record: new_record, upvotes: upvotes } }
     end
   end
 end

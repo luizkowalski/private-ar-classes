@@ -12,6 +12,6 @@ class CommentsController < ApplicationController
       body: body
     )
 
-    redirect_to subreddit_post_path(id: post_id)
+    redirect_to subreddit_post_path(id: post_id), status: :see_other
   end
 end

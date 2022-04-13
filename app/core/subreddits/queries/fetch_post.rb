@@ -6,8 +6,8 @@ module Subreddits
       class << self
         def call(post_id:)
           Subreddits::Persistence::PostActiveRecord.
-            select('posts.*, communities.title AS community_title, user.username AS username').
-            joins('INNER JOIN users AS user ON user.id = posts.user_id').
+            select('posts.*, communities.title AS community_title, users.username AS username').
+            joins('INNER JOIN users ON users.id = posts.user_id').
             joins(:community).
             order(created_at: :desc).
             find(post_id).then { |post| to_entity(post) }
