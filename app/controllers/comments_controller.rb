@@ -3,7 +3,7 @@
 
 class CommentsController < ApplicationController
   def create
-    post_id = params[:post_id].to_i
+    post_id = params[:post_id].split('_').first.to_i
     body    = params[:body]
 
     Subreddits::Commands::CreateComment.call(
@@ -12,9 +12,7 @@ class CommentsController < ApplicationController
       body: body
     )
 
-    post     = Subreddits::Queries::FetchPost.call(post_id: post_id)
-    comments = Subreddits::Queries::FetchCommentsFromPost.call(post_id: post_id)
-
-    render Subreddits::PostComponent.new(post: post, comments: comments)
+    redirect_to subreddit_post_path(subreddit_id: params[:subreddit_id], id: params[:post_id]), status: :see_other
+    # render Subreddits::PostComponent.new(post: post, comments: comments)
   end
 end

@@ -1,12 +1,17 @@
 (() => {
   var __defProp = Object.defineProperty;
   var __getOwnPropNames = Object.getOwnPropertyNames;
+  var __defNormalProp = (obj, key, value) => key in obj ? __defProp(obj, key, { enumerable: true, configurable: true, writable: true, value }) : obj[key] = value;
   var __esm = (fn, res) => function __init() {
     return fn && (res = (0, fn[__getOwnPropNames(fn)[0]])(fn = 0)), res;
   };
   var __export = (target, all) => {
     for (var name in all)
       __defProp(target, name, { get: all[name], enumerable: true });
+  };
+  var __publicField = (obj, key, value) => {
+    __defNormalProp(obj, typeof key !== "symbol" ? key + "" : key, value);
+    return value;
   };
 
   // node_modules/@rails/actioncable/src/adapters.js
@@ -2437,6 +2442,22 @@
   window.Stimulus = application;
 
   // node_modules/@hotwired/turbo/dist/turbo.es2017-esm.js
+  var turbo_es2017_esm_exports = {};
+  __export(turbo_es2017_esm_exports, {
+    PageRenderer: () => PageRenderer,
+    PageSnapshot: () => PageSnapshot,
+    clearCache: () => clearCache,
+    connectStreamSource: () => connectStreamSource,
+    disconnectStreamSource: () => disconnectStreamSource,
+    navigator: () => navigator$1,
+    registerAdapter: () => registerAdapter,
+    renderStreamMessage: () => renderStreamMessage,
+    session: () => session,
+    setConfirmMethod: () => setConfirmMethod,
+    setProgressBarDelay: () => setProgressBarDelay,
+    start: () => start,
+    visit: () => visit
+  });
   (function() {
     if (window.Reflect === void 0 || window.customElements === void 0 || window.customElements.polyfillWrapFlushCallback) {
       return;
@@ -5664,5 +5685,21 @@
     }
   };
   customElements.define("turbo-cable-stream-source", TurboCableStreamSourceElement);
+
+  // app/javascript/controllers/comment_controller.js
+  var comment_controller_default = class extends Controller {
+    connect() {
+    }
+    post(event) {
+      event.preventDefault();
+      if (event.ctrlKey && event.keyCode == 13) {
+        turbo_es2017_esm_exports.navigator.submitForm(this.formTarget);
+      }
+    }
+  };
+  __publicField(comment_controller_default, "targets", ["form"]);
+
+  // app/javascript/controllers/index.js
+  application.register("comment", comment_controller_default);
 })();
 //# sourceMappingURL=application.js.map

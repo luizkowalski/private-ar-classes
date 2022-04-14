@@ -3,3 +3,6 @@
 // ./bin/rails generate stimulus controllerName
 
 import { application } from "./application"
+
+import CommentController from "./comment_controller.js"
+application.register("comment", CommentController)
