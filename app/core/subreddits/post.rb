@@ -2,9 +2,9 @@
 
 module Subreddits
   class Post
-    attr_reader :id, :username, :community, :title, :body, :created_at, :slug, :upvotes, :downvotes
+    attr_reader :id, :username, :community, :title, :body, :created_at, :slug, :upvotes, :downvotes, :comments_count
 
-    def initialize(id:, username:, community:, title:, body:, created_at:, slug:, upvotes:, downvotes:)
+    def initialize(id:, username:, community:, title:, body:, created_at:, slug:, upvotes:, downvotes:, comments_count: 0)
       @id         = id
       @username   = username
       @community  = community
@@ -12,6 +12,7 @@ module Subreddits
       @body       = body
       @created_at = created_at
       @slug       = slug
+      @comments_count = comments_count
       @upvotes    = upvotes
       @downvotes  = downvotes
     end

@@ -9,7 +9,7 @@ ruby '3.1.1'
 gem 'rails', '~> 7.0.2', '>= 7.0.2.3'
 gem 'sprockets-rails'
 
-gem 'pg', '~> 1.1'
+gem 'pg', '~> 1.3'
 # gem 'sqlite3'
 
 gem 'puma', '~> 5.0'

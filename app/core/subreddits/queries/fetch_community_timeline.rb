@@ -24,6 +24,7 @@ module Subreddits
             username: post.username,
             community: post.community_title,
             slug: post.slug,
+            comments_count: post.comments.size,
             upvotes: post.upvotes,
             downvotes: post.downvotes,
             created_at: post.created_at

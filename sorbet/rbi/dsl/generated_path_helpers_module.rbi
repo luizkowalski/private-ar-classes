@@ -12,6 +12,9 @@ module GeneratedPathHelpersModule
   def join_subreddit_path(*args); end
 
   sig { params(args: T.untyped).returns(String) }
+  def leave_subreddit_path(*args); end
+
+  sig { params(args: T.untyped).returns(String) }
   def preview_view_component_path(*args); end
 
   sig { params(args: T.untyped).returns(String) }

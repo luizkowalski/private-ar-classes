@@ -12,16 +12,13 @@
           <br>
           <%= post.body %>
         </p>
-        <div class="media-content" data-controller="vote">
-          <a href="#" class="is-link is-small" 
-            data-action="click->vote#upvote"
-            data-vote-post-id-param=<%=post.id%>
-            data-vote-url-param=<%= subreddit_post_votes_path(subreddit_id: post.community, post_id: post.id)%>
-            data-vote-method-param="post"
-            data-vote-token-param=<%= form_authenticity_token %>>
-            <span>👍🏻</span>
-            <span data-vote-target="upvotes">&nbsp;<%= post.votes %></span>
-          </a>
+        <div class="media-content">
+         <nav class="level is-mobile">
+          <div class="level-left">
+            <%= render UpvoteComponent.new(post: post) %>
+            <span class="tag level-item"> 💬 <%= post.comments_count %> </span>
+          </div>
+        </nav>
         </div>
       </div>
       <footer class="card-footer">

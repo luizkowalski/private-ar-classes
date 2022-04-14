@@ -1,17 +1,12 @@
 (() => {
   var __defProp = Object.defineProperty;
   var __getOwnPropNames = Object.getOwnPropertyNames;
-  var __defNormalProp = (obj, key, value) => key in obj ? __defProp(obj, key, { enumerable: true, configurable: true, writable: true, value }) : obj[key] = value;
   var __esm = (fn, res) => function __init() {
     return fn && (res = (0, fn[__getOwnPropNames(fn)[0]])(fn = 0)), res;
   };
   var __export = (target, all) => {
     for (var name in all)
       __defProp(target, name, { get: all[name], enumerable: true });
-  };
-  var __publicField = (obj, key, value) => {
-    __defNormalProp(obj, typeof key !== "symbol" ? key + "" : key, value);
-    return value;
   };
 
   // node_modules/@rails/actioncable/src/adapters.js
@@ -2441,46 +2436,7 @@
   application.debug = false;
   window.Stimulus = application;
 
-  // app/javascript/controllers/comment_controller.js
-  var comment_controller_default = class extends Controller {
-    comment(event) {
-      event.preventDefault();
-      fetch(event.params.url, {
-        method: event.params.method,
-        body: JSON.stringify({ body: this.bodyTarget.value }),
-        headers: {
-          "X-CSRF-Token": event.params.token,
-          "Content-Type": "application/json",
-          "Accept": "application/json"
-        }
-      }).then((response) => response.json()).then((data) => {
-        if (data.success) {
-          console.log(data);
-          this.commentsTarget.prepend(data.html);
-        } else {
-        }
-      });
-    }
-  };
-  __publicField(comment_controller_default, "targets", ["body", "comments"]);
-
   // node_modules/@hotwired/turbo/dist/turbo.es2017-esm.js
-  var turbo_es2017_esm_exports = {};
-  __export(turbo_es2017_esm_exports, {
-    PageRenderer: () => PageRenderer,
-    PageSnapshot: () => PageSnapshot,
-    clearCache: () => clearCache,
-    connectStreamSource: () => connectStreamSource,
-    disconnectStreamSource: () => disconnectStreamSource,
-    navigator: () => navigator$1,
-    registerAdapter: () => registerAdapter,
-    renderStreamMessage: () => renderStreamMessage,
-    session: () => session,
-    setConfirmMethod: () => setConfirmMethod,
-    setProgressBarDelay: () => setProgressBarDelay,
-    start: () => start,
-    visit: () => visit
-  });
   (function() {
     if (window.Reflect === void 0 || window.customElements === void 0 || window.customElements.polyfillWrapFlushCallback) {
       return;
@@ -5708,50 +5664,5 @@
     }
   };
   customElements.define("turbo-cable-stream-source", TurboCableStreamSourceElement);
-
-  // app/javascript/controllers/subscription_controller.js
-  var subscription_controller_default = class extends Controller {
-    connect() {
-    }
-    join(event) {
-      fetch(event.params.url, {
-        method: "post",
-        headers: {
-          "X-CSRF-Token": event.params.token,
-          "Content-Type": "application/json",
-          "Accept": "application/json"
-        }
-      }).then((response) => response.json()).then((data) => {
-        console.log(data);
-        turbo_es2017_esm_exports.visit(window.location.href);
-      });
-    }
-  };
-
-  // app/javascript/controllers/vote_controller.js
-  var vote_controller_default = class extends Controller {
-    upvote(event) {
-      fetch(event.params.url, {
-        method: event.params.method,
-        headers: {
-          "X-CSRF-Token": event.params.token,
-          "Content-Type": "application/json",
-          "Accept": "application/json"
-        }
-      }).then((response) => response.json()).then((data) => {
-        if (data.success && data.new_record) {
-          console.log(data.upvotes);
-          this.upvotesTarget.innerText = data.upvotes;
-        } else {
-        }
-      });
-    }
-  };
-  __publicField(vote_controller_default, "targets", ["upvotes"]);
-
-  // app/javascript/controllers/index.js
-  application.register("comment", comment_controller_default);
-  application.register("subscription", subscription_controller_default);
-  application.register("vote", vote_controller_default);
 })();
 //# sourceMappingURL=application.js.map

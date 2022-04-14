@@ -9,6 +9,7 @@ module Subreddits
             select('posts.*, communities.title as community_title, users.username as username').
             joins('INNER JOIN users ON users.id = posts.user_id').
             joins(community: :subscriptions).
+            eager_load(:comments).
             where(community_subscriptions: { user_id: user_id }).
             order(created_at: :desc).
             map { |post| to_entity(post) }
@@ -24,6 +25,7 @@ module Subreddits
             username: post.username,
             community: post.community_title,
             slug: post.slug,
+            comments_count: post.comments.size,
             upvotes: post.upvotes,
             downvotes: post.downvotes,
             created_at: post.created_at

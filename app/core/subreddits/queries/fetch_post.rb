@@ -8,6 +8,7 @@ module Subreddits
           Subreddits::Persistence::PostActiveRecord.
             select('posts.*, communities.title AS community_title, users.username AS username').
             joins('INNER JOIN users ON users.id = posts.user_id').
+            joins('LEFT JOIN comments ON comments.post_id = posts.id').
             joins(:community).
             order(created_at: :desc).
             find(post_id).then { |post| to_entity(post) }
@@ -25,6 +26,7 @@ module Subreddits
             slug: post.slug,
             upvotes: post.upvotes,
             downvotes: post.downvotes,
+            comments_count: post.comments.size,
             created_at: post.created_at
           )
         end

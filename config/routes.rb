@@ -8,6 +8,8 @@ Rails.application.routes.draw do
     post :leave, on: :member
 
     resources :posts, only: %i[show], path: '/t' do
+      post :upvote, on: :member
+
       resources :comments, only: %i[create], path: '/c'
       resources :votes, only: %i[create], path: '/v'
     end

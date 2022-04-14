@@ -3,12 +3,3 @@
 // ./bin/rails generate stimulus controllerName
 
 import { application } from "./application"
-
-import CommentController from "./comment_controller.js"
-application.register("comment", CommentController)
-
-import SubscriptionController from "./subscription_controller.js"
-application.register("subscription", SubscriptionController)
-
-import VoteController from "./vote_controller.js"
-application.register("vote", VoteController)

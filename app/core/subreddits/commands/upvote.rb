@@ -19,6 +19,8 @@ module Subreddits::Commands
 
       private
 
+      # TODO: tallying the score is a lock-step process,
+      # we should avoid doing it here and move the tallying process to a background job
       def increase_post_score(post_id, new_record)
         post = Subreddits::Persistence::PostActiveRecord.lock.find(post_id)
 

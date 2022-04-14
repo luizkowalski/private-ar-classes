@@ -12,6 +12,9 @@ module GeneratedUrlHelpersModule
   def join_subreddit_url(*args); end
 
   sig { params(args: T.untyped).returns(String) }
+  def leave_subreddit_url(*args); end
+
+  sig { params(args: T.untyped).returns(String) }
   def preview_view_component_url(*args); end
 
   sig { params(args: T.untyped).returns(String) }
