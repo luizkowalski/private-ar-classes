@@ -72,9 +72,6 @@ module GeneratedPathHelpersModule
   def subreddit_post_path(*args); end
 
   sig { params(args: T.untyped).returns(String) }
-  def subreddit_post_votes_path(*args); end
-
-  sig { params(args: T.untyped).returns(String) }
   def turbo_recede_historical_location_path(*args); end
 
   sig { params(args: T.untyped).returns(String) }
@@ -85,4 +82,7 @@ module GeneratedPathHelpersModule
 
   sig { params(args: T.untyped).returns(String) }
   def update_rails_disk_service_path(*args); end
+
+  sig { params(args: T.untyped).returns(String) }
+  def upvote_subreddit_post_path(*args); end
 end

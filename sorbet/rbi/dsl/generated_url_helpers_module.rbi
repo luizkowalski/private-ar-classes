@@ -69,9 +69,6 @@ module GeneratedUrlHelpersModule
   def subreddit_post_url(*args); end
 
   sig { params(args: T.untyped).returns(String) }
-  def subreddit_post_votes_url(*args); end
-
-  sig { params(args: T.untyped).returns(String) }
   def subreddit_url(*args); end
 
   sig { params(args: T.untyped).returns(String) }
@@ -85,4 +82,7 @@ module GeneratedUrlHelpersModule
 
   sig { params(args: T.untyped).returns(String) }
   def update_rails_disk_service_url(*args); end
+
+  sig { params(args: T.untyped).returns(String) }
+  def upvote_subreddit_post_url(*args); end
 end
