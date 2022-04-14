@@ -16,7 +16,6 @@
          <nav class="level is-mobile">
           <div class="level-left">
             <%= render UpvoteComponent.new(post: post) %>
-            <span class="tag level-item"> 💬 <%= post.comments_count %> </span>
           </div>
         </nav>
         </div>
@@ -25,6 +24,7 @@
         <div class="media-content">
           <div class="control mt-4">
             <turbo-frame id='post--comments'>
+            <span class="tag level-item mb-3"> 💬 <%= post.comments_count %> </span>
               <%= form_tag(subreddit_post_comments_path(subreddit_id: post.community, post_id: post.id), method: :post) do %>
                 <%= text_area_tag(:body, '', class: 'textarea is-info is-full-width', required: "required" ) %>
                 <%= submit_tag 'Send', class: 'button is-link mt-2' %>

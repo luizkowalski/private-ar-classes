@@ -12,6 +12,9 @@ class CommentsController < ApplicationController
       body: body
     )
 
-    redirect_to subreddit_post_path(id: post_id), status: :see_other
+    post     = Subreddits::Queries::FetchPost.call(post_id: post_id)
+    comments = Subreddits::Queries::FetchCommentsFromPost.call(post_id: post_id)
+
+    render Subreddits::PostComponent.new(post: post, comments: comments)
   end
 end
