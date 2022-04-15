@@ -9,10 +9,16 @@ module GeneratedUrlHelpersModule
   include ::ActionDispatch::Routing::PolymorphicRoutes
 
   sig { params(args: T.untyped).returns(String) }
+  def authentication_url(*args); end
+
+  sig { params(args: T.untyped).returns(String) }
   def join_subreddit_url(*args); end
 
   sig { params(args: T.untyped).returns(String) }
   def leave_subreddit_url(*args); end
+
+  sig { params(args: T.untyped).returns(String) }
+  def new_authentication_url(*args); end
 
   sig { params(args: T.untyped).returns(String) }
   def new_subreddit_post_url(*args); end

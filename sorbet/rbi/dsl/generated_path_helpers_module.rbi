@@ -9,10 +9,16 @@ module GeneratedPathHelpersModule
   include ::ActionDispatch::Routing::PolymorphicRoutes
 
   sig { params(args: T.untyped).returns(String) }
+  def authentication_path(*args); end
+
+  sig { params(args: T.untyped).returns(String) }
   def join_subreddit_path(*args); end
 
   sig { params(args: T.untyped).returns(String) }
   def leave_subreddit_path(*args); end
+
+  sig { params(args: T.untyped).returns(String) }
+  def new_authentication_path(*args); end
 
   sig { params(args: T.untyped).returns(String) }
   def new_subreddit_post_path(*args); end

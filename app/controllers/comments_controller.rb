@@ -2,6 +2,8 @@
 # frozen_string_literal: true
 
 class CommentsController < ApplicationController
+  before_action :authenticate_user!
+
   def create
     post_id = params[:post_id].split('_').first.to_i
     body    = params[:body]

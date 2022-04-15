@@ -1,0 +1,21 @@
+<%= form_tag(authentication_path, method: :post) do %>
+  <div class="box">
+    <div class="field">
+      <label class="label">Username</label>
+      <div class="control">
+        <%= text_field_tag(:username, '', class: 'input')%>
+      </div>
+    </div>
+    <div class="field">
+      <label class="label">Password</label>
+      <div class="control">
+        <%= text_field_tag(:password, '', type: 'password', class: 'input')%>
+      </div>
+    </div>
+    <div class="field is-grouped">
+      <div class="control">
+        <%= submit_tag 'Send', class: 'button is-primary' %>
+      </div>
+    </div>
+  </div>
+<% end %>

@@ -1,0 +1,33 @@
+<nav class="navbar is-fixed-top" role="navigation" aria-label="main navigation">
+  <div class="navbar-brand">
+    <a class="navbar-item" href="/">
+      🖥 Cheap Reddit
+    </a>
+
+    <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </a>
+  </div>
+
+  <div id="navbarBasicExample" class="navbar-menu">
+    <div class="navbar-start">
+      <a class="navbar-item" href="/">
+        🏡 Home
+      </a>
+    </div>
+
+    <div class="navbar-end">
+      <div class="navbar-item">
+        <div class="buttons">
+          <% if user_logged_in? %>
+            <%= button_to 'Logout', authentication_path, method: :delete, class: 'button is-danger' %>
+          <% else %>
+            <%= link_to 'Login', new_authentication_path, class: 'button is-primary' %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>

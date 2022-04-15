@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html class="has-navbar-fixed-top">
   <head>
     <title>Reddit</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -10,14 +10,20 @@
     <%= stylesheet_link_tag "application" %>
   </head>
   <body>
+    <%= render partial: 'partials/navbar' %>
     <section class="section">
       <div class="container">
+        <% flash.each do |type, msg| %>
+          <div class="notification is-danger is-light">
+            <%= msg %>
+          </div>
+        <% end %>
         <div class="columns">
           <div class="column is-full-width">
             <nav class="navbar " role="navigation" aria-label="main navigation">
               <div class="navbar-start">
                 <a class="navbar-item" href="/">
-                  🏡 Home
+                  🍿 Your timeline
                 </a>
                 <a class="navbar-item" href="/">
                   🎉 Popular

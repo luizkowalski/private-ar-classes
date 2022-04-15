@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class PostsController < ApplicationController
+  before_action :authenticate_user!
+
   def create
     subreddit = Subreddits::Queries::FetchCommunity.call(slug: params[:subreddit_id])
     result, id = Subreddits::Commands::CreatePost.call(

@@ -3,6 +3,8 @@
 Rails.application.routes.draw do
   root 'home#index'
 
+  resource :authentication, only: %i[new create destroy], controller: 'authentication'
+
   resources :subreddits, only: %i[show], path: '/r' do
     post :join, on: :member
     post :leave, on: :member

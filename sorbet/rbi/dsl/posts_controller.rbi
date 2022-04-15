@@ -20,6 +20,9 @@ class PostsController
 
     sig { returns(T.untyped) }
     def current_user; end
+
+    sig { returns(T.untyped) }
+    def user_logged_in?; end
   end
 
   class HelperProxy < ::ActionView::Base

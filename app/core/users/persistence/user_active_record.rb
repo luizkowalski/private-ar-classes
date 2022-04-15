@@ -32,7 +32,5 @@ module Users
         )
       end
     end
-
-    private_constant :UserActiveRecord
   end
 end
