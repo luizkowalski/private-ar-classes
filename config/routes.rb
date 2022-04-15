@@ -7,7 +7,7 @@ Rails.application.routes.draw do
     post :join, on: :member
     post :leave, on: :member
 
-    resources :posts, only: %i[show], path: '/t' do
+    resources :posts, only: %i[show create new], path: '/t' do
       post :upvote, on: :member
 
       resources :comments, only: %i[create], path: '/c'

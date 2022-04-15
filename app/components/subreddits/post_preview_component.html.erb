@@ -15,7 +15,7 @@
         <nav class="level is-mobile">
           <div class="level-left">
             <%= render UpvoteComponent.new(post: post) %>
-            <span class="tag level-item"> 💬 <%= post.comments_count %> </span>
+            <span class="tag level-item"> 💬 <%= number_to_human(post.comments_count) %> </span>
           </div>
         </nav>
       </div>

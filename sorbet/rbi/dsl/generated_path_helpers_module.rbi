@@ -15,6 +15,9 @@ module GeneratedPathHelpersModule
   def leave_subreddit_path(*args); end
 
   sig { params(args: T.untyped).returns(String) }
+  def new_subreddit_post_path(*args); end
+
+  sig { params(args: T.untyped).returns(String) }
   def preview_view_component_path(*args); end
 
   sig { params(args: T.untyped).returns(String) }
@@ -70,6 +73,9 @@ module GeneratedPathHelpersModule
 
   sig { params(args: T.untyped).returns(String) }
   def subreddit_post_path(*args); end
+
+  sig { params(args: T.untyped).returns(String) }
+  def subreddit_posts_path(*args); end
 
   sig { params(args: T.untyped).returns(String) }
   def turbo_recede_historical_location_path(*args); end

@@ -34,6 +34,8 @@ module Subreddits
       has_many   :comments, class_name: 'CommentActiveRecord', foreign_key: 'post_id'
       has_many   :votes, as: :voteable, class_name: 'VoteActiveRecord'
 
+      validates :title, :body, presence: true
+
       def slug
         "#{id}_#{title.parameterize}"
       end

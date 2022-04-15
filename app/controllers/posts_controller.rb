@@ -1,6 +1,27 @@
 # frozen_string_literal: true
 
 class PostsController < ApplicationController
+  def create
+    subreddit = Subreddits::Queries::FetchCommunity.call(slug: params[:subreddit_id])
+    result, id = Subreddits::Commands::CreatePost.call(
+      user_id: current_user.id,
+      subreddit_id: subreddit.id,
+      title: params[:title],
+      body: params[:body]
+    )
+
+    if result
+      redirect_to subreddit_post_path(subreddit_id: subreddit.title, id: id), status: :see_other
+    else
+      flash[:error] = 'Post could not be created'
+      redirect_to new_subreddit_post_path(subreddit_id: subreddit.title), status: :see_other
+    end
+  end
+
+  def new
+    @subreddit_title = params[:subreddit_id]
+  end
+
   def show
     post_id = params[:id].split('_').first.to_i
 

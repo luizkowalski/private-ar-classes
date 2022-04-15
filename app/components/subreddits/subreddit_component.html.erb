@@ -5,7 +5,7 @@
     <% end %>
   </div>
   <div class="column is-3">
-    <div class="card">
+    <div class="card" data-controller="modal">
       <div class="card-content" data-controller="subscription" >
         <%= render Subreddits::SubscriptionComponent.new(subscribed: subscribed, subreddit: subreddit) %>
         <p class="title">
@@ -18,7 +18,7 @@
       <footer class="card-footer">
         <p class="card-footer-item">
           <span>
-            <a href="#">Create a post</a>
+            <%= link_to 'Create post', new_subreddit_post_path(subreddit_id: subreddit.title) %>
           </span>
         </p>
       </footer>

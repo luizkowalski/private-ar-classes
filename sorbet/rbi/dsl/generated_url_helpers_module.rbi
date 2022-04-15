@@ -15,6 +15,9 @@ module GeneratedUrlHelpersModule
   def leave_subreddit_url(*args); end
 
   sig { params(args: T.untyped).returns(String) }
+  def new_subreddit_post_url(*args); end
+
+  sig { params(args: T.untyped).returns(String) }
   def preview_view_component_url(*args); end
 
   sig { params(args: T.untyped).returns(String) }
@@ -67,6 +70,9 @@ module GeneratedUrlHelpersModule
 
   sig { params(args: T.untyped).returns(String) }
   def subreddit_post_url(*args); end
+
+  sig { params(args: T.untyped).returns(String) }
+  def subreddit_posts_url(*args); end
 
   sig { params(args: T.untyped).returns(String) }
   def subreddit_url(*args); end

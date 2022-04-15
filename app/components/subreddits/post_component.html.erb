@@ -24,7 +24,7 @@
         <div class="media-content">
           <div class="control mt-4">
             <turbo-frame id='post--comments' data-controller="comment">
-            <span class="tag level-item mb-3"> 💬 <%= post.comments_count %> </span>
+            <span class="tag level-item mb-3"> 💬 <%= number_to_human(post.comments_count) %> </span>
               <%= form_tag(subreddit_post_comments_path(subreddit_id: post.community, post_id: post.slug), method: :post, data: { 'comment-target' => 'form'}) do %>
                 <%= text_area_tag(:body, '', placeholder: 'Use ctrl+enter to post', class: 'textarea is-info is-full-width', required: "required", data: { action: 'keyup->comment#post'}) %>
                 <%= submit_tag 'Send', class: 'button is-link mt-2' %>
