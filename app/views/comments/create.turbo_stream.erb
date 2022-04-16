@@ -1,5 +1,5 @@
 <%= turbo_stream.prepend "comments--prepend" do %>
-  <%= render Subreddits::CommentComponent.new(comment: @comment) %>
+  <%= render partial: 'comments/partials/comment', locals: { comment: @comment } %>
 <% end %>
 
 <%= turbo_stream.replace("total-comments-#{@comment.post_id}") do %>

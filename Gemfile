@@ -6,7 +6,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 ruby '3.1.2'
 
 # Rails
-gem 'rails', '~> 7.0.2', '>= 7.0.2.3'
+gem 'rails', '~> 7'
 gem 'sprockets-rails'
 
 gem 'pg', '~> 1.3'
@@ -20,6 +20,9 @@ gem 'jsbundling-rails'
 # Bundle and process CSS [https://github.com/rails/cssbundling-rails]
 gem 'cssbundling-rails'
 
+# Use Sass to process CSS
+gem 'sassc-rails'
+
 gem 'stimulus-rails'
 gem 'turbo-rails'
 
@@ -27,17 +30,12 @@ gem 'turbo-rails'
 # gem "kredis"
 
 # Use Active Model has_secure_password [https://guides.rubyonrails.org/active_model_basics.html#securepassword]
-gem 'bcrypt', '~> 3.1.7'
+gem 'bcrypt', '~> 3.1'
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 
 gem 'tapioca', '~> 0.7'
-
-# Use Sass to process CSS
-gem 'sassc-rails'
-
-gem 'view_component', '~> 2.52'
 
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 # gem "image_processing", "~> 1.2"

@@ -3,19 +3,19 @@
     <div class="media-content">
       <div class="content">
         <p>
-          <strong><%= link_to("r/#{post.community}",  subreddit_path(post.community)) %></strong>
+          <strong><%= link_to("r/#{@post.community}",  subreddit_path(@post.community)) %></strong>
           <br>
           <strong>
-            <%= post.title %>
-          </strong><small> by u/<%=post.username %> </small>
-          <small><%= time_ago_in_words(post.created_at) %> ago</small>
+            <%= @post.title %>
+          </strong><small> by u/<%=@post.username %> </small>
+          <small><%= time_ago_in_words(@post.created_at) %> ago</small>
           <br>
-          <%= post.body %>
+          <%= @post.body %>
         </p>
         <div class="media-content">
          <nav class="level is-mobile">
           <div class="level-left">
-            <%= render partial: 'posts/partials/upvote', locals: { post: post } %>
+            <%= render partial: 'posts/partials/upvote', locals: { post: @post } %>
           </div>
         </nav>
         </div>
@@ -24,12 +24,12 @@
         <div class="media-content">
           <div class="control mt-4">
             <div id='post--comments' data-controller="comment">
-            <span class="tag level-item mb-3" id="total-comments-<%= post.id%>"> 💬 <%= number_to_human(post.comments_count) %> </span>
-              <%= form_tag(subreddit_post_comments_path(subreddit_id: post.community, post_id: post.slug), method: :post, data: { 'comment-target' => 'form'}) do %>
+            <span class="tag level-item mb-3" id="total-comments-<%= @post.id%>"> 💬 <%= number_to_human(@post.comments_count) %> </span>
+              <%= form_tag(subreddit_post_comments_path(subreddit_id: @post.community, post_id: @post.slug), method: :post, data: { 'comment-target' => 'form'}) do %>
                 <%= text_area_tag(:body, '', placeholder: 'Use ctrl+enter to post', class: 'textarea is-info is-full-width', required: "required", data: { action: 'keyup->comment#post', comment_target: 'inputText'}) %>
                 <%= submit_tag 'Send', class: 'button is-link mt-2' %>
               <% end %>
-              <turbo-frame id="post--list-comments" src=<%= subreddit_post_comments_path(subreddit_id: post.community, post_id: post.id)%>>
+              <turbo-frame id="post--list-comments" src=<%= subreddit_post_comments_path(subreddit_id: @post.community, post_id: @post.id)%>>
                 Loading...
               </turbo-frame>
             </div>

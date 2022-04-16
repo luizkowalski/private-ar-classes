@@ -4,32 +4,18 @@ class SubredditsController < ApplicationController
   before_action :authenticate_user!
 
   def show
-    community  = Subreddits::Queries::FetchCommunity.call(slug: params[:id])
-    subscribed = Subreddits::Queries::FetchCommunitySubStatus.call(user_id: current_user.id, slug: params[:id])
-
-    Subreddits::Queries::FetchCommunityTimeline.call(slug: params[:id]).then do |posts|
-      render(Subreddits::SubredditComponent.new(subreddit: community, posts: posts, subscribed: subscribed))
-    end
+    @community  = Subreddits::Queries::FetchCommunity.call(slug: params[:id])
+    @subscribed = Subreddits::Queries::FetchCommunitySubStatus.call(user_id: current_user.id, slug: params[:id])
+    @posts      = Subreddits::Queries::FetchCommunityTimeline.call(slug: params[:id])
   end
 
   def join
     @community = Subreddits::Queries::FetchCommunity.call(slug: params[:id])
     Subreddits::Commands::JoinCommunity.call(user_id: current_user.id, slug: params[:id])
-
-    respond_to do |format|
-      format.html { render Subreddits::SubscriptionComponent.new(subscribed: true, subreddit: community) }
-      format.turbo_stream
-    end
-
   end
 
   def leave
     @community = Subreddits::Queries::FetchCommunity.call(slug: params[:id])
     Subreddits::Commands::LeaveCommunity.call(user_id: current_user.id, slug: params[:id])
-
-    respond_to do |format|
-      format.html { render Subreddits::SubscriptionComponent.new(subscribed: false, subreddit: community) }
-      format.turbo_stream
-    end
   end
 end

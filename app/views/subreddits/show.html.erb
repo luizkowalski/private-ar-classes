@@ -1,24 +1,24 @@
 <div class="columns">
   <div class="column is-9">
-    <% posts.each do |post| %>
-      <%= render Subreddits::PostPreviewComponent.new(post: post)%>
+    <% @posts.each do |post| %>
+      <%= render partial: 'posts/partials/post_preview', locals: { post: post }%>
     <% end %>
   </div>
   <div class="column is-3">
     <div class="card" data-controller="modal">
       <div class="card-content" data-controller="subscription" >
-        <%= render Subreddits::SubscriptionComponent.new(subscribed: subscribed, subreddit: subreddit) %>
+        <%= render partial: 'subreddits/partials/subscription', locals: { subscribed: @subscribed, subreddit: @community } %>
         <p class="title">
-          <%= subreddit.description %>
+          <%= @community.description %>
         </p>
         <p class="subtitle">
-          <%= "r/#{subreddit.title}" %>
+          <%= "r/#{@community.title}" %>
         </p>
       </div>
       <footer class="card-footer">
         <p class="card-footer-item">
           <span>
-            <%= link_to 'Create post', new_subreddit_post_path(subreddit_id: subreddit.title) %>
+            <%= link_to 'Create post', new_subreddit_post_path(subreddit_id: @community.title) %>
           </span>
         </p>
       </footer>

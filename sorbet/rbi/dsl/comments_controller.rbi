@@ -16,7 +16,6 @@ class CommentsController
     include ::Turbo::Streams::ActionHelper
     include ::ActionController::Base::HelperMethods
     include ::ApplicationHelper
-    include ::PreviewHelper
 
     sig { returns(T.untyped) }
     def current_user; end

@@ -1,7 +1,7 @@
 <turbo-frame id="post--list-comments">
   <ul id="comments--prepend">
     <% comments.each do |comment|%>
-      <%= render Subreddits::CommentComponent.new(comment: comment) %>
+      <%= render partial: 'comments/partials/comment', locals: { comment: comment } %>
     <% end %>
   </ul>
 </turbo-frame>

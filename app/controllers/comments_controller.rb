@@ -20,6 +20,6 @@ class CommentsController < ApplicationController
     post_id = params[:post_id].split('_').first.to_i
     comments = Subreddits::Queries::FetchCommentsFromPost.call(post_id: post_id)
 
-    render partial: 'comments/list_comments', locals: { comments: comments }
+    render partial: 'comments/partials/list_comments', locals: { comments: comments }
   end
 end

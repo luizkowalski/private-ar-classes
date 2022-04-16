@@ -13,31 +13,34 @@ class PostsController < ApplicationController
     )
 
     if result
-      redirect_to subreddit_post_path(subreddit_id: subreddit.title, id: id), status: :see_other
+      redirect_to subreddit_post_path(subreddit_id: subreddit_id, id: id), status: :see_other
     else
       flash[:error] = 'Post could not be created'
-      redirect_to new_subreddit_post_path(subreddit_id: subreddit.title), status: :see_other
+      redirect_to new_subreddit_post_path(subreddit_id: subreddit_id), status: :see_other
     end
   end
 
   def new
-    @subreddit_title = params[:subreddit_id]
+    @subreddit_title = subreddit_id
   end
 
   def show
-    post_id = params[:id].split('_').first.to_i
-
-    post     = Subreddits::Queries::FetchPost.call(post_id: post_id)
-    comments = Subreddits::Queries::FetchCommentsFromPost.call(post_id: post_id)
-
-    render Subreddits::PostComponent.new(post: post, comments: comments)
+    @post = Subreddits::Queries::FetchPost.call(post_id: post_id)
   end
 
   def upvote
-    post_id = params[:id].split('_').first.to_i
-
     Subreddits::Commands::Upvote.call(user_id: current_user.id, post_id: post_id)
 
     @post = Subreddits::Queries::FetchPost.call(post_id: post_id)
+  end
+
+  private
+
+  def post_id
+    @post_id ||= params[:id].split('_').first.to_i
+  end
+
+  def subreddit_id
+    @subreddit_id ||= params[:subreddit_id]
   end
 end
