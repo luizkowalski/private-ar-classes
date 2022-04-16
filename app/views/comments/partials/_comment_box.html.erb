@@ -7,7 +7,7 @@
         <%= submit_tag 'Send', class: 'button is-link mt-2' %>
       <% end %>
       <turbo-frame id="post--lazy-comments" src=<%= subreddit_post_comments_path(subreddit_id: post.community, post_id: post.id)%>>
-        Loading...
+        Loading comments...
       </turbo-frame>
     </div>
   </div>

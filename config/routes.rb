@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   root 'home#index'
 
   resource :authentication, only: %i[new create destroy], controller: 'authentication'
+  resources :users, only: %i[new create]
 
   resources :subreddits, only: %i[show], path: '/r' do
     post :join, on: :member

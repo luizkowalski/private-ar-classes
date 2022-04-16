@@ -24,6 +24,7 @@
           <% if user_logged_in? %>
             <%= button_to 'Logout', authentication_path, method: :delete, class: 'button is-danger' %>
           <% else %>
+            <%= link_to 'Create account', new_user_path, class: 'button is-primary' %>
             <%= link_to 'Login', new_authentication_path, class: 'button is-primary' %>
           <% end %>
         </div>
