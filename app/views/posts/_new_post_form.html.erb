@@ -1,6 +1,6 @@
 <div class="box" data-controller="utils">
   <h1 class="title">New post on r/<%= subreddit_title %></h1>
-  <%= form_tag(subreddit_posts_path(subreddit_id: subreddit_title), method: :post) do %>
+  <%= form_tag(subreddit_posts_path(subreddit_id: subreddit_title), method: :post, data: { turbo: false }) do %>
     <div class="field">
       <label class="label">Title</label>
       <div class="control">

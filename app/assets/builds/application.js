@@ -5694,10 +5694,11 @@
       event.preventDefault();
       if (event.ctrlKey && event.keyCode == 13) {
         turbo_es2017_esm_exports.navigator.submitForm(this.formTarget);
+        this.inputTextTarget.value = "";
       }
     }
   };
-  __publicField(comment_controller_default, "targets", ["form"]);
+  __publicField(comment_controller_default, "targets", ["form", "inputText"]);
 
   // app/javascript/controllers/index.js
   application.register("comment", comment_controller_default);

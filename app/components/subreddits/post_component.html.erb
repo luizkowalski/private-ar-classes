@@ -23,18 +23,16 @@
       <footer class="card-footer">
         <div class="media-content">
           <div class="control mt-4">
-            <turbo-frame id='post--comments' data-controller="comment">
-            <span class="tag level-item mb-3"> 💬 <%= number_to_human(post.comments_count) %> </span>
+            <div id='post--comments' data-controller="comment">
+            <span class="tag level-item mb-3" id="total-comments-<%= post.id%>"> 💬 <%= number_to_human(post.comments_count) %> </span>
               <%= form_tag(subreddit_post_comments_path(subreddit_id: post.community, post_id: post.slug), method: :post, data: { 'comment-target' => 'form'}) do %>
-                <%= text_area_tag(:body, '', placeholder: 'Use ctrl+enter to post', class: 'textarea is-info is-full-width', required: "required", data: { action: 'keyup->comment#post'}) %>
+                <%= text_area_tag(:body, '', placeholder: 'Use ctrl+enter to post', class: 'textarea is-info is-full-width', required: "required", data: { action: 'keyup->comment#post', comment_target: 'inputText'}) %>
                 <%= submit_tag 'Send', class: 'button is-link mt-2' %>
               <% end %>
-              <ul>
-                <% comments.each do |comment|%>
-                  <%= render Subreddits::CommentComponent.new(comment: comment) %>
-                <% end %>
-              </ul>
-            </turbo-frame>
+              <turbo-frame id="post--list-comments" src=<%= subreddit_post_comments_path(subreddit_id: post.community, post_id: post.id)%>>
+                Loading...
+              </turbo-frame>
+            </div>
           </div>
         </div>
       </footer>

@@ -1,0 +1,9 @@
+<%= turbo_stream.prepend "comments--prepend" do %>
+  <%= render Subreddits::CommentComponent.new(comment: @comment) %>
+<% end %>
+
+<%= turbo_stream.replace("total-comments-#{@comment.post_id}") do %>
+  <span class="tag level-item mb-3" id="total-comments-<%= @comment.post_id %>">
+    💬 <%= number_to_human(@post.comments_count) %>
+  </span>
+<% end %>

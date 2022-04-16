@@ -5,16 +5,21 @@ class CommentsController < ApplicationController
   before_action :authenticate_user!
 
   def create
-    post_id = params[:post_id].split('_').first.to_i
-    body    = params[:body]
+    @post_id = params[:post_id].split('_').first.to_i
+    body     = params[:body]
 
-    Subreddits::Commands::CreateComment.call(
-      post_id: post_id,
+    @comment = Subreddits::Commands::CreateComment.call(
+      post_id: @post_id,
       user_id: current_user.id,
       body: body
     )
+    @post = Subreddits::Queries::FetchPost.call(post_id: @post_id)
+  end
 
-    redirect_to subreddit_post_path(subreddit_id: params[:subreddit_id], id: params[:post_id]), status: :see_other
-    # render Subreddits::PostComponent.new(post: post, comments: comments)
+  def index
+    post_id = params[:post_id].split('_').first.to_i
+    comments = Subreddits::Queries::FetchCommentsFromPost.call(post_id: post_id)
+
+    render partial: 'comments/list_comments', locals: { comments: comments }
   end
 end

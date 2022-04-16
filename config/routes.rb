@@ -12,7 +12,7 @@ Rails.application.routes.draw do
     resources :posts, only: %i[show create new], path: '/t' do
       post :upvote, on: :member
 
-      resources :comments, only: %i[create], path: '/c'
+      resources :comments, only: %i[create index], path: '/c'
     end
   end
 end

@@ -1,7 +1,7 @@
-<turbo-frame id="subscription--state">
-  <% if subscribed %>
-   <%= button_to '👋 Leave', leave_subreddit_path(id: subreddit.title), class: 'button is-danger' %>
-  <% else %>
-    <%= button_to '😉 Join', join_subreddit_path(id: subreddit.title), class: 'button is-success'%>
-  <% end %>
-</turbo-frame>
+<div id="subscription--state--component">
+<% if subscribed %>
+  <%= button_to '👋 Leave', leave_subreddit_path(id: subreddit.title), class: 'button is-danger' %>
+<% else %>
+  <%= button_to '😉 Join', join_subreddit_path(id: subreddit.title), class: 'button is-success'%>
+<% end %>
+</div>

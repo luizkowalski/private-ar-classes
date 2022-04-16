@@ -1,0 +1,3 @@
+<%= turbo_stream.replace "subscription--state--component" do %>
+  <%= render Subreddits::SubscriptionComponent.new(subscribed: true, subreddit: @community) %>
+<% end %>

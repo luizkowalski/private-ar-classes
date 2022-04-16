@@ -13,16 +13,23 @@ class SubredditsController < ApplicationController
   end
 
   def join
-    community = Subreddits::Queries::FetchCommunity.call(slug: params[:id])
+    @community = Subreddits::Queries::FetchCommunity.call(slug: params[:id])
     Subreddits::Commands::JoinCommunity.call(user_id: current_user.id, slug: params[:id])
 
-    render Subreddits::SubscriptionComponent.new(subscribed: true, subreddit: community)
+    respond_to do |format|
+      format.html { render Subreddits::SubscriptionComponent.new(subscribed: true, subreddit: community) }
+      format.turbo_stream
+    end
+
   end
 
   def leave
-    community = Subreddits::Queries::FetchCommunity.call(slug: params[:id])
+    @community = Subreddits::Queries::FetchCommunity.call(slug: params[:id])
     Subreddits::Commands::LeaveCommunity.call(user_id: current_user.id, slug: params[:id])
 
-    render Subreddits::SubscriptionComponent.new(subscribed: false, subreddit: community)
+    respond_to do |format|
+      format.html { render Subreddits::SubscriptionComponent.new(subscribed: false, subreddit: community) }
+      format.turbo_stream
+    end
   end
 end

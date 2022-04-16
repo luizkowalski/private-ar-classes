@@ -1,0 +1,3 @@
+<%= turbo_stream.replace("upvote--post-#{@post.id}") do %>
+  <%= render UpvoteComponent.new(post: @post) %>
+<% end %>
