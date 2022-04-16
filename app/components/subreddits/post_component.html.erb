@@ -15,7 +15,7 @@
         <div class="media-content">
          <nav class="level is-mobile">
           <div class="level-left">
-            <%= render UpvoteComponent.new(post: post) %>
+            <%= render partial: 'posts/partials/upvote', locals: { post: post } %>
           </div>
         </nav>
         </div>

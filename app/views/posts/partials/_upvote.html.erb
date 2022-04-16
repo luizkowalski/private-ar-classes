@@ -1,0 +1,6 @@
+<div id="upvote--post-<%= post.id %>">
+  <%= button_to upvote_subreddit_post_path(subreddit_id: post.community, id: post.id), class: 'level-item button is-info is-light is-small' do %>
+    <span>👍🏻</span>
+    <span data-vote-target="upvotes">&nbsp;<%= post.votes %></span>
+  <% end %>
+</div>
