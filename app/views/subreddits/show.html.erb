@@ -8,7 +8,7 @@
     <div class="card" data-controller="modal">
       <div class="card-content" data-controller="subscription" >
         <%= render partial: 'subreddits/partials/subscription', locals: { subscribed: @subscribed, subreddit: @community } %>
-        <p class="title">
+        <p class="title mt-3">
           <%= @community.description %>
         </p>
         <p class="subtitle">

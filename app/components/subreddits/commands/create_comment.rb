@@ -4,11 +4,13 @@ module Subreddits::Commands
   class CreateComment
     class << self
       def call(post_id:, user_id:, body:)
-        Subreddits::Persistence::CommentActiveRecord.create(
+        comment = Subreddits::Persistence::CommentActiveRecord.create!(
           post_id: post_id,
           user_id: user_id,
           body: body
-        ).then { |comment| to_entity(comment) }
+        )
+
+        to_entity(comment)
       end
 
       private
@@ -17,7 +19,7 @@ module Subreddits::Commands
         Subreddits::Comment.new(
           id: comment.id,
           body: comment.body,
-          username: '',
+          username: '...', # will be replaced later
           post_id: comment.post_id,
           created_at: comment.created_at
         )

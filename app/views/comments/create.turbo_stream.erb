@@ -3,7 +3,5 @@
 <% end %>
 
 <%= turbo_stream.replace("total-comments-#{@comment.post_id}") do %>
-  <span class="tag level-item mb-3" id="total-comments-<%= @comment.post_id %>">
-    💬 <%= number_to_human(@post.comments_count) %>
-  </span>
+  <%= render partial: 'comments/partials/comment_count', locals: { post: @post } %>
 <% end %>

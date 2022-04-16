@@ -1,7 +1,10 @@
 <div id="subscription--state--component">
-<% if subscribed %>
-  <%= button_to '👋 Leave', leave_subreddit_path(id: subreddit.title), class: 'button is-danger' %>
-<% else %>
-  <%= button_to '😉 Join', join_subreddit_path(id: subreddit.title), class: 'button is-success'%>
-<% end %>
+  <% if subscribed %>
+    <%= button_to '👋 Leave', leave_subreddit_path(id: subreddit.title), class: 'button is-danger' %>
+  <% else %>
+    <%= button_to '😉 Join', join_subreddit_path(id: subreddit.title), class: 'button is-success'%>
+  <% end %>
+  <p class="subtitle mt-2">
+    🤖 <%= number_to_human(subreddit.total_subs) %> <%= 'subscriber'.pluralize(subreddit.total_subs) %>
+  </p>
 </div>

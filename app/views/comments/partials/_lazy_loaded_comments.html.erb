@@ -1,4 +1,4 @@
-<turbo-frame id="post--list-comments">
+<turbo-frame id="post--lazy-comments">
   <ul id="comments--prepend">
     <% comments.each do |comment|%>
       <%= render partial: 'comments/partials/comment', locals: { comment: comment } %>

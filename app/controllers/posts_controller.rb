@@ -3,8 +3,9 @@
 class PostsController < ApplicationController
   before_action :authenticate_user!
 
+  # TODO: Simplify
   def create
-    subreddit = Subreddits::Queries::FetchCommunity.call(slug: params[:subreddit_id])
+    subreddit  = Subreddits::Queries::FetchCommunity.call(slug: params[:subreddit_id])
     result, id = Subreddits::Commands::CreatePost.call(
       user_id: current_user.id,
       subreddit_id: subreddit.id,

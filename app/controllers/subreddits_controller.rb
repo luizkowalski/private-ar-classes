@@ -10,12 +10,12 @@ class SubredditsController < ApplicationController
   end
 
   def join
-    @community = Subreddits::Queries::FetchCommunity.call(slug: params[:id])
     Subreddits::Commands::JoinCommunity.call(user_id: current_user.id, slug: params[:id])
+    @community = Subreddits::Queries::FetchCommunity.call(slug: params[:id])
   end
 
   def leave
-    @community = Subreddits::Queries::FetchCommunity.call(slug: params[:id])
     Subreddits::Commands::LeaveCommunity.call(user_id: current_user.id, slug: params[:id])
+    @community = Subreddits::Queries::FetchCommunity.call(slug: params[:id])
   end
 end
