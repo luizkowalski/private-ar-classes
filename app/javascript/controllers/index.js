@@ -6,3 +6,6 @@ import { application } from "./application"
 
 import CommentController from "./comment_controller.js"
 application.register("comment", CommentController)
+
+import PostController from "./post_controller.js"
+application.register("post", PostController)

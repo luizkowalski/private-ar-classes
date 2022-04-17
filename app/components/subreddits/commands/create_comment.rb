@@ -19,7 +19,7 @@ module Subreddits::Commands
         Subreddits::Comment.new(
           id: comment.id,
           body: comment.body,
-          username: '...', # will be replaced later
+          username: '...', # will be replaced later when
           post_id: comment.post_id,
           created_at: comment.created_at
         )

@@ -30,6 +30,8 @@ module Subreddits
     class PostActiveRecord < ApplicationRecord
       self.table_name = 'posts'
 
+      has_rich_text :body
+
       belongs_to :community, class_name: 'CommunityActiveRecord'
       has_many   :comments, class_name: 'CommentActiveRecord', foreign_key: 'post_id'
       has_many   :votes, as: :voteable, class_name: 'VoteActiveRecord'

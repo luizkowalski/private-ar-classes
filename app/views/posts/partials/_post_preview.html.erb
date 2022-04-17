@@ -6,11 +6,11 @@
           <strong><%= link_to("r/#{post.community}",  subreddit_path(post.community)) %></strong>
           <br>
           <strong>
-            <%= link_to(post.title, subreddit_post_path(subreddit_id: post.community, id: post.slug), class: 'post-body-link') %>
+            <%= link_to(post.title, subreddit_post_path(subreddit_slug: post.community, id: post.slug), class: 'post-body-link') %>
           </strong><small> by u/<%= post.username %> </small>
           <small><%= time_ago_in_words(post.created_at) %> ago</small>
           <br>
-          <%= link_to(post.body.truncate(200, separator: '...'), subreddit_post_path(subreddit_id: post.community, id: post.slug), class: 'post-body-link') %>
+          <%= link_to(post.body.to_plain_text.truncate(200, separator: '...'), subreddit_post_path(subreddit_slug: post.community, id: post.slug), class: 'post-body-link') %>
         </p>
         <nav class="level is-mobile">
           <div class="level-left">

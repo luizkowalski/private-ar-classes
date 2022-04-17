@@ -2,6 +2,7 @@
 @import url("https://fonts.googleapis.com/css?family=Nunito:400,700");
 /*! bulma.io v0.9.3 | MIT License | github.com/jgthms/bulma */
 /* Bulma Utilities */
+@import 'actiontext.css';
 .pagination-previous,
 .pagination-next,
 .pagination-link,

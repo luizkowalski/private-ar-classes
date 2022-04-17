@@ -4,12 +4,13 @@ module Subreddits
   module Queries
     class FetchPost
       class << self
-        def call(post_id:)
+        def call(post_id:, slug:)
           Subreddits::Persistence::PostActiveRecord.
-            select('posts.*, communities.title AS community_title, users.username AS username').
+            select('posts.*, community.title AS community_title, users.username AS username').
             joins('INNER JOIN users ON users.id = posts.user_id').
             joins('LEFT JOIN comments ON comments.post_id = posts.id').
             joins(:community).
+            where(community: { title: slug }).
             order(created_at: :desc).
             find(post_id).then { |post| to_entity(post) }
         end

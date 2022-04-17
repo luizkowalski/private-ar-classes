@@ -1,6 +1,6 @@
-<div class="box" data-controller="utils">
+<div class="box" data-controller="post">
   <h1 class="title">New post on r/<%= subreddit_title %></h1>
-  <%= form_tag(subreddit_posts_path(subreddit_id: subreddit_title), method: :post, data: { turbo: false }) do %>
+  <%= form_tag(subreddit_posts_path(subreddit_slug: subreddit_title), method: :post, data: { turbo: false }) do %>
     <div class="field">
       <label class="label">Title</label>
       <div class="control">
@@ -10,7 +10,7 @@
     <div class="field">
       <label class="label">Post</label>
       <div class="control">
-        <%= text_area_tag(:body, '', placeholder: '', class: 'textarea is-info is-full-width', required: "required") %>
+        <%= rich_text_area_tag(:body, '', placeholder: '', class: 'textarea is-info is-full-width', required: "required") %>
       </div>
     </div>
     <div class="field is-grouped">
@@ -18,7 +18,7 @@
         <%= submit_tag 'Send', class: 'button is-primary' %>
       </div>
       <div class="control">
-        <%= link_to 'Back', subreddit_path(id: subreddit_title), class: 'button is-danger'%>
+        <%= link_to 'Back', subreddit_path(slug: subreddit_title), class: 'button is-danger'%>
       </div>
     </div>
   <% end %>

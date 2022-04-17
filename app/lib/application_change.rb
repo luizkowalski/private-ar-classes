@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Change
+class ApplicationChange
   include ActiveModel::Validations
 
   def on_success

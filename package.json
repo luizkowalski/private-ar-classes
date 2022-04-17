@@ -8,7 +8,9 @@
   "dependencies": {
     "@hotwired/stimulus": "^3.0.1",
     "@hotwired/turbo-rails": "^7.1.1",
+    "@rails/actiontext": "^6.1.5",
     "bulma": "^0.9.3",
-    "sass": "^1.49.11"
+    "sass": "^1.49.11",
+    "trix": "^2.0.0-beta.0"
   }
 }

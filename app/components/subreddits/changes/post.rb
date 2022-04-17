@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module Subreddits::Changes
-  class Post < ::Change
+  class Post < ::ApplicationChange
     attr_reader :subreddit_id, :user_id, :title, :body
 
     validates :subreddit_id, :user_id, :title, presence: true
