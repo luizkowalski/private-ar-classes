@@ -6,7 +6,7 @@ module Subreddits::Commands
       def call(user_id:, post_id:)
         ActiveRecord::Base.transaction do
           vote = Subreddits::Persistence::VoteActiveRecord.find_or_initialize_by(
-            user_id: user_id,
+            user_id:,
             voteable_id: post_id,
             voteable_type: 'Subreddits::Persistence::PostActiveRecord'
           )

@@ -1,23 +1,26 @@
+# typed: true
 # frozen_string_literal: true
 
 class PostsController < ApplicationController
   before_action :authenticate_user!
 
-  # TODO: Simplify
   def create
-    subreddit  = Subreddits::Queries::FetchCommunity.call(slug: params[:subreddit_id])
-    result, id = Subreddits::Commands::CreatePost.call(
+    change = Subreddits::Changes::Post.new(
       user_id: current_user.id,
       subreddit_id: subreddit.id,
       title: params[:title],
       body: params[:body]
     )
 
-    if result
-      redirect_to subreddit_post_path(subreddit_id: subreddit_id, id: id), status: :see_other
-    else
-      flash[:error] = 'Post could not be created'
-      redirect_to new_subreddit_post_path(subreddit_id: subreddit_id), status: :see_other
+    change.on_error do |obj|
+      flash[:error] = obj.error_messages
+      redirect_to new_subreddit_post_path(subreddit_id:), status: :see_other
+    end
+
+    change.on_success do |obj|
+      Subreddits::Commands::CreatePost.call(post: obj).then do |slug|
+        redirect_to subreddit_post_path(subreddit_id:, id: slug), status: :see_other
+      end
     end
   end
 
@@ -26,13 +29,13 @@ class PostsController < ApplicationController
   end
 
   def show
-    @post = Subreddits::Queries::FetchPost.call(post_id: post_id)
+    @post = Subreddits::Queries::FetchPost.call(post_id:)
   end
 
   def upvote
-    Subreddits::Commands::Upvote.call(user_id: current_user.id, post_id: post_id)
+    Subreddits::Commands::Upvote.call(user_id: current_user.id, post_id:)
 
-    @post = Subreddits::Queries::FetchPost.call(post_id: post_id)
+    @post = Subreddits::Queries::FetchPost.call(post_id:)
   end
 
   private
@@ -43,5 +46,9 @@ class PostsController < ApplicationController
 
   def subreddit_id
     @subreddit_id ||= params[:subreddit_id]
+  end
+
+  def subreddit
+    @subreddit = Subreddits::Queries::FetchCommunity.call(slug: params[:subreddit_id])
   end
 end

@@ -24,6 +24,9 @@ module GeneratedPathHelpersModule
   def new_subreddit_post_path(*args); end
 
   sig { params(args: T.untyped).returns(String) }
+  def new_user_path(*args); end
+
+  sig { params(args: T.untyped).returns(String) }
   def rails_blob_path(*args); end
 
   sig { params(args: T.untyped).returns(String) }
@@ -91,4 +94,7 @@ module GeneratedPathHelpersModule
 
   sig { params(args: T.untyped).returns(String) }
   def upvote_subreddit_post_path(*args); end
+
+  sig { params(args: T.untyped).returns(String) }
+  def users_path(*args); end
 end

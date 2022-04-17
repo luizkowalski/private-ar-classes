@@ -5,9 +5,9 @@ module Subreddits::Commands
     class << self
       def call(post_id:, user_id:, body:)
         comment = Subreddits::Persistence::CommentActiveRecord.create!(
-          post_id: post_id,
-          user_id: user_id,
-          body: body
+          post_id:,
+          user_id:,
+          body:
         )
 
         to_entity(comment)

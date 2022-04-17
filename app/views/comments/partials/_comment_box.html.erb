@@ -1,10 +1,10 @@
 <div class="box">
   <div class="control">
     <div id='post--comments' data-controller="comment">
-      <%= render partial: 'comments/partials/comment_count', locals: { post: post } %>
+      <%= render partial: 'comments/partials/counter', locals: { post: post } %>
       <%= form_tag(subreddit_post_comments_path(subreddit_id: post.community, post_id: post.slug), method: :post, data: { 'comment-target' => 'form'}) do %>
         <%= text_area_tag(:body, '', placeholder: 'Use Ctrl+Enter to post', class: 'textarea is-info is-full-width', required: "required", data: { action: 'keyup->comment#post', comment_target: 'inputText'}) %>
-        <%= submit_tag 'Send', class: 'button is-link mt-2' %>
+        <%= submit_tag 'Send', class: 'button is-link is-light mt-2' %>
       <% end %>
       <turbo-frame id="post--lazy-comments" src=<%= subreddit_post_comments_path(subreddit_id: post.community, post_id: post.id)%>>
         Loading comments...

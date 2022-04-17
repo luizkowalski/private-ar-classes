@@ -24,6 +24,9 @@ module GeneratedUrlHelpersModule
   def new_subreddit_post_url(*args); end
 
   sig { params(args: T.untyped).returns(String) }
+  def new_user_url(*args); end
+
+  sig { params(args: T.untyped).returns(String) }
   def rails_blob_representation_proxy_url(*args); end
 
   sig { params(args: T.untyped).returns(String) }
@@ -91,4 +94,7 @@ module GeneratedUrlHelpersModule
 
   sig { params(args: T.untyped).returns(String) }
   def upvote_subreddit_post_url(*args); end
+
+  sig { params(args: T.untyped).returns(String) }
+  def users_url(*args); end
 end

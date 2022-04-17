@@ -5,7 +5,7 @@ module Subreddits::Commands
     class << self
       def call(user_id:, slug:)
         community = Subreddits::Persistence::CommunityActiveRecord.find_by(title: slug)
-        community.subscriptions.create(user_id: user_id)
+        community.subscriptions.create(user_id:)
         community.update(total_subs: community.subscriptions.count)
       end
     end

@@ -3,5 +3,5 @@
 <% end %>
 
 <%= turbo_stream.replace("total-comments-#{@comment.post_id}") do %>
-  <%= render partial: 'comments/partials/comment_count', locals: { post: @post } %>
+  <%= render partial: 'comments/partials/counter', locals: { post: @post } %>
 <% end %>

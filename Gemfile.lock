@@ -190,10 +190,10 @@ GEM
       sprockets (> 3.0)
       sprockets-rails
       tilt
-    sorbet (0.5.9896)
-      sorbet-static (= 0.5.9896)
-    sorbet-runtime (0.5.9896)
-    sorbet-static (0.5.9896-universal-darwin-21)
+    sorbet (0.5.9897)
+      sorbet-static (= 0.5.9897)
+    sorbet-runtime (0.5.9897)
+    sorbet-static (0.5.9897-universal-darwin-21)
     spoom (1.1.11)
       sorbet (>= 0.5.9204)
       sorbet-runtime (>= 0.5.9204)
@@ -255,9 +255,9 @@ DEPENDENCIES
   cssbundling-rails
   jsbundling-rails
   pg (~> 1.3)
-  puma (~> 5.0)
+  puma (~> 5)
   rails (~> 7)
-  rubocop (~> 1.26)
+  rubocop (~> 1.27)
   rubocop-performance (~> 1.13)
   rubocop-rails (~> 2)
   sassc-rails

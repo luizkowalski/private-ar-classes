@@ -11,7 +11,7 @@ class CommentsController < ApplicationController
     @comment = Subreddits::Commands::CreateComment.call(
       post_id: @post_id,
       user_id: current_user.id,
-      body: body
+      body:
     )
 
     # Reload the comment so we can get the username
@@ -21,8 +21,8 @@ class CommentsController < ApplicationController
 
   def index
     post_id = params[:post_id].split('_').first.to_i
-    comments = Subreddits::Queries::FetchCommentsFromPost.call(post_id: post_id)
+    comments = Subreddits::Queries::FetchCommentsFromPost.call(post_id:)
 
-    render partial: 'comments/partials/lazy_loaded_comments', locals: { comments: comments }
+    render partial: 'comments/partials/lazy_loaded_comments', locals: { comments: }
   end
 end

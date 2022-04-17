@@ -12,7 +12,7 @@ gem 'sprockets-rails'
 gem 'pg', '~> 1.3'
 # gem 'sqlite3'
 
-gem 'puma', '~> 5.0'
+gem 'puma', '~> 5'
 
 # Bundle and transpile JavaScript [https://github.com/rails/jsbundling-rails]
 gem 'jsbundling-rails'
@@ -45,7 +45,7 @@ group :development, :test do
   # gem 'debug', platforms: %i[mri mingw x64_mingw]
   gem 'byebug'
 
-  gem 'rubocop', '~> 1.26'
+  gem 'rubocop', '~> 1.27'
   gem 'rubocop-performance', '~> 1.13'
   gem 'rubocop-rails', '~> 2'
 end

@@ -7,7 +7,7 @@ module Subreddits::Queries
         Subreddits::Persistence::CommentActiveRecord.
           select('comments.*, users.username AS username').
           joins('INNER JOIN users ON users.id = comments.user_id').
-          where(post_id: post_id).
+          where(post_id:).
           order(created_at: :desc).
           map { |comment| to_entity(comment) }
       end
