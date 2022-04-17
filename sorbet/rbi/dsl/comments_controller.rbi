@@ -14,6 +14,8 @@ class CommentsController
     include ::Turbo::IncludesHelper
     include ::Turbo::StreamsHelper
     include ::Turbo::Streams::ActionHelper
+    include ::ActionText::ContentHelper
+    include ::ActionText::TagHelper
     include ::ActionController::Base::HelperMethods
     include ::ApplicationHelper
 

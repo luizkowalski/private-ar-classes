@@ -4,5 +4,7 @@
 
 # typed: false
 
+module ActionText::ContentHelper; end
+module ActionText::TagHelper; end
 module RDoc::Task; end
 module Turbo::Streams::ActionHelper; end

@@ -1,8 +1,12 @@
+# typed: true
 # frozen_string_literal: true
 
 module Subreddits::Commands
   class CreateComment
     class << self
+      extend(T::Sig)
+
+      sig { params(post_id: Integer, user_id: Integer, body: String).returns(Subreddits::Comment) }
       def call(post_id:, user_id:, body:)
         comment = Subreddits::Persistence::CommentActiveRecord.create!(
           post_id:,

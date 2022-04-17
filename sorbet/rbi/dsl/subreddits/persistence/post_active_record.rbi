@@ -240,6 +240,9 @@ class Subreddits::Persistence::PostActiveRecord
     sig { params(args: T.untyped, blk: T.untyped).returns(::Subreddits::Persistence::CommunityActiveRecord) }
     def build_community(*args, &blk); end
 
+    sig { params(args: T.untyped, blk: T.untyped).returns(::ActionText::RichText) }
+    def build_rich_text_body(*args, &blk); end
+
     sig { returns(T::Array[T.untyped]) }
     def comment_ids; end
 
@@ -264,8 +267,23 @@ class Subreddits::Persistence::PostActiveRecord
     sig { params(args: T.untyped, blk: T.untyped).returns(::Subreddits::Persistence::CommunityActiveRecord) }
     def create_community!(*args, &blk); end
 
+    sig { params(args: T.untyped, blk: T.untyped).returns(::ActionText::RichText) }
+    def create_rich_text_body(*args, &blk); end
+
+    sig { params(args: T.untyped, blk: T.untyped).returns(::ActionText::RichText) }
+    def create_rich_text_body!(*args, &blk); end
+
     sig { returns(T.nilable(::Subreddits::Persistence::CommunityActiveRecord)) }
     def reload_community; end
+
+    sig { returns(T.nilable(::ActionText::RichText)) }
+    def reload_rich_text_body; end
+
+    sig { returns(T.nilable(::ActionText::RichText)) }
+    def rich_text_body; end
+
+    sig { params(value: T.nilable(::ActionText::RichText)).void }
+    def rich_text_body=(value); end
 
     sig { returns(T::Array[T.untyped]) }
     def vote_ids; end
@@ -455,6 +473,12 @@ class Subreddits::Persistence::PostActiveRecord
 
     sig { params(args: T.untyped, blk: T.untyped).returns(PrivateAssociationRelationWhereChain) }
     def where(*args, &blk); end
+
+    sig { params(args: T.untyped, blk: T.untyped).returns(PrivateAssociationRelation) }
+    def with_rich_text_body(*args, &blk); end
+
+    sig { params(args: T.untyped, blk: T.untyped).returns(PrivateAssociationRelation) }
+    def with_rich_text_body_and_embeds(*args, &blk); end
 
     sig { params(args: T.untyped, blk: T.untyped).returns(PrivateAssociationRelation) }
     def without(*args, &blk); end
@@ -1098,6 +1122,12 @@ class Subreddits::Persistence::PostActiveRecord
 
     sig { params(args: T.untyped, blk: T.untyped).returns(PrivateRelationWhereChain) }
     def where(*args, &blk); end
+
+    sig { params(args: T.untyped, blk: T.untyped).returns(PrivateRelation) }
+    def with_rich_text_body(*args, &blk); end
+
+    sig { params(args: T.untyped, blk: T.untyped).returns(PrivateRelation) }
+    def with_rich_text_body_and_embeds(*args, &blk); end
 
     sig { params(args: T.untyped, blk: T.untyped).returns(PrivateRelation) }
     def without(*args, &blk); end
