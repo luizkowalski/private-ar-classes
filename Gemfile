@@ -57,5 +57,6 @@ group :development do
   gem 'annotate', '~> 3.2'
 
   # Add speed badges [https://github.com/MiniProfiler/rack-mini-profiler]
-  # gem "rack-mini-profiler"
+  gem 'rack-mini-profiler'
+  gem 'stackprof'
 end

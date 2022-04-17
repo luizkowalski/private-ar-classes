@@ -313,9 +313,10 @@ class PG::Connection
   def async_describe_portal(_arg0); end
   def async_describe_prepared(_arg0); end
   def async_encrypt_password(password, username, algorithm = T.unsafe(nil)); end
-  def async_exec(*_arg0); end
+  def async_exec(*args, &blk); end
   def async_exec_params(*_arg0); end
   def async_exec_prepared(*_arg0); end
+  def async_exec_without_profiling(*_arg0); end
   def async_flush; end
   def async_get_copy_data(async = T.unsafe(nil), decoder = T.unsafe(nil)); end
   def async_get_last_result; end
@@ -359,9 +360,12 @@ class PG::Connection
   def escape_identifier(_arg0); end
   def escape_literal(_arg0); end
   def escape_string(_arg0); end
-  def exec(*_arg0); end
-  def exec_params(*_arg0); end
-  def exec_prepared(*_arg0); end
+  def exec(*args, &blk); end
+  def exec_params(*args, &blk); end
+  def exec_params_without_profiling(*_arg0); end
+  def exec_prepared(*args, &blk); end
+  def exec_prepared_without_profiling(*_arg0); end
+  def exec_without_profiling(*_arg0); end
   def exit_pipeline_mode; end
   def external_encoding; end
   def field_name_type; end
@@ -414,11 +418,12 @@ class PG::Connection
   def pipeline_status; end
   def pipeline_sync; end
   def port; end
-  def prepare(*_arg0); end
+  def prepare(*args, &blk); end
+  def prepare_without_profiling(*_arg0); end
   def protocol_version; end
   def put_copy_data(buffer, encoder = T.unsafe(nil)); end
   def put_copy_end(*args); end
-  def query(*_arg0); end
+  def query(*args, &blk); end
   def quote_ident(_arg0); end
   def reset; end
   def reset_poll; end
@@ -429,7 +434,8 @@ class PG::Connection
   def send_prepare(*_arg0); end
   def send_query(*_arg0); end
   def send_query_params(*_arg0); end
-  def send_query_prepared(*_arg0); end
+  def send_query_prepared(*args, &blk); end
+  def send_query_prepared_without_profiling(*_arg0); end
   def server_version; end
   def set_client_encoding(_arg0); end
   def set_default_encoding; end
@@ -820,8 +826,9 @@ class PG::Result
   def cmd_tuples; end
   def cmdtuples; end
   def column_values(_arg0); end
-  def each; end
+  def each(*args, &blk); end
   def each_row; end
+  def each_without_profiling; end
   def error_field(_arg0); end
   def error_message; end
   def fformat(_arg0); end
@@ -842,6 +849,7 @@ class PG::Result
   def getvalue(_arg0, _arg1); end
   def inspect; end
   def map_types!(type_map); end
+  def mp_report_sql(&block); end
   def nfields; end
   def nparams; end
   def ntuples; end
@@ -861,7 +869,8 @@ class PG::Result
   def tuple_values(_arg0); end
   def type_map; end
   def type_map=(_arg0); end
-  def values; end
+  def values(*args, &blk); end
+  def values_without_profiling; end
   def verbose_error_message(_arg0, _arg1); end
 end
 

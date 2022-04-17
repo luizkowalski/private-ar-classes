@@ -126,6 +126,8 @@ GEM
       nio4r (~> 2.0)
     racc (1.6.0)
     rack (2.2.3)
+    rack-mini-profiler (3.0.0)
+      rack (>= 1.2.0)
     rack-test (1.1.0)
       rack (>= 1.0, < 3)
     rails (7.0.2.3)
@@ -205,6 +207,7 @@ GEM
       actionpack (>= 5.2)
       activesupport (>= 5.2)
       sprockets (>= 3.0.0)
+    stackprof (0.2.19)
     stimulus-rails (1.0.4)
       railties (>= 6.0.0)
     strscan (3.0.1)
@@ -256,12 +259,14 @@ DEPENDENCIES
   jsbundling-rails
   pg (~> 1.3)
   puma (~> 5)
+  rack-mini-profiler
   rails (~> 7)
   rubocop (~> 1.27)
   rubocop-performance (~> 1.13)
   rubocop-rails (~> 2)
   sassc-rails
   sprockets-rails
+  stackprof
   stimulus-rails
   tapioca (~> 0.7)
   turbo-rails

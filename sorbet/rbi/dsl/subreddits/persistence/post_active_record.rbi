@@ -1110,7 +1110,7 @@ class Subreddits::Persistence::PostActiveRecord
     sig { returns(T::Array[::Subreddits::Persistence::PostActiveRecord]) }
     def to_ary; end
 
-    Elem = type_member(fixed: ::Subreddits::Persistence::PostActiveRecord)
+    Elem = type_member {{fixed: ::Subreddits::Persistence::PostActiveRecord}}
   end
 
   class PrivateAssociationRelationWhereChain < PrivateAssociationRelation
@@ -1123,7 +1123,7 @@ class Subreddits::Persistence::PostActiveRecord
     sig { params(opts: T.untyped, rest: T.untyped).returns(PrivateAssociationRelation) }
     def not(opts, *rest); end
 
-    Elem = type_member(fixed: ::Subreddits::Persistence::PostActiveRecord)
+    Elem = type_member {{fixed: ::Subreddits::Persistence::PostActiveRecord}}
   end
 
   class PrivateCollectionProxy < ::ActiveRecord::Associations::CollectionProxy
@@ -1201,7 +1201,7 @@ class Subreddits::Persistence::PostActiveRecord
     sig { returns(T::Array[::Subreddits::Persistence::PostActiveRecord]) }
     def to_ary; end
 
-    Elem = type_member(fixed: ::Subreddits::Persistence::PostActiveRecord)
+    Elem = type_member {{fixed: ::Subreddits::Persistence::PostActiveRecord}}
   end
 
   class PrivateRelation < ::ActiveRecord::Relation
@@ -1211,7 +1211,7 @@ class Subreddits::Persistence::PostActiveRecord
     sig { returns(T::Array[::Subreddits::Persistence::PostActiveRecord]) }
     def to_ary; end
 
-    Elem = type_member(fixed: ::Subreddits::Persistence::PostActiveRecord)
+    Elem = type_member {{fixed: ::Subreddits::Persistence::PostActiveRecord}}
   end
 
   class PrivateRelationWhereChain < PrivateRelation
@@ -1224,6 +1224,6 @@ class Subreddits::Persistence::PostActiveRecord
     sig { params(opts: T.untyped, rest: T.untyped).returns(PrivateRelation) }
     def not(opts, *rest); end
 
-    Elem = type_member(fixed: ::Subreddits::Persistence::PostActiveRecord)
+    Elem = type_member {{fixed: ::Subreddits::Persistence::PostActiveRecord}}
   end
 end

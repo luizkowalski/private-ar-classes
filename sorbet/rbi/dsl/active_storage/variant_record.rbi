@@ -618,7 +618,7 @@ class ActiveStorage::VariantRecord
     sig { returns(T::Array[::ActiveStorage::VariantRecord]) }
     def to_ary; end
 
-    Elem = type_member(fixed: ::ActiveStorage::VariantRecord)
+    Elem = type_member {{fixed: ::ActiveStorage::VariantRecord}}
   end
 
   class PrivateAssociationRelationWhereChain < PrivateAssociationRelation
@@ -631,7 +631,7 @@ class ActiveStorage::VariantRecord
     sig { params(opts: T.untyped, rest: T.untyped).returns(PrivateAssociationRelation) }
     def not(opts, *rest); end
 
-    Elem = type_member(fixed: ::ActiveStorage::VariantRecord)
+    Elem = type_member {{fixed: ::ActiveStorage::VariantRecord}}
   end
 
   class PrivateCollectionProxy < ::ActiveRecord::Associations::CollectionProxy
@@ -709,7 +709,7 @@ class ActiveStorage::VariantRecord
     sig { returns(T::Array[::ActiveStorage::VariantRecord]) }
     def to_ary; end
 
-    Elem = type_member(fixed: ::ActiveStorage::VariantRecord)
+    Elem = type_member {{fixed: ::ActiveStorage::VariantRecord}}
   end
 
   class PrivateRelation < ::ActiveRecord::Relation
@@ -719,7 +719,7 @@ class ActiveStorage::VariantRecord
     sig { returns(T::Array[::ActiveStorage::VariantRecord]) }
     def to_ary; end
 
-    Elem = type_member(fixed: ::ActiveStorage::VariantRecord)
+    Elem = type_member {{fixed: ::ActiveStorage::VariantRecord}}
   end
 
   class PrivateRelationWhereChain < PrivateRelation
@@ -732,6 +732,6 @@ class ActiveStorage::VariantRecord
     sig { params(opts: T.untyped, rest: T.untyped).returns(PrivateRelation) }
     def not(opts, *rest); end
 
-    Elem = type_member(fixed: ::ActiveStorage::VariantRecord)
+    Elem = type_member {{fixed: ::ActiveStorage::VariantRecord}}
   end
 end

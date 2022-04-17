@@ -1,6 +1,10 @@
 # frozen_string_literal: true
 
 class ApplicationController < ActionController::Base
+  before_action do
+    Rack::MiniProfiler.authorize_request if Rails.env.development?
+  end
+
   def current_user
     @current_user ||= Users::Persistence::UserActiveRecord.find_by(id: session[:user_id])
   end
