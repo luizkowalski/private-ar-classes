@@ -15,6 +15,10 @@ class ApplicationChange
     self
   end
 
+  def raw_errors
+    errors.full_messages
+  end
+
   def error_messages
     errors.full_messages.join(',')
   end

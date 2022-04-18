@@ -12,6 +12,7 @@
   <body>
     <%= render partial: 'partials/navbar' %>
     <section class="section">
+   <%= turbo_frame_tag "modal", target: '_top' %>
       <div class="container">
         <% flash.each do |type, msg| %>
           <div class="notification is-danger is-light">
@@ -20,6 +21,7 @@
         <% end %>
         <div class="columns">
           <div class="column is-full-width">
+            <% if user_logged_in? %>
             <nav class="navbar " role="navigation" aria-label="main navigation">
               <div class="navbar-start">
                 <a class="navbar-item" href="/">
@@ -30,6 +32,7 @@
                 </a>
               </div>
             </nav>
+            <% end %>
           </div>
         </div>
         <%= yield %>

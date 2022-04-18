@@ -6668,6 +6668,19 @@
   };
   __publicField(comment_controller_default, "targets", ["form", "inputText"]);
 
+  // app/javascript/controllers/modal_controller.js
+  var modal_controller_default = class extends Controller {
+    hideModal() {
+      this.element.parentElement.removeAttribute("src");
+      this.element.remove();
+    }
+    closeWithKeyboard(e) {
+      if (e.code == "Escape") {
+        this.hideModal();
+      }
+    }
+  };
+
   // app/javascript/controllers/post_controller.js
   var post_controller_default = class extends Controller {
     connect() {
@@ -6679,6 +6692,7 @@
 
   // app/javascript/controllers/index.js
   application.register("comment", comment_controller_default);
+  application.register("modal", modal_controller_default);
   application.register("post", post_controller_default);
 
   // node_modules/trix/dist/trix.js

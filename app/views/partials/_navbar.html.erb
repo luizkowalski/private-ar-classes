@@ -3,29 +3,45 @@
     <a class="navbar-item" href="/">
       🖥 Cheap Reddit
     </a>
-
     <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
       <span aria-hidden="true"></span>
       <span aria-hidden="true"></span>
       <span aria-hidden="true"></span>
     </a>
   </div>
-
   <div id="navbarBasicExample" class="navbar-menu">
     <div class="navbar-start">
       <a class="navbar-item" href="/">
         🏡 Home
       </a>
     </div>
-
     <div class="navbar-end">
       <div class="navbar-item">
-        <div class="buttons">
+        <div class="field is-grouped">
           <% if user_logged_in? %>
-            <%= button_to 'Logout', authentication_path, method: :delete, class: 'button is-danger' %>
+            <div class="control">
+              <%= button_to(new_subreddit_path, data: { turbo_frame: "modal" }, class: 'button is-info is-light', method: :get) do %>
+                <span class="icon">
+                  🙋‍♀️
+                </span>
+                <span>Create community</span>
+              <% end %>
+            </div>
+            <div class="control">
+              <%= button_to authentication_path, method: :delete, class: 'button is-danger is-light' do %>
+                <span class="icon">
+                  💩
+                </span>
+                <span>Logout</span>
+              <% end %>
+            </div>
           <% else %>
-            <%= link_to 'Create account', new_user_path, class: 'button is-primary' %>
-            <%= link_to 'Login', new_authentication_path, class: 'button is-primary' %>
+            <div class="control">
+              <%= link_to 'Create account', new_user_path, class: 'button is-success is-light' %>
+            </div>
+            <div class="control">
+              <%= link_to 'Login', new_authentication_path, class: 'button is-success is-light' %>
+            </div>
           <% end %>
         </div>
       </div>

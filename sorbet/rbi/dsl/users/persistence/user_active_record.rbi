@@ -909,7 +909,7 @@ class Users::Persistence::UserActiveRecord
     sig { returns(T::Array[::Users::Persistence::UserActiveRecord]) }
     def to_ary; end
 
-    Elem = type_member {{fixed: ::Users::Persistence::UserActiveRecord}}
+    Elem = type_member(fixed: ::Users::Persistence::UserActiveRecord)
   end
 
   class PrivateAssociationRelationWhereChain < PrivateAssociationRelation
@@ -922,7 +922,7 @@ class Users::Persistence::UserActiveRecord
     sig { params(opts: T.untyped, rest: T.untyped).returns(PrivateAssociationRelation) }
     def not(opts, *rest); end
 
-    Elem = type_member {{fixed: ::Users::Persistence::UserActiveRecord}}
+    Elem = type_member(fixed: ::Users::Persistence::UserActiveRecord)
   end
 
   class PrivateCollectionProxy < ::ActiveRecord::Associations::CollectionProxy
@@ -1000,7 +1000,7 @@ class Users::Persistence::UserActiveRecord
     sig { returns(T::Array[::Users::Persistence::UserActiveRecord]) }
     def to_ary; end
 
-    Elem = type_member {{fixed: ::Users::Persistence::UserActiveRecord}}
+    Elem = type_member(fixed: ::Users::Persistence::UserActiveRecord)
   end
 
   class PrivateRelation < ::ActiveRecord::Relation
@@ -1010,7 +1010,7 @@ class Users::Persistence::UserActiveRecord
     sig { returns(T::Array[::Users::Persistence::UserActiveRecord]) }
     def to_ary; end
 
-    Elem = type_member {{fixed: ::Users::Persistence::UserActiveRecord}}
+    Elem = type_member(fixed: ::Users::Persistence::UserActiveRecord)
   end
 
   class PrivateRelationWhereChain < PrivateRelation
@@ -1023,6 +1023,6 @@ class Users::Persistence::UserActiveRecord
     sig { params(opts: T.untyped, rest: T.untyped).returns(PrivateRelation) }
     def not(opts, *rest); end
 
-    Elem = type_member {{fixed: ::Users::Persistence::UserActiveRecord}}
+    Elem = type_member(fixed: ::Users::Persistence::UserActiveRecord)
   end
 end

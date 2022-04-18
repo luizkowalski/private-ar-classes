@@ -6,18 +6,20 @@ module Subreddits::Commands
     class << self
       extend(T::Sig)
 
-      sig { params(user_id: Integer, title: String, description: String).returns(Subreddits::Community) }
-      def call(user_id:, title:, description:)
-        community = Subreddits::Persistence::CommunityActiveRecord.create(
-          created_by_user_id: user_id, title:, description:
-        ).tap { |comm| comm.subscriptions.create(user_id:) }
-
-        Subreddits::Community.new(
-          id: community.id,
-          title: community.title,
-          description: community.description,
-          total_subs: 1
+      # TODO: Simplify
+      sig { params(subreddit: Subreddits::Changes::Subreddit).returns(Result) }
+      def call(subreddit:)
+        community = Subreddits::Persistence::CommunityActiveRecord.new(
+          created_by_user_id: subreddit.user_id, title: subreddit.title, description: subreddit.description, total_subs: 1
         )
+
+        if community.save!
+          community.subscriptions.create!(user_id: subreddit.user_id)
+
+          return Result.ok(obj: community)
+        end
+
+        Result.error(obj: community.errors.full_messages)
       end
     end
   end

@@ -858,7 +858,7 @@ class Subreddits::Persistence::CommunitySubscriptionActiveRecord
     sig { returns(T::Array[::Subreddits::Persistence::CommunitySubscriptionActiveRecord]) }
     def to_ary; end
 
-    Elem = type_member {{fixed: ::Subreddits::Persistence::CommunitySubscriptionActiveRecord}}
+    Elem = type_member(fixed: ::Subreddits::Persistence::CommunitySubscriptionActiveRecord)
   end
 
   class PrivateAssociationRelationWhereChain < PrivateAssociationRelation
@@ -871,7 +871,7 @@ class Subreddits::Persistence::CommunitySubscriptionActiveRecord
     sig { params(opts: T.untyped, rest: T.untyped).returns(PrivateAssociationRelation) }
     def not(opts, *rest); end
 
-    Elem = type_member {{fixed: ::Subreddits::Persistence::CommunitySubscriptionActiveRecord}}
+    Elem = type_member(fixed: ::Subreddits::Persistence::CommunitySubscriptionActiveRecord)
   end
 
   class PrivateCollectionProxy < ::ActiveRecord::Associations::CollectionProxy
@@ -949,7 +949,7 @@ class Subreddits::Persistence::CommunitySubscriptionActiveRecord
     sig { returns(T::Array[::Subreddits::Persistence::CommunitySubscriptionActiveRecord]) }
     def to_ary; end
 
-    Elem = type_member {{fixed: ::Subreddits::Persistence::CommunitySubscriptionActiveRecord}}
+    Elem = type_member(fixed: ::Subreddits::Persistence::CommunitySubscriptionActiveRecord)
   end
 
   class PrivateRelation < ::ActiveRecord::Relation
@@ -959,7 +959,7 @@ class Subreddits::Persistence::CommunitySubscriptionActiveRecord
     sig { returns(T::Array[::Subreddits::Persistence::CommunitySubscriptionActiveRecord]) }
     def to_ary; end
 
-    Elem = type_member {{fixed: ::Subreddits::Persistence::CommunitySubscriptionActiveRecord}}
+    Elem = type_member(fixed: ::Subreddits::Persistence::CommunitySubscriptionActiveRecord)
   end
 
   class PrivateRelationWhereChain < PrivateRelation
@@ -972,6 +972,6 @@ class Subreddits::Persistence::CommunitySubscriptionActiveRecord
     sig { params(opts: T.untyped, rest: T.untyped).returns(PrivateRelation) }
     def not(opts, *rest); end
 
-    Elem = type_member {{fixed: ::Subreddits::Persistence::CommunitySubscriptionActiveRecord}}
+    Elem = type_member(fixed: ::Subreddits::Persistence::CommunitySubscriptionActiveRecord)
   end
 end

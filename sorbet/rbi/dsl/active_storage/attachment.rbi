@@ -930,7 +930,7 @@ class ActiveStorage::Attachment
     sig { returns(T::Array[::ActiveStorage::Attachment]) }
     def to_ary; end
 
-    Elem = type_member {{fixed: ::ActiveStorage::Attachment}}
+    Elem = type_member(fixed: ::ActiveStorage::Attachment)
   end
 
   class PrivateAssociationRelationWhereChain < PrivateAssociationRelation
@@ -943,7 +943,7 @@ class ActiveStorage::Attachment
     sig { params(opts: T.untyped, rest: T.untyped).returns(PrivateAssociationRelation) }
     def not(opts, *rest); end
 
-    Elem = type_member {{fixed: ::ActiveStorage::Attachment}}
+    Elem = type_member(fixed: ::ActiveStorage::Attachment)
   end
 
   class PrivateCollectionProxy < ::ActiveRecord::Associations::CollectionProxy
@@ -1021,7 +1021,7 @@ class ActiveStorage::Attachment
     sig { returns(T::Array[::ActiveStorage::Attachment]) }
     def to_ary; end
 
-    Elem = type_member {{fixed: ::ActiveStorage::Attachment}}
+    Elem = type_member(fixed: ::ActiveStorage::Attachment)
   end
 
   class PrivateRelation < ::ActiveRecord::Relation
@@ -1031,7 +1031,7 @@ class ActiveStorage::Attachment
     sig { returns(T::Array[::ActiveStorage::Attachment]) }
     def to_ary; end
 
-    Elem = type_member {{fixed: ::ActiveStorage::Attachment}}
+    Elem = type_member(fixed: ::ActiveStorage::Attachment)
   end
 
   class PrivateRelationWhereChain < PrivateRelation
@@ -1044,6 +1044,6 @@ class ActiveStorage::Attachment
     sig { params(opts: T.untyped, rest: T.untyped).returns(PrivateRelation) }
     def not(opts, *rest); end
 
-    Elem = type_member {{fixed: ::ActiveStorage::Attachment}}
+    Elem = type_member(fixed: ::ActiveStorage::Attachment)
   end
 end

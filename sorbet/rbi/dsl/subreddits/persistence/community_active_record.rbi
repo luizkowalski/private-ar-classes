@@ -966,7 +966,7 @@ class Subreddits::Persistence::CommunityActiveRecord
     sig { returns(T::Array[::Subreddits::Persistence::CommunityActiveRecord]) }
     def to_ary; end
 
-    Elem = type_member {{fixed: ::Subreddits::Persistence::CommunityActiveRecord}}
+    Elem = type_member(fixed: ::Subreddits::Persistence::CommunityActiveRecord)
   end
 
   class PrivateAssociationRelationWhereChain < PrivateAssociationRelation
@@ -979,7 +979,7 @@ class Subreddits::Persistence::CommunityActiveRecord
     sig { params(opts: T.untyped, rest: T.untyped).returns(PrivateAssociationRelation) }
     def not(opts, *rest); end
 
-    Elem = type_member {{fixed: ::Subreddits::Persistence::CommunityActiveRecord}}
+    Elem = type_member(fixed: ::Subreddits::Persistence::CommunityActiveRecord)
   end
 
   class PrivateCollectionProxy < ::ActiveRecord::Associations::CollectionProxy
@@ -1057,7 +1057,7 @@ class Subreddits::Persistence::CommunityActiveRecord
     sig { returns(T::Array[::Subreddits::Persistence::CommunityActiveRecord]) }
     def to_ary; end
 
-    Elem = type_member {{fixed: ::Subreddits::Persistence::CommunityActiveRecord}}
+    Elem = type_member(fixed: ::Subreddits::Persistence::CommunityActiveRecord)
   end
 
   class PrivateRelation < ::ActiveRecord::Relation
@@ -1067,7 +1067,7 @@ class Subreddits::Persistence::CommunityActiveRecord
     sig { returns(T::Array[::Subreddits::Persistence::CommunityActiveRecord]) }
     def to_ary; end
 
-    Elem = type_member {{fixed: ::Subreddits::Persistence::CommunityActiveRecord}}
+    Elem = type_member(fixed: ::Subreddits::Persistence::CommunityActiveRecord)
   end
 
   class PrivateRelationWhereChain < PrivateRelation
@@ -1080,6 +1080,6 @@ class Subreddits::Persistence::CommunityActiveRecord
     sig { params(opts: T.untyped, rest: T.untyped).returns(PrivateRelation) }
     def not(opts, *rest); end
 
-    Elem = type_member {{fixed: ::Subreddits::Persistence::CommunityActiveRecord}}
+    Elem = type_member(fixed: ::Subreddits::Persistence::CommunityActiveRecord)
   end
 end

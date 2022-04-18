@@ -780,7 +780,7 @@ class ActiveRecord::InternalMetadata
     sig { returns(T::Array[::ActiveRecord::InternalMetadata]) }
     def to_ary; end
 
-    Elem = type_member {{fixed: ::ActiveRecord::InternalMetadata}}
+    Elem = type_member(fixed: ::ActiveRecord::InternalMetadata)
   end
 
   class PrivateAssociationRelationWhereChain < PrivateAssociationRelation
@@ -793,7 +793,7 @@ class ActiveRecord::InternalMetadata
     sig { params(opts: T.untyped, rest: T.untyped).returns(PrivateAssociationRelation) }
     def not(opts, *rest); end
 
-    Elem = type_member {{fixed: ::ActiveRecord::InternalMetadata}}
+    Elem = type_member(fixed: ::ActiveRecord::InternalMetadata)
   end
 
   class PrivateCollectionProxy < ::ActiveRecord::Associations::CollectionProxy
@@ -871,7 +871,7 @@ class ActiveRecord::InternalMetadata
     sig { returns(T::Array[::ActiveRecord::InternalMetadata]) }
     def to_ary; end
 
-    Elem = type_member {{fixed: ::ActiveRecord::InternalMetadata}}
+    Elem = type_member(fixed: ::ActiveRecord::InternalMetadata)
   end
 
   class PrivateRelation < ::ActiveRecord::Relation
@@ -881,7 +881,7 @@ class ActiveRecord::InternalMetadata
     sig { returns(T::Array[::ActiveRecord::InternalMetadata]) }
     def to_ary; end
 
-    Elem = type_member {{fixed: ::ActiveRecord::InternalMetadata}}
+    Elem = type_member(fixed: ::ActiveRecord::InternalMetadata)
   end
 
   class PrivateRelationWhereChain < PrivateRelation
@@ -894,6 +894,6 @@ class ActiveRecord::InternalMetadata
     sig { params(opts: T.untyped, rest: T.untyped).returns(PrivateRelation) }
     def not(opts, *rest); end
 
-    Elem = type_member {{fixed: ::ActiveRecord::InternalMetadata}}
+    Elem = type_member(fixed: ::ActiveRecord::InternalMetadata)
   end
 end

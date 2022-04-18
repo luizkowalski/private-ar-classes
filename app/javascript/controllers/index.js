@@ -7,5 +7,8 @@ import { application } from "./application"
 import CommentController from "./comment_controller.js"
 application.register("comment", CommentController)
 
+import ModalController from "./modal_controller.js"
+application.register("modal", ModalController)
+
 import PostController from "./post_controller.js"
 application.register("post", PostController)

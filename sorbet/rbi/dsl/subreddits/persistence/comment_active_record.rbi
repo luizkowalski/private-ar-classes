@@ -915,7 +915,7 @@ class Subreddits::Persistence::CommentActiveRecord
     sig { returns(T::Array[::Subreddits::Persistence::CommentActiveRecord]) }
     def to_ary; end
 
-    Elem = type_member {{fixed: ::Subreddits::Persistence::CommentActiveRecord}}
+    Elem = type_member(fixed: ::Subreddits::Persistence::CommentActiveRecord)
   end
 
   class PrivateAssociationRelationWhereChain < PrivateAssociationRelation
@@ -928,7 +928,7 @@ class Subreddits::Persistence::CommentActiveRecord
     sig { params(opts: T.untyped, rest: T.untyped).returns(PrivateAssociationRelation) }
     def not(opts, *rest); end
 
-    Elem = type_member {{fixed: ::Subreddits::Persistence::CommentActiveRecord}}
+    Elem = type_member(fixed: ::Subreddits::Persistence::CommentActiveRecord)
   end
 
   class PrivateCollectionProxy < ::ActiveRecord::Associations::CollectionProxy
@@ -1006,7 +1006,7 @@ class Subreddits::Persistence::CommentActiveRecord
     sig { returns(T::Array[::Subreddits::Persistence::CommentActiveRecord]) }
     def to_ary; end
 
-    Elem = type_member {{fixed: ::Subreddits::Persistence::CommentActiveRecord}}
+    Elem = type_member(fixed: ::Subreddits::Persistence::CommentActiveRecord)
   end
 
   class PrivateRelation < ::ActiveRecord::Relation
@@ -1016,7 +1016,7 @@ class Subreddits::Persistence::CommentActiveRecord
     sig { returns(T::Array[::Subreddits::Persistence::CommentActiveRecord]) }
     def to_ary; end
 
-    Elem = type_member {{fixed: ::Subreddits::Persistence::CommentActiveRecord}}
+    Elem = type_member(fixed: ::Subreddits::Persistence::CommentActiveRecord)
   end
 
   class PrivateRelationWhereChain < PrivateRelation
@@ -1029,6 +1029,6 @@ class Subreddits::Persistence::CommentActiveRecord
     sig { params(opts: T.untyped, rest: T.untyped).returns(PrivateRelation) }
     def not(opts, *rest); end
 
-    Elem = type_member {{fixed: ::Subreddits::Persistence::CommentActiveRecord}}
+    Elem = type_member(fixed: ::Subreddits::Persistence::CommentActiveRecord)
   end
 end

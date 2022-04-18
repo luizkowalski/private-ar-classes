@@ -1,0 +1,37 @@
+<%= turbo_frame_tag "modal", target: '_top' do %>
+  <div id="new-community-modal" data-controller="modal" data-action="keyup@window->modal#closeWithKeyboard">
+    <div class="modal is-active">
+      <div class="modal-background"></div>
+      <div class="modal-card">
+        <div class="box">
+          <% (@errors || []).each do |msg| %>
+            <div class="notification is-danger is-light">
+              <%= msg %>
+            </div>
+          <% end %>
+          <%= form_tag(subreddits_path, method: :post, data: { turbo: true }) do %>
+            <h1 class="title">Create a new community</h1>
+            <div class="field">
+              <label class="label">Title</label>
+              <div class="control">
+                <%= text_field_tag(:title, '', class: 'input', placeholder: 'amzing_things')%>
+              </div>
+            </div>
+            <div class="field">
+              <label class="label">Description</label>
+              <div class="control">
+                <%= text_area_tag(:description, '', class: 'input')%>
+              </div>
+            </div>
+            <div class="field is-grouped">
+              <div class="control">
+                <%= submit_tag 'Send', class: 'button is-primary' %>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      </div>
+      <button class="modal-close is-large" aria-label="close" data-action="modal#hideModal"></button>
+    </div>
+  </div>
+<% end %>

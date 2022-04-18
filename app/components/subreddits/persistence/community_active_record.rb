@@ -26,6 +26,9 @@ module Subreddits
     class CommunityActiveRecord < ApplicationRecord
       self.table_name = 'communities'
 
+      validates :title, presence: true, uniqueness: true
+      validates :description, presence: true
+
       has_many :subscriptions, class_name: 'CommunitySubscriptionActiveRecord', foreign_key: 'community_id'
     end
   end

@@ -24,6 +24,9 @@ module GeneratedUrlHelpersModule
   def new_subreddit_post_url(*args); end
 
   sig { params(args: T.untyped).returns(String) }
+  def new_subreddit_url(*args); end
+
+  sig { params(args: T.untyped).returns(String) }
   def new_user_url(*args); end
 
   sig { params(args: T.untyped).returns(String) }
@@ -79,6 +82,9 @@ module GeneratedUrlHelpersModule
 
   sig { params(args: T.untyped).returns(String) }
   def subreddit_url(*args); end
+
+  sig { params(args: T.untyped).returns(String) }
+  def subreddits_url(*args); end
 
   sig { params(args: T.untyped).returns(String) }
   def turbo_recede_historical_location_url(*args); end
