@@ -609,7 +609,7 @@ class ActiveRecord::SchemaMigration
     sig { returns(T::Array[::ActiveRecord::SchemaMigration]) }
     def to_ary; end
 
-    Elem = type_member(fixed: ::ActiveRecord::SchemaMigration)
+    Elem = type_member {{fixed: ::ActiveRecord::SchemaMigration}}
   end
 
   class PrivateAssociationRelationWhereChain < PrivateAssociationRelation
@@ -622,7 +622,7 @@ class ActiveRecord::SchemaMigration
     sig { params(opts: T.untyped, rest: T.untyped).returns(PrivateAssociationRelation) }
     def not(opts, *rest); end
 
-    Elem = type_member(fixed: ::ActiveRecord::SchemaMigration)
+    Elem = type_member {{fixed: ::ActiveRecord::SchemaMigration}}
   end
 
   class PrivateCollectionProxy < ::ActiveRecord::Associations::CollectionProxy
@@ -700,7 +700,7 @@ class ActiveRecord::SchemaMigration
     sig { returns(T::Array[::ActiveRecord::SchemaMigration]) }
     def to_ary; end
 
-    Elem = type_member(fixed: ::ActiveRecord::SchemaMigration)
+    Elem = type_member {{fixed: ::ActiveRecord::SchemaMigration}}
   end
 
   class PrivateRelation < ::ActiveRecord::Relation
@@ -710,7 +710,7 @@ class ActiveRecord::SchemaMigration
     sig { returns(T::Array[::ActiveRecord::SchemaMigration]) }
     def to_ary; end
 
-    Elem = type_member(fixed: ::ActiveRecord::SchemaMigration)
+    Elem = type_member {{fixed: ::ActiveRecord::SchemaMigration}}
   end
 
   class PrivateRelationWhereChain < PrivateRelation
@@ -723,6 +723,6 @@ class ActiveRecord::SchemaMigration
     sig { params(opts: T.untyped, rest: T.untyped).returns(PrivateRelation) }
     def not(opts, *rest); end
 
-    Elem = type_member(fixed: ::ActiveRecord::SchemaMigration)
+    Elem = type_member {{fixed: ::ActiveRecord::SchemaMigration}}
   end
 end

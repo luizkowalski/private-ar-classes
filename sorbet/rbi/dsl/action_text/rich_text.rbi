@@ -999,7 +999,7 @@ class ActionText::RichText
     sig { returns(T::Array[::ActionText::RichText]) }
     def to_ary; end
 
-    Elem = type_member(fixed: ::ActionText::RichText)
+    Elem = type_member {{fixed: ::ActionText::RichText}}
   end
 
   class PrivateAssociationRelationWhereChain < PrivateAssociationRelation
@@ -1012,7 +1012,7 @@ class ActionText::RichText
     sig { params(opts: T.untyped, rest: T.untyped).returns(PrivateAssociationRelation) }
     def not(opts, *rest); end
 
-    Elem = type_member(fixed: ::ActionText::RichText)
+    Elem = type_member {{fixed: ::ActionText::RichText}}
   end
 
   class PrivateCollectionProxy < ::ActiveRecord::Associations::CollectionProxy
@@ -1090,7 +1090,7 @@ class ActionText::RichText
     sig { returns(T::Array[::ActionText::RichText]) }
     def to_ary; end
 
-    Elem = type_member(fixed: ::ActionText::RichText)
+    Elem = type_member {{fixed: ::ActionText::RichText}}
   end
 
   class PrivateRelation < ::ActiveRecord::Relation
@@ -1100,7 +1100,7 @@ class ActionText::RichText
     sig { returns(T::Array[::ActionText::RichText]) }
     def to_ary; end
 
-    Elem = type_member(fixed: ::ActionText::RichText)
+    Elem = type_member {{fixed: ::ActionText::RichText}}
   end
 
   class PrivateRelationWhereChain < PrivateRelation
@@ -1113,6 +1113,6 @@ class ActionText::RichText
     sig { params(opts: T.untyped, rest: T.untyped).returns(PrivateRelation) }
     def not(opts, *rest); end
 
-    Elem = type_member(fixed: ::ActionText::RichText)
+    Elem = type_member {{fixed: ::ActionText::RichText}}
   end
 end

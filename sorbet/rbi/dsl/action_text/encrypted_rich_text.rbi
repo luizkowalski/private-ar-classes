@@ -999,7 +999,7 @@ class ActionText::EncryptedRichText
     sig { returns(T::Array[::ActionText::EncryptedRichText]) }
     def to_ary; end
 
-    Elem = type_member(fixed: ::ActionText::EncryptedRichText)
+    Elem = type_member {{fixed: ::ActionText::EncryptedRichText}}
   end
 
   class PrivateAssociationRelationWhereChain < PrivateAssociationRelation
@@ -1012,7 +1012,7 @@ class ActionText::EncryptedRichText
     sig { params(opts: T.untyped, rest: T.untyped).returns(PrivateAssociationRelation) }
     def not(opts, *rest); end
 
-    Elem = type_member(fixed: ::ActionText::EncryptedRichText)
+    Elem = type_member {{fixed: ::ActionText::EncryptedRichText}}
   end
 
   class PrivateCollectionProxy < ::ActiveRecord::Associations::CollectionProxy
@@ -1090,7 +1090,7 @@ class ActionText::EncryptedRichText
     sig { returns(T::Array[::ActionText::EncryptedRichText]) }
     def to_ary; end
 
-    Elem = type_member(fixed: ::ActionText::EncryptedRichText)
+    Elem = type_member {{fixed: ::ActionText::EncryptedRichText}}
   end
 
   class PrivateRelation < ::ActiveRecord::Relation
@@ -1100,7 +1100,7 @@ class ActionText::EncryptedRichText
     sig { returns(T::Array[::ActionText::EncryptedRichText]) }
     def to_ary; end
 
-    Elem = type_member(fixed: ::ActionText::EncryptedRichText)
+    Elem = type_member {{fixed: ::ActionText::EncryptedRichText}}
   end
 
   class PrivateRelationWhereChain < PrivateRelation
@@ -1113,6 +1113,6 @@ class ActionText::EncryptedRichText
     sig { params(opts: T.untyped, rest: T.untyped).returns(PrivateRelation) }
     def not(opts, *rest); end
 
-    Elem = type_member(fixed: ::ActionText::EncryptedRichText)
+    Elem = type_member {{fixed: ::ActionText::EncryptedRichText}}
   end
 end
