@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Subreddits::Changes
   class Subreddit < ApplicationChange
     validates :title, :description, :user_id, presence: true

@@ -169,13 +169,13 @@ GEM
       unparser
     regexp_parser (2.3.0)
     rexml (3.2.5)
-    rubocop (1.27.0)
+    rubocop (1.28.1)
       parallel (~> 1.10)
       parser (>= 3.1.0.0)
       rainbow (>= 2.2.2, < 4.0)
       regexp_parser (>= 1.8, < 3.0)
       rexml
-      rubocop-ast (>= 1.16.0, < 2.0)
+      rubocop-ast (>= 1.17.0, < 2.0)
       ruby-progressbar (~> 1.7)
       unicode-display_width (>= 1.4.0, < 3.0)
     rubocop-ast (1.17.0)
@@ -198,10 +198,10 @@ GEM
       sprockets (> 3.0)
       sprockets-rails
       tilt
-    sorbet (0.5.9903)
-      sorbet-static (= 0.5.9903)
-    sorbet-runtime (0.5.9903)
-    sorbet-static (0.5.9903-universal-darwin-21)
+    sorbet (0.5.9914)
+      sorbet-static (= 0.5.9914)
+    sorbet-runtime (0.5.9914)
+    sorbet-static (0.5.9914-universal-darwin-21)
     spoom (1.1.11)
       sorbet (>= 0.5.9204)
       sorbet-runtime (>= 0.5.9204)
