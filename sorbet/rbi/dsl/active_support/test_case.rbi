@@ -5,24 +5,24 @@
 # Please instead update this file by running `bin/tapioca dsl ActiveSupport::TestCase`.
 
 class ActiveSupport::TestCase
-  sig { params(fixture_names: Symbol).returns(T.untyped) }
+  sig { params(fixture_names: T.any(String, Symbol)).returns(T.untyped) }
   def action_text_rich_texts(*fixture_names); end
 
-  sig { params(fixture_names: Symbol).returns(T.untyped) }
+  sig { params(fixture_names: T.any(String, Symbol)).returns(T.untyped) }
   def comments(*fixture_names); end
 
-  sig { params(fixture_names: Symbol).returns(T.untyped) }
+  sig { params(fixture_names: T.any(String, Symbol)).returns(T.untyped) }
   def communities(*fixture_names); end
 
-  sig { params(fixture_names: Symbol).returns(T.untyped) }
+  sig { params(fixture_names: T.any(String, Symbol)).returns(T.untyped) }
   def community_subscriptions(*fixture_names); end
 
-  sig { params(fixture_names: Symbol).returns(T.untyped) }
+  sig { params(fixture_names: T.any(String, Symbol)).returns(T.untyped) }
   def posts(*fixture_names); end
 
-  sig { params(fixture_names: Symbol).returns(T.untyped) }
+  sig { params(fixture_names: T.any(String, Symbol)).returns(T.untyped) }
   def users(*fixture_names); end
 
-  sig { params(fixture_names: Symbol).returns(T.untyped) }
+  sig { params(fixture_names: T.any(String, Symbol)).returns(T.untyped) }
   def votes(*fixture_names); end
 end

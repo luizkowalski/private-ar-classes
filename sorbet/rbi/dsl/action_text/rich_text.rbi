@@ -101,6 +101,30 @@ class ActionText::RichText
 
     sig do
       params(
+        start: T.untyped,
+        finish: T.untyped,
+        batch_size: Integer,
+        error_on_ignore: T.untyped,
+        order: Symbol,
+        block: T.nilable(T.proc.params(object: ::ActionText::RichText).void)
+      ).returns(T.nilable(T::Enumerator[::ActionText::RichText]))
+    end
+    def find_each(start: nil, finish: nil, batch_size: 1000, error_on_ignore: nil, order: :asc, &block); end
+
+    sig do
+      params(
+        start: T.untyped,
+        finish: T.untyped,
+        batch_size: Integer,
+        error_on_ignore: T.untyped,
+        order: Symbol,
+        block: T.nilable(T.proc.params(object: T::Array[::ActionText::RichText]).void)
+      ).returns(T.nilable(T::Enumerator[T::Enumerator[::ActionText::RichText]]))
+    end
+    def find_in_batches(start: nil, finish: nil, batch_size: 1000, error_on_ignore: nil, order: :asc, &block); end
+
+    sig do
+      params(
         attributes: T.untyped,
         block: T.nilable(T.proc.params(object: ::ActionText::RichText).void)
       ).returns(::ActionText::RichText)
@@ -123,8 +147,14 @@ class ActionText::RichText
     end
     def find_or_initialize_by(attributes, &block); end
 
-    sig { returns(T.nilable(::ActionText::RichText)) }
-    def find_sole_by; end
+    sig { params(signed_id: T.untyped, purpose: T.untyped).returns(T.nilable(::ActionText::RichText)) }
+    def find_signed(signed_id, purpose: nil); end
+
+    sig { params(signed_id: T.untyped, purpose: T.untyped).returns(::ActionText::RichText) }
+    def find_signed!(signed_id, purpose: nil); end
+
+    sig { params(arg: T.untyped, args: T.untyped).returns(::ActionText::RichText) }
+    def find_sole_by(arg, *args); end
 
     sig { params(limit: T.untyped).returns(T.untyped) }
     def first(limit = nil); end
@@ -146,6 +176,19 @@ class ActionText::RichText
 
     sig { returns(Array) }
     def ids; end
+
+    sig do
+      params(
+        of: Integer,
+        start: T.untyped,
+        finish: T.untyped,
+        load: T.untyped,
+        error_on_ignore: T.untyped,
+        order: Symbol,
+        block: T.nilable(T.proc.params(object: PrivateRelation).void)
+      ).returns(T.nilable(::ActiveRecord::Batches::BatchEnumerator))
+    end
+    def in_batches(of: 1000, start: nil, finish: nil, load: false, error_on_ignore: nil, order: :asc, &block); end
 
     sig { params(record: T.untyped).returns(T::Boolean) }
     def include?(record); end
@@ -212,7 +255,7 @@ class ActionText::RichText
     sig { returns(::ActionText::RichText) }
     def second_to_last!; end
 
-    sig { returns(T.nilable(::ActionText::RichText)) }
+    sig { returns(::ActionText::RichText) }
     def sole; end
 
     sig do
@@ -249,6 +292,8 @@ class ActionText::RichText
     sig { params(ids: T::Array[T.untyped]).returns(T::Array[T.untyped]) }
     def embeds_attachment_ids=(ids); end
 
+    # This method is created by ActiveRecord on the `ActionText::RichText` class because it declared `has_many :embeds_attachments`.
+    # 🔗 [Rails guide for `has_many` association](https://guides.rubyonrails.org/association_basics.html#the-has-many-association)
     sig { returns(::ActiveStorage::Attachment::PrivateCollectionProxy) }
     def embeds_attachments; end
 
@@ -261,6 +306,8 @@ class ActionText::RichText
     sig { params(ids: T::Array[T.untyped]).returns(T::Array[T.untyped]) }
     def embeds_blob_ids=(ids); end
 
+    # This method is created by ActiveRecord on the `ActionText::RichText` class because it declared `has_many :embeds_blobs, through: :embeds_attachments`.
+    # 🔗 [Rails guide for `has_many_through` association](https://guides.rubyonrails.org/association_basics.html#the-has-many-through-association)
     sig { returns(::ActiveStorage::Blob::PrivateCollectionProxy) }
     def embeds_blobs; end
 
@@ -996,13 +1043,15 @@ class ActionText::RichText
     include CommonRelationMethods
     include GeneratedAssociationRelationMethods
 
+    Elem = type_member { { fixed: ::ActionText::RichText } }
+
     sig { returns(T::Array[::ActionText::RichText]) }
     def to_ary; end
-
-    Elem = type_member {{fixed: ::ActionText::RichText}}
   end
 
   class PrivateAssociationRelationWhereChain < PrivateAssociationRelation
+    Elem = type_member { { fixed: ::ActionText::RichText } }
+
     sig { params(args: T.untyped).returns(PrivateAssociationRelation) }
     def associated(*args); end
 
@@ -1011,13 +1060,13 @@ class ActionText::RichText
 
     sig { params(opts: T.untyped, rest: T.untyped).returns(PrivateAssociationRelation) }
     def not(opts, *rest); end
-
-    Elem = type_member {{fixed: ::ActionText::RichText}}
   end
 
   class PrivateCollectionProxy < ::ActiveRecord::Associations::CollectionProxy
     include CommonRelationMethods
     include GeneratedAssociationRelationMethods
+
+    Elem = type_member { { fixed: ::ActionText::RichText } }
 
     sig do
       params(
@@ -1089,21 +1138,21 @@ class ActionText::RichText
 
     sig { returns(T::Array[::ActionText::RichText]) }
     def to_ary; end
-
-    Elem = type_member {{fixed: ::ActionText::RichText}}
   end
 
   class PrivateRelation < ::ActiveRecord::Relation
     include CommonRelationMethods
     include GeneratedRelationMethods
 
+    Elem = type_member { { fixed: ::ActionText::RichText } }
+
     sig { returns(T::Array[::ActionText::RichText]) }
     def to_ary; end
-
-    Elem = type_member {{fixed: ::ActionText::RichText}}
   end
 
   class PrivateRelationWhereChain < PrivateRelation
+    Elem = type_member { { fixed: ::ActionText::RichText } }
+
     sig { params(args: T.untyped).returns(PrivateRelation) }
     def associated(*args); end
 
@@ -1112,7 +1161,5 @@ class ActionText::RichText
 
     sig { params(opts: T.untyped, rest: T.untyped).returns(PrivateRelation) }
     def not(opts, *rest); end
-
-    Elem = type_member {{fixed: ::ActionText::RichText}}
   end
 end

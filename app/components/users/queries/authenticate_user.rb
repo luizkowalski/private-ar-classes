@@ -5,7 +5,7 @@ module Users::Queries
     class << self
       def call(username:, password:)
         user = Users::Persistence::UserActiveRecord.find_by(username:)
-        return user.id if user&.authenticate(password)
+        user.id if user&.authenticate(password)
       end
     end
   end

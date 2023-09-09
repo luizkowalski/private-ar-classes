@@ -5,7 +5,6 @@
   var __getOwnPropNames = Object.getOwnPropertyNames;
   var __getProtoOf = Object.getPrototypeOf;
   var __hasOwnProp = Object.prototype.hasOwnProperty;
-  var __defNormalProp = (obj, key, value) => key in obj ? __defProp(obj, key, { enumerable: true, configurable: true, writable: true, value }) : obj[key] = value;
   var __esm = (fn, res) => function __init() {
     return fn && (res = (0, fn[__getOwnPropNames(fn)[0]])(fn = 0)), res;
   };
@@ -24,11 +23,14 @@
     }
     return to;
   };
-  var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__getProtoOf(mod)) : {}, __copyProps(isNodeMode || !mod || !mod.__esModule ? __defProp(target, "default", { value: mod, enumerable: true }) : target, mod));
-  var __publicField = (obj, key, value) => {
-    __defNormalProp(obj, typeof key !== "symbol" ? key + "" : key, value);
-    return value;
-  };
+  var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__getProtoOf(mod)) : {}, __copyProps(
+    // If the importer is in node compatibility mode or this is not an ESM
+    // file that has been converted to a CommonJS file using a Babel-
+    // compatible transform (i.e. "__esModule" has not been set), then set
+    // "default" to the CommonJS "module.exports" for node compatibility.
+    isNodeMode || !mod || !mod.__esModule ? __defProp(target, "default", { value: mod, enumerable: true }) : target,
+    mod
+  ));
 
   // node_modules/@rails/actioncable/src/adapters.js
   var adapters_default;
@@ -62,7 +64,7 @@
   var init_connection_monitor = __esm({
     "node_modules/@rails/actioncable/src/connection_monitor.js"() {
       init_logger();
-      now = () => new Date().getTime();
+      now = () => (/* @__PURE__ */ new Date()).getTime();
       secondsSince = (time) => (now() - time) / 1e3;
       ConnectionMonitor = class {
         constructor(connection) {
@@ -103,6 +105,7 @@
           this.disconnectedAt = now();
           logger_default.log("ConnectionMonitor recorded disconnect");
         }
+        // Private
         startPolling() {
           this.stopPolling();
           this.poll();
@@ -111,10 +114,13 @@
           clearTimeout(this.pollTimeout);
         }
         poll() {
-          this.pollTimeout = setTimeout(() => {
-            this.reconnectIfStale();
-            this.poll();
-          }, this.getPollInterval());
+          this.pollTimeout = setTimeout(
+            () => {
+              this.reconnectIfStale();
+              this.poll();
+            },
+            this.getPollInterval()
+          );
         }
         getPollInterval() {
           const { staleThreshold, reconnectionBackoffRate } = this.constructor;
@@ -146,12 +152,15 @@
         }
         visibilityDidChange() {
           if (document.visibilityState === "visible") {
-            setTimeout(() => {
-              if (this.connectionIsStale() || !this.connection.isOpen()) {
-                logger_default.log(`ConnectionMonitor reopening stale connection on visibilitychange. visibilityState = ${document.visibilityState}`);
-                this.connection.reopen();
-              }
-            }, 200);
+            setTimeout(
+              () => {
+                if (this.connectionIsStale() || !this.connection.isOpen()) {
+                  logger_default.log(`ConnectionMonitor reopening stale connection on visibilitychange. visibilityState = ${document.visibilityState}`);
+                  this.connection.reopen();
+                }
+              },
+              200
+            );
           }
         }
       };
@@ -263,6 +272,7 @@
         isActive() {
           return this.isState("open", "connecting");
         }
+        // Private
         isProtocolSupported() {
           return indexOf.call(supportedProtocols, this.getProtocol()) >= 0;
         }
@@ -361,6 +371,7 @@
           this.identifier = JSON.stringify(params);
           extend2(this, mixin);
         }
+        // Perform a channel action with the optional data passed as an attribute
         perform(action, data = {}) {
           data.action = action;
           return this.send(data);
@@ -406,14 +417,17 @@
           clearTimeout(this.retryTimeout);
         }
         retrySubscribing() {
-          this.retryTimeout = setTimeout(() => {
-            if (this.subscriptions && typeof this.subscriptions.subscribe === "function") {
-              this.pendingSubscriptions.map((subscription) => {
-                logger_default.log(`SubscriptionGuarantor resubscribing ${subscription.identifier}`);
-                this.subscriptions.subscribe(subscription);
-              });
-            }
-          }, 500);
+          this.retryTimeout = setTimeout(
+            () => {
+              if (this.subscriptions && typeof this.subscriptions.subscribe === "function") {
+                this.pendingSubscriptions.map((subscription) => {
+                  logger_default.log(`SubscriptionGuarantor resubscribing ${subscription.identifier}`);
+                  this.subscriptions.subscribe(subscription);
+                });
+              }
+            },
+            500
+          );
         }
       };
       subscription_guarantor_default = SubscriptionGuarantor;
@@ -439,6 +453,7 @@
           const subscription = new Subscription(this.consumer, params, mixin);
           return this.add(subscription);
         }
+        // Private
         add(subscription) {
           this.subscriptions.push(subscription);
           this.consumer.ensureActiveConnection();
@@ -3053,7 +3068,7 @@
     targetAttribute: "data-target",
     targetAttributeForScope: (identifier) => `data-${identifier}-target`
   };
-  var Application = class {
+  var Application = class _Application {
     constructor(element = document.documentElement, schema = defaultSchema) {
       this.logger = console;
       this.debug = false;
@@ -3068,7 +3083,7 @@
       this.router = new Router(this);
     }
     static start(element, schema) {
-      const application2 = new Application(element, schema);
+      const application2 = new _Application(element, schema);
       application2.start();
       return application2;
     }
@@ -3503,11 +3518,11 @@
     FrameLoadingStyle2["eager"] = "eager";
     FrameLoadingStyle2["lazy"] = "lazy";
   })(FrameLoadingStyle || (FrameLoadingStyle = {}));
-  var FrameElement = class extends HTMLElement {
+  var FrameElement = class _FrameElement extends HTMLElement {
     constructor() {
       super();
       this.loaded = Promise.resolve();
-      this.delegate = new FrameElement.delegateConstructor(this);
+      this.delegate = new _FrameElement.delegateConstructor(this);
     }
     static get observedAttributes() {
       return ["disabled", "loading", "src"];
@@ -3953,7 +3968,7 @@
         return FormEnctype.urlEncoded;
     }
   }
-  var FormSubmission = class {
+  var FormSubmission = class _FormSubmission {
     constructor(delegate, formElement, submitter, mustRedirect = false) {
       this.state = FormSubmissionState.initialized;
       this.delegate = delegate;
@@ -4008,7 +4023,7 @@
     async start() {
       const { initialized, requesting } = FormSubmissionState;
       if (this.needsConfirmation) {
-        const answer = FormSubmission.confirmMethod(this.confirmationMessage, this.formElement);
+        const answer = _FormSubmission.confirmMethod(this.confirmationMessage, this.formElement);
         if (!answer) {
           return;
         }
@@ -4480,7 +4495,7 @@
       return defaultValue;
     }
   }
-  var ProgressBar = class {
+  var ProgressBar = class _ProgressBar {
     constructor() {
       this.hiding = false;
       this.value = 0;
@@ -4504,8 +4519,8 @@
         background: #0076ff;
         z-index: 9999;
         transition:
-          width ${ProgressBar.animationDuration}ms ease-out,
-          opacity ${ProgressBar.animationDuration / 2}ms ${ProgressBar.animationDuration / 2}ms ease-in;
+          width ${_ProgressBar.animationDuration}ms ease-out,
+          opacity ${_ProgressBar.animationDuration / 2}ms ${_ProgressBar.animationDuration / 2}ms ease-in;
         transform: translate3d(0, 0, 0);
       }
     `;
@@ -4543,7 +4558,7 @@
     }
     fadeProgressElement(callback) {
       this.progressElement.style.opacity = "0";
-      setTimeout(callback, ProgressBar.animationDuration * 1.5);
+      setTimeout(callback, _ProgressBar.animationDuration * 1.5);
     }
     uninstallProgressElement() {
       if (this.progressElement.parentNode) {
@@ -4552,7 +4567,7 @@
     }
     startTrickling() {
       if (!this.trickleInterval) {
-        this.trickleInterval = window.setInterval(this.trickle, ProgressBar.animationDuration);
+        this.trickleInterval = window.setInterval(this.trickle, _ProgressBar.animationDuration);
       }
     }
     stopTrickling() {
@@ -4567,7 +4582,7 @@
     createStylesheetElement() {
       const element = document.createElement("style");
       element.type = "text/css";
-      element.textContent = ProgressBar.defaultCSS;
+      element.textContent = _ProgressBar.defaultCSS;
       return element;
     }
     createProgressElement() {
@@ -4657,7 +4672,7 @@
     }
     return element;
   }
-  var PageSnapshot = class extends Snapshot {
+  var PageSnapshot = class _PageSnapshot extends Snapshot {
     constructor(element, headSnapshot) {
       super(element);
       this.headSnapshot = headSnapshot;
@@ -4672,7 +4687,7 @@
       return new this(body, new HeadSnapshot(head));
     }
     clone() {
-      return new PageSnapshot(this.element.cloneNode(true), this.headSnapshot);
+      return new _PageSnapshot(this.element.cloneNode(true), this.headSnapshot);
     }
     get headElement() {
       return this.headSnapshot.element;
@@ -4970,7 +4985,7 @@
       }
     }
     recordTimingMetric(metric) {
-      this.timingMetrics[metric] = new Date().getTime();
+      this.timingMetrics[metric] = (/* @__PURE__ */ new Date()).getTime();
     }
     getTimingMetrics() {
       return Object.assign({}, this.timingMetrics);
@@ -6656,6 +6671,7 @@
 
   // app/javascript/controllers/comment_controller.js
   var comment_controller_default = class extends Controller {
+    static targets = ["form", "inputText"];
     connect() {
     }
     post(event) {
@@ -6666,7 +6682,6 @@
       }
     }
   };
-  __publicField(comment_controller_default, "targets", ["form", "inputText"]);
 
   // app/javascript/controllers/modal_controller.js
   var modal_controller_default = class extends Controller {
@@ -6674,6 +6689,8 @@
       this.element.parentElement.removeAttribute("src");
       this.element.remove();
     }
+    // hide modal when clicking ESC
+    // action: "keyup@window->modal#closeWithKeyboard"
     closeWithKeyboard(e) {
       if (e.code == "Escape") {
         this.hideModal();
@@ -6773,8 +6790,12 @@
     return element === null || element === void 0 ? void 0 : (_element$tagName = element.tagName) === null || _element$tagName === void 0 ? void 0 : _element$tagName.toLowerCase();
   };
   var browser$1 = {
+    // Android emits composition events when moving the cursor through existing text
+    // Introduced in Chrome 65: https://bugs.chromium.org/p/chromium/issues/detail?id=764439#c9
     composesExistingText: /Android.*Chrome/.test(navigator.userAgent),
+    // IE 11 activates resizing handles on editable elements that have "layout"
     forcesObjectResizing: /Trident.*rv:11/.test(navigator.userAgent),
+    // https://www.w3.org/TR/input-events-1/ + https://www.w3.org/TR/input-events-2/
     supportsInputEvents: function() {
       if (typeof InputEvent === "undefined") {
         return false;
@@ -7800,6 +7821,7 @@
       this.domRange = null;
       return this.update();
     }
+    // Private
     run() {
       if (this.started) {
         this.update();
@@ -7886,7 +7908,7 @@
       offset: leftIndex
     };
   };
-  var Hash = class extends TrixObject {
+  var Hash = class _Hash extends TrixObject {
     static fromCommonAttributesOfObjects() {
       let objects = arguments.length > 0 && arguments[0] !== void 0 ? arguments[0] : [];
       if (!objects.length) {
@@ -7912,7 +7934,7 @@
       return this.merge(object(key, value));
     }
     remove(key) {
-      return new Hash(copy(this.values, key));
+      return new _Hash(copy(this.values, key));
     }
     get(key) {
       return this.values[key];
@@ -7921,7 +7943,7 @@
       return key in this.values;
     }
     merge(values) {
-      return new Hash(merge(this.values, unbox(values)));
+      return new _Hash(merge(this.values, unbox(values)));
     }
     slice(keys) {
       const values = {};
@@ -7930,7 +7952,7 @@
           values[key] = this.values[key];
         }
       });
-      return new Hash(values);
+      return new _Hash(values);
     }
     getKeys() {
       return Object.keys(this.values);
@@ -8066,7 +8088,7 @@
       image.src = this.url;
     }
   };
-  var Attachment = class extends TrixObject {
+  var Attachment = class _Attachment extends TrixObject {
     static attachmentForFile(file) {
       const attributes2 = this.attributesForFile(file);
       const attachment = new this(attributes2);
@@ -8122,7 +8144,7 @@
       if (this.attributes.has("previewable")) {
         return this.attributes.get("previewable");
       } else {
-        return Attachment.previewablePattern.test(this.getContentType());
+        return _Attachment.previewablePattern.test(this.getContentType());
       }
     }
     getType() {
@@ -8202,6 +8224,7 @@
     getCacheKey() {
       return [super.getCacheKey(...arguments), this.attributes.getCacheKey(), this.getPreviewURL()].join("/");
     }
+    // Previewable
     getPreviewURL() {
       return this.previewURL || this.preloadingURL;
     }
@@ -8393,12 +8416,14 @@
         attributes: this.attributes.inspect()
       };
     }
+    // Grouping
     canBeGrouped() {
       return this.hasAttribute("href");
     }
     canBeGroupedWith(piece) {
       return this.getAttribute("href") === piece.getAttribute("href");
     }
+    // Splittable
     getLength() {
       return this.length;
     }
@@ -8407,7 +8432,7 @@
     }
   };
   _defineProperty(Piece, "types", {});
-  var AttachmentPiece = class extends Piece {
+  var AttachmentPiece = class _AttachmentPiece extends Piece {
     static fromJSON(pieceJSON) {
       return new this(Attachment.fromJSON(pieceJSON.attachment), pieceJSON.attributes);
     }
@@ -8429,7 +8454,7 @@
       }
     }
     removeProhibitedAttributes() {
-      const attributes2 = this.attributes.slice(AttachmentPiece.permittedAttributes);
+      const attributes2 = this.attributes.slice(_AttachmentPiece.permittedAttributes);
       if (!attributes2.isEqualTo(this.attributes)) {
         this.attributes = attributes2;
       }
@@ -8487,6 +8512,7 @@
       result.string = this.string;
       return result;
     }
+    // Splittable
     canBeConsolidatedWith(piece) {
       return piece && this.hasSameConstructorAs(piece) && this.hasSameAttributesAsPiece(piece);
     }
@@ -8904,6 +8930,7 @@
     toConsole() {
       return JSON.stringify(this.pieceList.toArray().map((piece) => JSON.parse(piece.toConsole())));
     }
+    // BIDI
     getDirection() {
       return getDirection(this.toString());
     }
@@ -8911,7 +8938,7 @@
       return this.getDirection() === "rtl";
     }
   };
-  var Block = class extends TrixObject {
+  var Block = class _Block extends TrixObject {
     static fromJSON(blockJSON) {
       const text = Text.fromJSON(blockJSON.text);
       return new this(text, blockJSON.attributes);
@@ -8930,13 +8957,13 @@
       return this.text.isEqualTo(block === null || block === void 0 ? void 0 : block.text) && arraysAreEqual(this.attributes, block === null || block === void 0 ? void 0 : block.attributes);
     }
     copyWithText(text) {
-      return new Block(text, this.attributes);
+      return new _Block(text, this.attributes);
     }
     copyWithoutText() {
       return this.copyWithText(null);
     }
     copyWithAttributes(attributes2) {
-      return new Block(this.text, attributes2);
+      return new _Block(this.text, attributes2);
     }
     copyWithoutAttributes() {
       return this.copyWithAttributes(null);
@@ -9052,12 +9079,14 @@
         attributes: this.attributes
       };
     }
+    // BIDI
     getDirection() {
       return this.text.getDirection();
     }
     isRTL() {
       return this.text.isRTL();
     }
+    // Splittable
     getLength() {
       return this.text.getLength();
     }
@@ -9093,6 +9122,7 @@
         return this.text.copy();
       }
     }
+    // Grouping
     canBeGrouped(depth) {
       return this.attributes[depth];
     }
@@ -9909,6 +9939,7 @@
     getBody() {
       return this.body;
     }
+    // Private
     sanitizeElements() {
       const walker = walkTree(this.body);
       const nodesToRemove = [];
@@ -10045,6 +10076,7 @@
     getDocument() {
       return Document.fromJSON(this.blocks);
     }
+    // HTML parsing
     parse() {
       try {
         this.createHiddenContainer();
@@ -10198,6 +10230,7 @@
         }
       }
     }
+    // Document construction
     appendBlockForAttributesWithElement(attributes2, element) {
       this.blockElements.push(element);
       const block = blockForAttributes(attributes2);
@@ -10241,6 +10274,7 @@
         return text.unshift(pieceForString(string));
       }
     }
+    // Attribute parsing
     getTextAttributes(element) {
       let value;
       const attributes2 = {};
@@ -10313,6 +10347,7 @@
       }
       return ancestors;
     }
+    // Element inspection
     isBlockElement(element) {
       if ((element === null || element === void 0 ? void 0 : element.nodeType) !== Node.ELEMENT_NODE)
         return;
@@ -10344,6 +10379,7 @@
     isExtraBR(element) {
       return tagName(element) === "br" && this.isBlockElement(element.parentNode) && element.parentNode.lastChild === element;
     }
+    // Margin translation
     translateBlockElementMarginsToNewlines() {
       const defaultMargin = this.getMarginOfDefaultBlockElement();
       for (let index = 0; index < this.blocks.length; index++) {
@@ -10452,6 +10488,7 @@
         return (_this$delegate = this.delegate) === null || _this$delegate === void 0 ? void 0 : (_this$delegate$compos = _this$delegate.compositionDidChangeDocument) === null || _this$delegate$compos === void 0 ? void 0 : _this$delegate$compos.call(_this$delegate, document2);
       }
     }
+    // Snapshots
     getSnapshot() {
       return {
         document: this.document,
@@ -10469,6 +10506,7 @@
       this.setSelection(selectedRange != null ? selectedRange : [0, 0]);
       return (_this$delegate3 = this.delegate) === null || _this$delegate3 === void 0 ? void 0 : (_this$delegate3$compo = _this$delegate3.compositionDidLoadSnapshot) === null || _this$delegate3$compo === void 0 ? void 0 : _this$delegate3$compo.call(_this$delegate3);
     }
+    // Responder protocol
     insertText(text) {
       let {
         updatePosition
@@ -10673,6 +10711,7 @@
     forgetPlaceholder() {
       this.placeholderPosition = null;
     }
+    // Current attributes
     hasCurrentAttribute(attributeName) {
       const value = this.currentAttributes[attributeName];
       return value != null && value !== false;
@@ -10863,6 +10902,7 @@
       }
       return attributes2;
     }
+    // Selection freezing
     freezeSelection() {
       return this.setCurrentAttribute("frozen", true);
     }
@@ -11017,6 +11057,7 @@
       var _this$getSelectedDocu;
       return (_this$getSelectedDocu = this.getSelectedDocument()) === null || _this$getSelectedDocu === void 0 ? void 0 : _this$getSelectedDocu.getAttachments();
     }
+    // Attachments
     getAttachments() {
       return this.attachments.slice(0);
     }
@@ -11042,6 +11083,7 @@
         return result;
       })();
     }
+    // Attachment delegate
     attachmentDidChangeAttributes(attachment) {
       var _this$delegate8, _this$delegate8$compo;
       this.revision++;
@@ -11052,6 +11094,7 @@
       this.revision++;
       return (_this$delegate9 = this.delegate) === null || _this$delegate9 === void 0 ? void 0 : (_this$delegate9$compo = _this$delegate9.compositionDidChangeAttachmentPreviewURL) === null || _this$delegate9$compo === void 0 ? void 0 : _this$delegate9$compo.call(_this$delegate9, attachment);
     }
+    // Attachment editing
     editAttachment(attachment, options2) {
       var _this$delegate10, _this$delegate10$comp;
       if (attachment === this.editingAttachment)
@@ -11073,6 +11116,7 @@
     removeAttributeForAttachment(attribute, attachment) {
       return this.setDocument(this.document.removeAttributeForAttachment(attribute, attachment));
     }
+    // Private
     breakFormattedBlock(insertion) {
       let {
         document: document2
@@ -11190,6 +11234,7 @@
     canRedo() {
       return this.redoEntries.length > 0;
     }
+    // Private
     createEntry() {
       let {
         description,
@@ -11226,6 +11271,7 @@
         selectedRange: this.selectedRange
       };
     }
+    // Private
     removeBlockAttribute() {
       return this.findRangesOfBlocks().map((range) => this.document = this.document.removeAttributeAtRange(BLOCK_ATTRIBUTE_NAME, range));
     }
@@ -11320,6 +11366,7 @@
     toJSON() {
       return this.getSnapshot();
     }
+    // Document manipulation
     deleteInDirection(direction) {
       return this.composition.deleteInDirection(direction);
     }
@@ -11350,6 +11397,7 @@
     insertLineBreak() {
       return this.composition.insertLineBreak();
     }
+    // Selection
     getSelectedRange() {
       return this.composition.getSelectedRange();
     }
@@ -11369,6 +11417,7 @@
     setSelectedRange(selectedRange) {
       return this.composition.setSelectedRange(selectedRange);
     }
+    // Attributes
     activateAttribute(name) {
       let value = arguments.length > 1 && arguments[1] !== void 0 ? arguments[1] : true;
       return this.composition.setCurrentAttribute(name, value);
@@ -11382,6 +11431,7 @@
     deactivateAttribute(name) {
       return this.composition.removeCurrentAttribute(name);
     }
+    // Nesting level
     canDecreaseNestingLevel() {
       return this.composition.canDecreaseNestingLevel();
     }
@@ -11398,6 +11448,7 @@
         return this.composition.increaseNestingLevel();
       }
     }
+    // Undo/redo
     canRedo() {
       return this.undoManager.canRedo();
     }
@@ -11555,6 +11606,7 @@
       }
       return [node, nodeOffset];
     }
+    // Private
     findAttachmentElementParentForNode(node) {
       while (node && node !== this.element) {
         if (nodeIsAttachmentElement(node)) {
@@ -12230,6 +12282,7 @@
       var _this$findElement;
       return (_this$findElement = this.findElement()) === null || _this$findElement === void 0 ? void 0 : _this$findElement.querySelector("progress");
     }
+    // Attachment delegate
     attachmentDidChangeUploadProgress() {
       const value = this.attachment.getUploadProgress();
       const progressElement = this.findProgressElement();
@@ -12308,6 +12361,7 @@
       const storeKey = ["imageElement", this.attachment.id, image.src, image.width, image.height].join("/");
       image.dataset.trixStoreKey = storeKey;
     }
+    // Attachment delegate
     attachmentDidChangeAttributes() {
       this.refresh(this.image);
       return this.refresh();
@@ -12531,6 +12585,8 @@
         attributes: attributes2
       });
     }
+    // A single <br> at the end of a block element has no visual representation
+    // so add an extra one.
     shouldAddExtraNewlineElement() {
       return /\n\n$/.test(this.block.toString());
     }
@@ -12580,6 +12636,7 @@
       this.element.appendChild(fragment);
       return this.didSync();
     }
+    // Private
     didSync() {
       this.elementStore.reset(findStoredElements(this.element));
       return defer(() => this.garbageCollectCachedViews());
@@ -12689,6 +12746,7 @@
         return this.reset();
       }
     }
+    // Private
     reset() {
       this.mutations = [];
     }
@@ -12884,6 +12942,7 @@
         });
       });
     }
+    // Private
     handlerFor(eventName) {
       return (event) => {
         if (!event.defaultPrevented) {
@@ -12942,6 +13001,7 @@
       this.resetInputSummary();
       return selectionChangeObserver.reset();
     }
+    // Mutation observer delegate
     elementDidMutate(mutationSummary) {
       if (this.isComposing()) {
         var _this$delegate, _this$delegate$inputC;
@@ -12990,6 +13050,7 @@
       const composedEmptyString = ((_this$compositionInpu = this.compositionInput) === null || _this$compositionInpu === void 0 ? void 0 : _this$compositionInpu.getEndData()) === "";
       return textChanged || !composedEmptyString;
     }
+    // Private
     getCompositionInput() {
       if (this.isComposing()) {
         return this.compositionInput;
@@ -13530,6 +13591,7 @@
         return true;
       }
     }
+    // Private
     canApplyToDocument() {
       var _this$data$start, _this$data$end;
       return ((_this$data$start = this.data.start) === null || _this$data$start === void 0 ? void 0 : _this$data$start.length) === 0 && ((_this$data$end = this.data.end) === null || _this$data$end === void 0 ? void 0 : _this$data$end.length) > 0 && this.range;
@@ -13575,6 +13637,7 @@
       var _this$delegate3;
       return (_this$delegate3 = this.delegate) === null || _this$delegate3 === void 0 ? void 0 : _this$delegate3.reparse();
     }
+    // Responder helpers
     insertString() {
       var _this$delegate4;
       let string = arguments.length > 0 && arguments[0] !== void 0 ? arguments[0] : "";
@@ -13628,6 +13691,7 @@
         return perform();
       }
     }
+    // Selection helpers
     withTargetDOMRange(domRange, fn) {
       if (typeof domRange === "function") {
         fn = domRange;
@@ -13691,6 +13755,8 @@
         }
       }
     },
+    // Handle paste event to work around beforeinput.insertFromPaste browser bugs.
+    // Safe to remove each condition once fixed upstream.
     paste(event) {
       var _event$clipboardData;
       let paste;
@@ -14315,6 +14381,7 @@
       }
       (_this$delegate = this.delegate) === null || _this$delegate === void 0 ? void 0 : _this$delegate.didUninstallAttachmentEditor(this);
     }
+    // Private
     savePendingCaption() {
       if (this.pendingCaption) {
         const caption = this.pendingCaption;
@@ -14330,6 +14397,8 @@
         }
       }
     }
+    // Installing and uninstalling
+    // Event handlers
     didClickToolbar(event) {
       event.preventDefault();
       return event.stopPropagation();
@@ -14470,6 +14539,7 @@
     refreshViewCache() {
       return this.documentView.garbageCollectCachedViews();
     }
+    // Attachment editor management
     isEditingAttachment() {
       return !!this.attachmentEditor;
     }
@@ -14489,6 +14559,7 @@
       var _this$attachmentEdito2;
       return (_this$attachmentEdito2 = this.attachmentEditor) === null || _this$attachmentEdito2 === void 0 ? void 0 : _this$attachmentEdito2.uninstall();
     }
+    // Attachment controller delegate
     didUninstallAttachmentEditor() {
       this.attachmentEditor = null;
       return this.render();
@@ -14511,6 +14582,7 @@
       var _this$delegate10, _this$delegate10$comp;
       return (_this$delegate10 = this.delegate) === null || _this$delegate10 === void 0 ? void 0 : (_this$delegate10$comp = _this$delegate10.compositionControllerDidRequestDeselectingAttachment) === null || _this$delegate10$comp === void 0 ? void 0 : _this$delegate10$comp.call(_this$delegate10, attachment);
     }
+    // Private
     canSyncDocumentView() {
       return !this.isEditingAttachment();
     }
@@ -14573,6 +14645,7 @@
         withCallback: this.didKeyDownDialogInput
       });
     }
+    // Event handlers
     didClickActionButton(event, element) {
       var _this$delegate;
       (_this$delegate = this.delegate) === null || _this$delegate === void 0 ? void 0 : _this$delegate.toolbarDidClickButton();
@@ -14617,6 +14690,7 @@
         return this.hideDialog();
       }
     }
+    // Action buttons
     updateActions(actions) {
       this.actions = actions;
       return this.refreshActionButtons();
@@ -14629,6 +14703,7 @@
     eachActionButton(callback) {
       return Array.from(this.element.querySelectorAll(actionButtonSelector)).map((element) => callback(element, getActionName(element)));
     }
+    // Attribute buttons
     updateAttributes(attributes2) {
       this.attributes = attributes2;
       return this.refreshAttributeButtons();
@@ -14662,6 +14737,7 @@
       }
       return false;
     }
+    // Dialogs
     dialogIsVisible(dialogName) {
       const element = this.getDialog(dialogName);
       if (element) {
@@ -14777,6 +14853,7 @@
     reparse() {
       return this.composition.replaceHTML(this.editorElement.innerHTML);
     }
+    // Composition delegate
     compositionDidChangeDocument(document2) {
       this.notifyEditorElement("document-change");
       if (!this.handlingInput) {
@@ -14854,9 +14931,11 @@
     getSelectionManager() {
       return this.selectionManager;
     }
+    // Attachment manager delegate
     attachmentManagerDidRequestRemovalOfAttachment(attachment) {
       return this.removeAttachment(attachment);
     }
+    // Document controller delegate
     compositionControllerWillSyncDocumentView() {
       this.inputController.editorWillSyncDocumentView();
       this.selectionManager.lock();
@@ -14913,6 +14992,7 @@
     compositionControllerDidRequestRemovalOfAttachment(attachment) {
       return this.removeAttachment(attachment);
     }
+    // Input controller delegate
     inputControllerWillHandleInput() {
       this.handlingInput = true;
       this.requestedRender = false;
@@ -14982,6 +15062,7 @@
       this.selectionManager.setLocationRange(this.locationRangeBeforeDrag);
       this.locationRangeBeforeDrag = null;
     }
+    // Selection manager delegate
     locationRangeDidChange(locationRange) {
       this.composition.updateCurrentAttributes();
       this.updateCurrentActions();
@@ -14990,6 +15071,7 @@
       }
       return this.notifyEditorElement("selection-change");
     }
+    // Toolbar controller delegate
     toolbarDidClickButton() {
       if (!this.getLocationRange()) {
         return this.setLocationRange({
@@ -15041,6 +15123,7 @@
         dialogName
       });
     }
+    // Selection
     freezeSelection() {
       if (!this.selectionFrozen) {
         this.selectionManager.lock();
@@ -15095,6 +15178,7 @@
         });
       }
     }
+    // Editor filters
     runEditorFilters() {
       let snapshot = this.composition.getSnapshot();
       Array.from(this.editor.filters).forEach((filter) => {
@@ -15114,6 +15198,7 @@
         return this.composition.loadSnapshot(snapshot);
       }
     }
+    // Private
     updateInputElement() {
       const element = this.compositionController.getSerializableElement();
       const value = serializeToContentType(element, "text/html");
@@ -15176,7 +15261,7 @@
     }
     getTimeContext() {
       if (config.undoInterval > 0) {
-        return Math.floor(new Date().getTime() / config.undoInterval);
+        return Math.floor((/* @__PURE__ */ new Date()).getTime() / config.undoInterval);
       } else {
         return 0;
       }
@@ -15185,6 +15270,8 @@
       var _this$editorElement$o;
       return this.editorElement === ((_this$editorElement$o = this.editorElement.ownerDocument) === null || _this$editorElement$o === void 0 ? void 0 : _this$editorElement$o.activeElement);
     }
+    // Detect "Cursor disappears sporadically" Firefox bug.
+    // - https://bugzilla.mozilla.org/show_bug.cgi?id=226301
     isFocusedInvisibly() {
       return this.isFocused() && !this.getLocationRange();
     }
@@ -15243,6 +15330,7 @@
   EditorController.proxyMethod("getSelectionManager().getLocationRange");
   installDefaultCSSForTagName("trix-toolbar", "%t {\n  display: block;\n}\n\n%t {\n  white-space: nowrap;\n}\n\n%t [data-trix-dialog] {\n  display: none;\n}\n\n%t [data-trix-dialog][data-trix-active] {\n  display: block;\n}\n\n%t [data-trix-dialog] [data-trix-validate]:invalid {\n  background-color: #ffdddd;\n}");
   var TrixToolbarElement = class extends HTMLElement {
+    // Element lifecycle
     connectedCallback() {
       if (this.innerHTML === "") {
         this.innerHTML = config.toolbar.getDefaultHTML();
@@ -15338,6 +15426,7 @@
   }();
   installDefaultCSSForTagName("trix-editor", "%t {\n    display: block;\n}\n\n%t:empty:not(:focus)::before {\n    content: attr(placeholder);\n    color: graytext;\n    cursor: text;\n    pointer-events: none;\n    white-space: pre-line;\n}\n\n%t a[contenteditable=false] {\n    cursor: text;\n}\n\n%t img {\n    max-width: 100%;\n    height: auto;\n}\n\n%t ".concat(attachmentSelector, " figcaption textarea {\n    resize: none;\n}\n\n%t ").concat(attachmentSelector, " figcaption textarea.trix-autoresize-clone {\n    position: absolute;\n    left: -9999px;\n    max-height: 0px;\n}\n\n%t ").concat(attachmentSelector, " figcaption[data-trix-placeholder]:empty::before {\n    content: attr(data-trix-placeholder);\n    color: graytext;\n}\n\n%t [data-trix-cursor-target] {\n    display: ").concat(cursorTargetStyles.display, " !important;\n    width: ").concat(cursorTargetStyles.width, " !important;\n    padding: 0 !important;\n    margin: 0 !important;\n    border: none !important;\n}\n\n%t [data-trix-cursor-target=left] {\n    vertical-align: top !important;\n    margin-left: -1px !important;\n}\n\n%t [data-trix-cursor-target=right] {\n    vertical-align: bottom !important;\n    margin-right: -1px !important;\n}"));
   var TrixEditorElement = class extends HTMLElement {
+    // Properties
     get trixId() {
       if (this.hasAttribute("trix-id")) {
         return this.getAttribute("trix-id");
@@ -15415,6 +15504,7 @@
       this.defaultValue = defaultValue;
       (_this$editor = this.editor) === null || _this$editor === void 0 ? void 0 : _this$editor.loadHTML(this.defaultValue);
     }
+    // Controller delegate methods
     notify(message, data) {
       if (this.editorController) {
         return triggerEvent("trix-".concat(message), {
@@ -15428,6 +15518,7 @@
         this.inputElement.value = value;
       }
     }
+    // Element lifecycle
     connectedCallback() {
       if (!this.hasAttribute("data-trix-internal")) {
         makeEditable(this);
@@ -15457,6 +15548,7 @@
       this.unregisterResetListener();
       return this.unregisterClickListener();
     }
+    // Form support
     registerResetListener() {
       this.resetListener = this.resetBubbled.bind(this);
       return window.addEventListener("reset", this.resetListener, false);

@@ -1,14 +1,14 @@
-require: 
+require:
   - rubocop-performance
   - rubocop-rails
 #   - rubocop-minitest
 
 AllCops:
   NewCops: enable
-  TargetRubyVersion: 3.1.2
+  TargetRubyVersion: 3.2
   Exclude:
-    - 'bin/**/*'
-    - 'db/schema.rb'
+    - "bin/**/*"
+    - "db/schema.rb"
 
 Layout/DotPosition:
   EnforcedStyle: trailing
@@ -29,16 +29,18 @@ Metrics/ParameterLists:
   Enabled: false
 
 Metrics/MethodLength:
-  IgnoredMethods:
-    - 'to_entity'
+  Enabled: false
 
 Metrics/BlockLength:
   Exclude:
-    - 'lib/tasks/**/*'
+    - "lib/tasks/**/*"
 
 Rails/I18nLocaleTexts:
   Enabled: false
 
 Lint/MissingSuper:
   Exclude:
-    - 'app/components/**/*'
+    - "app/components/**/*"
+
+Metrics/AbcSize:
+  Enabled: false

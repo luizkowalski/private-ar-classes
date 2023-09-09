@@ -1,4 +1,3 @@
-# rubocop:disable Performance/StringIdentifierArgument
 # frozen_string_literal: true
 
 # Create users
@@ -45,5 +44,3 @@ PostAR.create!(user_id: 1, title: 'Welcome to r/antiwork', body: 'really long te
 Comment = Subreddits.const_get('Persistence::CommentActiveRecord')
 Comment.create!(user_id: 2, post_id: 2, body: 'Long post body')
 Comment.create!(user_id: 3, post_id: 2, body: 'Long post body')
-
-# rubocop:enable Performance/StringIdentifierArgument

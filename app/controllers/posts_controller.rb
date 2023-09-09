@@ -4,6 +4,14 @@
 class PostsController < ApplicationController
   before_action :authenticate_user!
 
+  def show
+    @post = Subreddits::Queries::FetchPost.call(post_id:, slug: subreddit_slug)
+  end
+
+  def new
+    @subreddit_title = subreddit_slug
+  end
+
   def create
     change = Subreddits::Changes::Post.new(
       user_id: current_user.id,
@@ -22,14 +30,6 @@ class PostsController < ApplicationController
         redirect_to subreddit_post_path(subreddit_slug:, id: slug), status: :see_other
       end
     end
-  end
-
-  def new
-    @subreddit_title = subreddit_slug
-  end
-
-  def show
-    @post = Subreddits::Queries::FetchPost.call(post_id:, slug: subreddit_slug)
   end
 
   def upvote
