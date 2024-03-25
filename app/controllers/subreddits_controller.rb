@@ -33,11 +33,16 @@ class SubredditsController < ApplicationController
 
   def join
     Subreddits::Commands::JoinCommunity.call(user_id: current_user.id, slug: params[:slug])
-    @community = Subreddits::Queries::FetchCommunity.call(slug: params[:slug])
+
+    redirect_to subreddit_path(slug: params[:slug])
+    # @community = Subreddits::Queries::FetchCommunity.call(slug: params[:slug])
   end
 
   def leave
     Subreddits::Commands::LeaveCommunity.call(user_id: current_user.id, slug: params[:slug])
-    @community = Subreddits::Queries::FetchCommunity.call(slug: params[:slug])
+
+    redirect_to subreddit_path(slug: params[:slug])
+
+    # @community = Subreddits::Queries::FetchCommunity.call(slug: params[:slug])
   end
 end

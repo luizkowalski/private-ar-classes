@@ -9,9 +9,11 @@ user_repository.create(username: 'third_user', password: 'admin', email: 'email3
 
 # Create a community
 Subreddits::Commands::CreateCommunity.call(
-  user_id: 1,
-  title: 'nice_mugs',
-  description: 'This is a community about nice mugs'
+  Subreddits::Changes::Subreddit.new(
+    user_id: 1,
+    title: 'nice_mugs',
+    description: 'This is a community about nice mugs'
+  )
 )
 
 Subreddits::Commands::CreateCommunity.call(

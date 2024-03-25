@@ -3,7 +3,7 @@
 //   const links = document.querySelectorAll(
 //     "[data-link]"
 //   );
-  
+
 //   links.forEach((element) => {
 //     element.addEventListener("click", (event) => {
 //       event.preventDefault();
@@ -14,7 +14,8 @@
 //   });
 // });
 
-import "./controllers"
 import "@hotwired/turbo-rails"
-import "trix"
 import "@rails/actiontext"
+import "trix"
+import "./controllers"
+

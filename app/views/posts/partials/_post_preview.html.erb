@@ -1,4 +1,4 @@
-<div class="box">
+<div class="box mt-2">
   <article class="media">
     <div class="media-content">
       <div class="content">
@@ -6,7 +6,7 @@
           <strong><%= link_to("r/#{post.community}",  subreddit_path(post.community)) %></strong>
           <br>
           <strong>
-            <%= link_to(post.title, subreddit_post_path(subreddit_slug: post.community, id: post.slug), class: 'post-body-link') %>
+            <%= link_to(post.title, subreddit_post_path(subreddit_slug: post.community, id: post.slug), class: 'post-body-link has-text-white') %>
           </strong><small> by u/<%= post.username %> </small>
           <small><%= time_ago_in_words(post.created_at) %> ago</small>
           <br>
