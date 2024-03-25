@@ -6,6 +6,7 @@ module Subreddits
       class << self
         def call(slug:)
           Subreddits::Persistence::PostActiveRecord.
+            with_all_rich_text.
             select('posts.*, community.title AS community_title, users.username AS username').
             joins('INNER JOIN users ON users.id = posts.user_id').
             eager_load(:comments).

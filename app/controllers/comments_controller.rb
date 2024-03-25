@@ -17,11 +17,9 @@ class CommentsController < ApplicationController
       body: params[:body]
     )
 
-    redirect_to subreddit_post_path(subreddit_slug, post_id)
-
-    # # Reload the comment so we can get the username
-    # @comment = Subreddits::Queries::FetchComment.call(id: comment.id)
-    # @post    = Subreddits::Queries::FetchPost.call(post_id:, slug: subreddit_slug)
+    # Reload the comment so we can get the username
+    @comment = Subreddits::Queries::FetchComment.call(id: comment.id)
+    @post    = Subreddits::Queries::FetchPost.call(post_id:, slug: subreddit_slug)
   end
 
   private

@@ -36,7 +36,7 @@ class PostsController < ApplicationController
     Subreddits::Commands::Upvote.call(user_id: current_user.id, post_id:)
 
     redirect_back_or_to subreddit_post_path(subreddit_slug, post_id)
-    @post = Subreddits::Queries::FetchPost.call(post_id:, slug: subreddit_slug)
+    # @post = Subreddits::Queries::FetchPost.call(post_id:, slug: subreddit_slug)
   end
 
   private

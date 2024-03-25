@@ -14567,8 +14567,8 @@ class comment_controller_default extends Controller {
   connect() {
   }
   post(event) {
-    event.preventDefault();
-    if (event.ctrlKey && event.keyCode == 13) {
+    if ((event.ctrlKey || event.metaKey) && event.keyCode == 13) {
+      event.preventDefault();
       exports_turbo_es2017_esm.navigator.submitForm(this.formTarget);
       this.inputTextTarget.value = "";
     }
@@ -14602,4 +14602,4 @@ application.register("comment", comment_controller_default);
 application.register("modal", modal_controller_default);
 application.register("post", post_controller_default);
 
-//# debugId=B506E07FCBAB489864756e2164756e21
+//# debugId=1581EDE5AF7D75A164756e2164756e21

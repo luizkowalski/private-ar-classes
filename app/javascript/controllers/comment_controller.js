@@ -1,4 +1,4 @@
-import { Controller } from "@hotwired/stimulus"
+import { Controller } from "@hotwired/stimulus";
 import { Turbo } from "@hotwired/turbo-rails";
 
 // Connects to data-controller="comment"
@@ -8,8 +8,8 @@ export default class extends Controller {
   }
 
   post(event){
-    event.preventDefault();
-    if(event.ctrlKey && event.keyCode == 13) {
+    if((event.ctrlKey || event.metaKey) && event.keyCode == 13) {
+      event.preventDefault();
       Turbo.navigator.submitForm(this.formTarget);
       this.inputTextTarget.value = "";
     }
